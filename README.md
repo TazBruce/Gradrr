@@ -59,3 +59,4 @@ Package | Description
 `firebase` | Authentication
 `Yup` and `Formik` | Form and data validator
 `eslint`, `prettier`, `jest` | Productivity
+[`expo-fire-native`](https://github.com/duapp/expo-fire-native) | Starter Template
