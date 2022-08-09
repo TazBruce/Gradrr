@@ -1,0 +1,34 @@
+{
+  "login": {
+    "headline": "Welcome",
+    "subtitle": "Sign in to continue!",
+    "emailLabel": "Email",
+    "emailHint": "Enter your email",
+    "emailError": "Please enter a valid email",
+    "passwordLabel": "Password",
+    "passwordHint": "Enter your password",
+    "login": "Sign In",
+    "register": "Don't have an account? Sign Up"
+  },
+  "register": {
+    "title": "Sign Up",
+    "subtitle": "Please fill in the following information",
+    "displayNameLabel": "Your Name",
+    "displayNameHint": "What is your name",
+    "emailLabel": "Email",
+    "emailHint": "Enter your email",
+    "emailError": "Please enter a valid email",
+    "passwordLabel": "Password",
+    "passwordHint": "Enter your password",
+    "register": "Sign Up"
+  },
+  "home": {
+    "title": "Home",
+    "greeting": "This is HomeScreen"
+  },
+  "profile": {
+    "title": "Profile",
+    "greeting": "Hi, %{name}!",
+    "logout": "Sign Out"
+  }
+}
