@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, VStack, Button, HStack } from 'native-base';
+import { Heading, VStack, Button, HStack, Box } from 'native-base';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -40,6 +40,7 @@ export default function LoginScreen({
 
   return (
     <Screen>
+      <Box safeArea p="5" py="50%" w="90%" maxW="290" />
       <Heading size="lg" fontWeight="600" color="coolGray.800">
         {t('login.headline')}
       </Heading>

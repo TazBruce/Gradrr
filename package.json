@@ -8,12 +8,12 @@
     "native-base",
     "typescript"
   ],
-  "author": "Vivo Xu <vivo@duapp.org>",
+  "author": "Tasman bruce <tasmanbrucework@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/duapp/expo-fire-native/issues"
+    "url": "https://github.com/TazBruce/Gradrr/issues"
   },
-  "homepage": "https://github.com/duapp/expo-fire-native#readme",
+  "homepage": "https://github.com/TazBruce/Gradrr",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -109,8 +109,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --cache --fix",
-      "jest --coverage=false --bail --findRelatedTests"
+      "eslint --cache --fix"
     ]
   },
   "private": true
