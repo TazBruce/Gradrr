@@ -16,7 +16,7 @@ interface RegisterFormValue {
 const initialValues: RegisterFormValue = {
   displayName: '',
   email: '',
-  password: ''
+  password: '',
 };
 
 const schema = Yup.object().shape({
@@ -25,7 +25,7 @@ const schema = Yup.object().shape({
     .required()
     .email(t('register.emailError'))
     .label(t('register.emailLabel')),
-  password: Yup.string().required().min(6).label(t('register.passwordLabel'))
+  password: Yup.string().required().min(6).label(t('register.passwordLabel'),
 });
 
 export default function RegisterScreen() {
