@@ -22,7 +22,7 @@ test('it works', () => {
   const { getByText } = render(
     /* eslint-disable-next-line react/jsx-props-no-spreading */
     <BottomTabBar {...props} />,
-    { wrapper },
+    { wrapper }
   );
 
   const thisTab = getByText(mockState.routeNames[0]);

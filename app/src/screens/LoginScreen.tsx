@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, VStack, Button, HStack, Box } from 'native-base';
+import { Box, Button, Heading, HStack, VStack } from 'native-base';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -28,8 +28,8 @@ const schema = Yup.object().shape({
 });
 
 export default function LoginScreen({
-                                      navigatio,
-                                    }: NativeStackScreenProps<GuestNavigatorParamList, 'Login'>) {
+  navigation,
+}: NativeStackScreenProps<GuestNavigatorParamList, 'Login'>) {
   const handleFormSubmit = async ({ email, password }: LoginFormValue) => {
     try {
       await AuthService.signInWithEmailAndPassword(email, password);
@@ -40,11 +40,11 @@ export default function LoginScreen({
 
   return (
     <Screen>
-      <Box safeArea p'"'" py'"50'" w'"90'" maxW'"29'" />
-      <Heading size'"l'" fontWeight'"60'" color'"coolGray.80'">
+      <Box safeArea p="5" py="50%" w="90%" maxW="290" />
+      <Heading size="lg" fontWeight="600" color="coolGray.800">
         {t('login.headline')}
       </Heading>
-      <Heading mt'"'" color'"coolGray.60'" fontWeight'"mediu'" size'"x'">
+      <Heading mt="1" color="coolGray.600" fontWeight="medium" size="xs">
         {t('login.subtitle')}
       </Heading>
 
