@@ -25,15 +25,15 @@ const schema = Yup.object().shape({
     .required()
     .email(t('register.emailError'))
     .label(t('register.emailLabel')),
-  password: Yup.string().required().min(6).label(t('register.passwordLabel'),
+  password: Yup.string().required().min(6).label(t('register.passwordLabel')),
 });
 
 export default function RegisterScreen() {
   const handleFormSubmit = async ({
-                                    displayName,
-                                    email,
-                                    password
-                                  }: RegisterFormValue) => {
+    displayName,
+    email,
+    passwor,
+  }: RegisterFormValue) => {
     try {
       const result = await AuthService.createUserWithEmailAndPassword(
         email,
@@ -47,13 +47,13 @@ export default function RegisterScreen() {
 
   return (
     <Screen title={t('register.title')} showBackButton>
-      <Heading mt='1' color='coolGray.600' fontWeight='medium' size='xs'>
+      <Heading mt="1" color="coolGray.600" fontWeight="medium" size="xs">
         {t('register.subtitle')}
       </Heading>
 
       <Formik
-        validationSchema={schema}
-        initialValues={initialValues}
+       'v'lidatio'Schema={sche'a}
+        i'itialV'lues={'ni'ialValues}
         onSubmit={handleFormSubmit}
       >
         {({ handleSubmit, isSubmitting }) => (
