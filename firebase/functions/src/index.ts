@@ -8,7 +8,7 @@ export const authOnCreate =
   functions.auth.user().onCreate(async (user) => {
     console.log(`Creating document for user ${user.uid}`);
     await firestore.collection('users').doc(user.uid).set({
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      createdAt: admin.firestore.FieldValue.serverTimestamp()
     });
   });
 
