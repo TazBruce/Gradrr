@@ -22,12 +22,16 @@
     "passwordHint": "Enter your password",
     "register": "Sign Up"
   },
+  "courses": {
+    "title": "Courses",
+    "greeting": "This is CoursesScreen"
+  },
   "home": {
     "title": "Home",
     "greeting": "This is HomeScreen"
   },
-  "profile": {
-    "title": "Profile",
+  "settings": {
+    "title": "Settings",
     "greeting": "Hi, %{name}!",
     "logout": "Sign Out"
   }

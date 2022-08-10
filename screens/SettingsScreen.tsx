@@ -4,17 +4,17 @@ import { AuthContext, AuthService } from '../providers/AuthProvider';
 import { t } from '../utils';
 import Screen from '../components/common/Screen';
 
-export default function ProfileScreen() {
+export default function SettingsScreen() {
   const { user } = useContext(AuthContext);
 
   return (
-    <Screen title={t('profile.title')}>
+    <Screen title={t('settings.title')}>
       <Heading size="lg">
-        {t('profile.greeting', { name: user!.displayName || 'Joe' })}
+        {t('settings.greeting', { name: user!.displayName || 'Joe' })}
       </Heading>
       <VStack flex={1} justifyContent="center">
         <Button onPress={() => AuthService.signOut()}>
-          {t('profile.logout')}
+          {t('settings.logout')}
         </Button>
       </VStack>
     </Screen>
