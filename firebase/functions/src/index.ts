@@ -9,7 +9,6 @@ export const authOnCreate =
     console.log(`Creating document for user ${user.uid}`);
     await firestore.collection('users').doc(user.uid).set({
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      credits: 5
     });
   });
 
