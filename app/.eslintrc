@@ -6,7 +6,12 @@
     "prettier",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["@typescript-eslint", "react", "prettier", "jest"],
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "prettier",
+    "jest"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {

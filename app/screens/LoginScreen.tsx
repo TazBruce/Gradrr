@@ -16,7 +16,7 @@ interface LoginFormValue {
 
 const initialValues: LoginFormValue = {
   email: '',
-  password: '',
+  password: ''
 };
 
 const schema = Yup.object().shape({
@@ -24,12 +24,12 @@ const schema = Yup.object().shape({
     .required()
     .email(t('login.emailError'))
     .label(t('login.emailLabel')),
-  password: Yup.string().required().label(t('login.passwordLabel')),
+  password: Yup.string().required().label(t('login.passwordLabel'))
 });
 
 export default function LoginScreen({
-  navigation,
-}: NativeStackScreenProps<GuestNavigatorParamList, 'Login'>) {
+                                      navigation
+                                    }: NativeStackScreenProps<GuestNavigatorParamList, 'Login'>) {
   const handleFormSubmit = async ({ email, password }: LoginFormValue) => {
     try {
       await AuthService.signInWithEmailAndPassword(email, password);
@@ -40,11 +40,11 @@ export default function LoginScreen({
 
   return (
     <Screen>
-      <Box safeArea p="5" py="50%" w="90%" maxW="290" />
-      <Heading size="lg" fontWeight="600" color="coolGray.800">
+      <Box safeArea p='5' py='50%' w='90%' maxW='290' />
+      <Heading size='lg' fontWeight='600' color='coolGray.800'>
         {t('login.headline')}
       </Heading>
-      <Heading mt="1" color="coolGray.600" fontWeight="medium" size="xs">
+      <Heading mt='1' color='coolGray.600' fontWeight='medium' size='xs'>
         {t('login.subtitle')}
       </Heading>
 
@@ -54,31 +54,31 @@ export default function LoginScreen({
         onSubmit={handleFormSubmit}
       >
         {({ handleSubmit, isSubmitting }) => (
-          <VStack space={3} mt="5">
+          <VStack space={3} mt='5'>
             <TextField
-              name="email"
+              name='email'
               label={t('login.emailLabel')}
               placeholder={t('login.emailHint')}
               isRequired
             />
             <TextField
-              name="password"
+              name='password'
               label={t('login.passwordLabel')}
               placeholder={t('login.passwordHint')}
               isRequired
               password
             />
             <Button
-              mt="2"
+              mt='2'
               onPress={() => handleSubmit()}
               isLoading={isSubmitting}
               isDisabled={isSubmitting}
             >
               {t('login.login')}
             </Button>
-            <HStack mt="6" justifyContent="center">
+            <HStack mt='6' justifyContent='center'>
               <Button
-                variant="link"
+                variant='link'
                 onPress={() => navigation.navigate('Register')}
               >
                 {t('login.register')}
