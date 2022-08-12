@@ -16,7 +16,7 @@ interface LoginFormValue {
 
 const initialValues: LoginFormValue = {
   email: '',
-  password: '',
+  password: ''
 };
 
 const schema = Yup.object().shape({
@@ -24,7 +24,7 @@ const schema = Yup.object().shape({
     .required()
     .email(t('login.emailError'))
     .label(t('login.emailLabel')),
-  password: Yup.string().required().label(t('login.passwordLabel'),
+  password: Yup.string().required().label(t('login.passwordLabel'))
 });
 
 export default function LoginScreen({
