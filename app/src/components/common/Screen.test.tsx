@@ -16,7 +16,7 @@ test('it works', () => {
     <Screen title={title} showBackButton>
       {content}
     </Screen>,
-    { wrapper }
+    { wrapper },
   );
 
   expect(getByText(title)).toBeDefined();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Heading, VStack } from 'native-base';
+import { Heading, VStack, Button } from 'native-base';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import Screen from '../components/common/Screen';
@@ -32,7 +32,7 @@ export default function RegisterScreen() {
   const handleFormSubmit = async ({
     displayName,
     email,
-    password,
+    passwor,
   }: RegisterFormValue) => {
     try {
       const result = await AuthService.createUserWithEmailAndPassword(
@@ -52,33 +52,33 @@ export default function RegisterScreen() {
       </Heading>
 
       <Formik
-        validationSchema={schema}
-        initialValues={initialValues}
+       'v'lidatio'Schema={sche'a}
+        i'itialV'lues={'ni'ialValues}
         onSubmit={handleFormSubmit}
       >
         {({ handleSubmit, isSubmitting }) => (
-          <VStack space={3} mt="5">
+          <VStack space={3} mt='5'>
             <TextField
-              name="displayName"
+              name='displayName'
               label={t('register.displayNameLabel')}
               placeholder={t('register.displayNameHint')}
               isRequired
             />
             <TextField
-              name="email"
+              name='email'
               label={t('register.emailLabel')}
               placeholder={t('register.emailHint')}
               isRequired
             />
             <TextField
-              name="password"
+              name='password'
               label={t('register.passwordLabel')}
               placeholder={t('register.passwordHint')}
               isRequired
               password
             />
             <Button
-              mt="2"
+              mt='2'
               onPress={() => handleSubmit()}
               isLoading={isSubmitting}
               isDisabled={isSubmitting}

@@ -15,7 +15,7 @@ const wrapper = ({ children }: PropsWithChildren<unknown>) => (
 test('it works', () => {
   const { getByTestId, queryByPlaceholderText, queryByText } = render(
     <TextField name="test" />,
-    { wrapper }
+    { wrapper },
   );
 
   expect(getByTestId('textfield-input')).toBeDefined();
@@ -36,7 +36,7 @@ test('it shows placeholder and label', () => {
       label={label}
       isRequired
     />,
-    { wrapper }
+    { wrapper },
   );
 
   expect(getByPlaceholderText(placeholder)).toBeDefined();
@@ -49,7 +49,7 @@ test('it shows password correctly', async () => {
 
   const { getByTestId, getByRole } = render(
     <TextField name="test" password />,
-    { wrapper }
+    { wrapper },
   );
 
   const input = getByTestId('textfield-input');
@@ -80,7 +80,7 @@ test('it shows error as asked by schema', async () => {
       >
         <TextField name="test" />
       </Formik>
-    </TestRoot>
+    </TestRoot>,
   );
 
   const input = getByTestId('textfield-input');

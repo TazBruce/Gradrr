@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, HStack, Icon, IconButton, Text } from 'native-base';
+import { HStack, Icon, IconButton, Text, Box } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 

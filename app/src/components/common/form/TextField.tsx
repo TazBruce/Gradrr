@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import { Button, FormControl, Icon, IInputProps, Input } from 'native-base';
+import { Input, IInputProps, Button, Icon, FormControl } from 'native-base';
 import { useField, useFormikContext } from 'formik';
 import { Ionicons } from '@expo/vector-icons';
 

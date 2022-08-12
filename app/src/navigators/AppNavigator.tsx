@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { AuthContext, AuthProvider } from '../providers/AuthProvider';
+import { AuthProvider, AuthContext } from '../providers/AuthProvider';
 import MemberNavigator from './MemberNavigator';
 import GuestNavigator from './GuestNavigator';
 
