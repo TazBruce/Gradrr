@@ -1,8 +1,8 @@
 import React from 'react';
 import { NativeBaseProvider } from 'native-base';
 import { LogBox } from 'react-native';
-import useCachedResources from './src/hooks/useCachedResources';
-import AppNavigator from './src/navigators/AppNavigator';
+import useCachedResources from './hooks/useCachedResources';
+import AppNavigator from './navigators/AppNavigator';
 import theme from './theme';
 
 LogBox.ignoreLogs(['AsyncStorage has been extracted']);

@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react-native';
 import { TestRoot } from '../../utils/testing';
 import AppBar from './AppBar';
-import { mockGoBack } from '../../../__mocks__/@react-navigation/native';
+import { mockGoBack } from '../../__mocks__/@react-navigation/native';
 
 jest.mock('@react-navigation/native');
 
