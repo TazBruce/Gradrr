@@ -2,14 +2,11 @@
   "extends": [
     "airbnb",
     "airbnb/hooks",
-    "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "plugin:prettier/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
   "plugins": [
     "@typescript-eslint",
     "react",
-    "prettier",
     "jest"
   ],
   "parser": "@typescript-eslint/parser",
@@ -19,7 +16,7 @@
     },
     "ecmaVersion": 2018,
     "sourceType": "module",
-    "project": "./tsconfig.json"
+    "project": "./app/tsconfig.json"
   },
   "rules": {
     "import/no-unresolved": 0,
@@ -30,15 +27,6 @@
           ".ts",
           ".tsx"
         ]
-      }
-    ],
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true,
-        "trailingComma": "all",
-        "arrowParens": "avoid",
-        "endOfLine": "auto"
       }
     ],
     "no-use-before-define": "off",

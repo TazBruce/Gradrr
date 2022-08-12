@@ -2,7 +2,7 @@ import React, {
   createContext,
   PropsWithChildren,
   useEffect,
-  useState
+  useState,
 } from 'react';
 import Loader from '../components/common/Loader';
 import firebase from '../services/firebase';
@@ -20,19 +20,21 @@ export function AuthProvider(props: PropsWithChildren<unknown>) {
   const [user, setUser] = useState<User | null>(null);
   const [authPending, setAuthPending] = useState(true);
 
-  useEffect(() => {
-    return AuthService.onAuthStateChanged(result => {
+  useEffect(
+    () => AuthService.onAuthStateChanged((result) => {
       if (result) {
-        const { displayName, email, uid, photoURL, phoneNumber } = result;
+        const {
+          displayName, email, uid, photoURL, phoneNumber,
+        } = result;
         const currentUser: User = {
           displayName,
           email,
           uid,
           photoURL,
           phoneNumber,
-          isAdmin: false
+          isAdmin: false,
         };
-        // read claims if necessary
+          // read claims if necessary
         setAuthPending(true);
         result.getIdTokenResult().then(({ claims }) => {
           currentUser.isAdmin = Boolean(claims.admin);
@@ -43,8 +45,9 @@ export function AuthProvider(props: PropsWithChildren<unknown>) {
         setUser(null);
         setAuthPending(false);
       }
-    });
-  }, []);
+    }),
+    [],
+  );
 
   const { children } = props;
 
@@ -55,7 +58,7 @@ export function AuthProvider(props: PropsWithChildren<unknown>) {
   return (
     <AuthContext.Provider
       value={{
-        user
+        user,
       }}
     >
       {children}

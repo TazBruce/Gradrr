@@ -1,5 +1,7 @@
 import React from 'react';
-import { HStack, Icon, IconButton, Text, Box } from 'native-base';
+import {
+  HStack, Icon, IconButton, Text, Box,
+} from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -22,13 +24,13 @@ export default function AppBar({ title, showBackButton = false }: AppBarProps) {
       <Box width="50">
         {showBackButton && (
           <IconButton
-            icon={
+            icon={(
               <Icon
                 size="sm"
                 color="white"
                 as={<MaterialIcons name="arrow-back-ios" />}
               />
-            }
+            )}
             onPress={() => navigation.goBack()}
           />
         )}

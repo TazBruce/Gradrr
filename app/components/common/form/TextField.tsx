@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import { Input, IInputProps, Button, Icon, FormControl } from 'native-base';
+import {
+  Input, IInputProps, Button, Icon, FormControl,
+} from 'native-base';
 import { useField, useFormikContext } from 'formik';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -18,7 +20,9 @@ const defaultProps = {
 };
 
 export default function TextField(props: TextFieldProps) {
-  const { name, label, isRequired, password, ...rest } = props;
+  const {
+    name, label, isRequired, password, ...rest
+  } = props;
   const [textHidden, setTextHidden] = useState(password);
   const [field, meta] = useField(name);
   const { handleChange, handleBlur, setFieldTouched } = useFormikContext();
@@ -35,13 +39,13 @@ export default function TextField(props: TextFieldProps) {
           password ? (
             <Button
               variant="ghost"
-              leftIcon={
+              leftIcon={(
                 <Icon
                   as={Ionicons}
                   name={textHidden ? 'eye' : 'eye-off'}
                   size="xs"
                 />
-              }
+              )}
               onPress={() => setTextHidden(!textHidden)}
             />
           ) : undefined

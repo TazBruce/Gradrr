@@ -23,7 +23,7 @@
     "lint": "eslint",
     "test": "jest",
     "test:dev": "jest -o --watch",
-    "prepare": "husky install",
+    "prepare": "cd .. && husky install ./app/.husky",
     "eject": "expo eject"
   },
   "dependencies": {

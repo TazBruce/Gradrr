@@ -2,7 +2,7 @@ import { extendTheme } from 'native-base';
 
 const config = {
   useSystemColorMode: false,
-  initialColorMode: 'light'
+  initialColorMode: 'light',
 };
 
 const colors = {
@@ -16,8 +16,8 @@ const colors = {
     600: '#254EDB',
     700: '#1939B7',
     800: '#102693',
-    900: '#091A7A'
-  }
+    900: '#091A7A',
+  },
 };
 
 const theme = extendTheme({ colors, config });
