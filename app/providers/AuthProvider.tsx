@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import Loader from '../components/common/Loader';
 import firebase from '../services/firebase';
-import { User } from '../types/index';
+import { User } from '../types';
 
 interface AuthContextValue {
   user: User | null;

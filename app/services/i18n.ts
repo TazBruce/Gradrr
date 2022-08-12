@@ -2,10 +2,8 @@ import i18n from 'i18n-js';
 import * as Localization from 'expo-localization';
 
 import en from '../locales/en_US.json';
-import zh from '../locales/zh_CN.json';
-import ar from '../locales/ar_EG.json';
 
-i18n.translations = { en, zh, ar };
+i18n.translations = { en };
 
 let deviceLocale = Localization.locale;
 
