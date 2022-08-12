@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "keywords": [
     "expo",
-    "boilerplate",
     "firebase",
     "native-base",
     "typescript"
@@ -109,8 +108,7 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --cache --fix"
+    "*.{js,ts,tsx}": [
     ]
   },
   "private": true
