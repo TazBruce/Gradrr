@@ -24,7 +24,8 @@
   },
   "courses": {
     "title": "Courses",
-    "greeting": "This is CoursesScreen"
+    "currentCourses": "Current",
+    "pastCourses": "Past"
   },
   "home": {
     "title": "Home",
