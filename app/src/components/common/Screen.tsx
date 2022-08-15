@@ -1,6 +1,6 @@
-import React, { PropsWithChildren } from 'react';
-import { Box, VStack } from 'native-base';
-import AppBar from './AppBar';
+import React, { PropsWithChildren } from "react";
+import { Box, VStack } from "native-base";
+import AppBar from "./AppBar";
 
 interface ScreenProps {
   title?: string;

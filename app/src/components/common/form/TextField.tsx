@@ -1,10 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
-import {
-  Input, IInputProps, Button, Icon, FormControl,
-} from 'native-base';
-import { useField, useFormikContext } from 'formik';
-import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from "react";
+import { Input, IInputProps, Button, Icon, FormControl } from "native-base";
+import { useField, useFormikContext } from "formik";
+import { Ionicons } from "@expo/vector-icons";
 
 interface TextFieldProps extends IInputProps {
   name: string;
@@ -14,15 +12,13 @@ interface TextFieldProps extends IInputProps {
 }
 
 const defaultProps = {
-  label: '',
+  label: "",
   isRequired: false,
   password: false,
 };
 
 export default function TextField(props: TextFieldProps) {
-  const {
-    name, label, isRequired, password, ...rest
-  } = props;
+  const { name, label, isRequired, password, ...rest } = props;
   const [textHidden, setTextHidden] = useState(password);
   const [field, meta] = useField(name);
   const { handleChange, handleBlur, setFieldTouched } = useFormikContext();
@@ -32,20 +28,20 @@ export default function TextField(props: TextFieldProps) {
       <FormControl.Label>{label}</FormControl.Label>
       <Input
         testID="textfield-input"
-        type={textHidden ? 'password' : 'text'}
+        type={textHidden ? "password" : "text"}
         value={field.value}
         {...rest}
         InputRightElement={
           password ? (
             <Button
               variant="ghost"
-              leftIcon={(
+              leftIcon={
                 <Icon
                   as={Ionicons}
-                  name={textHidden ? 'eye' : 'eye-off'}
+                  name={textHidden ? "eye" : "eye-off"}
                   size="xs"
                 />
-              )}
+              }
               onPress={() => setTextHidden(!textHidden)}
             />
           ) : undefined

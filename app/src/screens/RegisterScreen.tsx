@@ -1,11 +1,11 @@
-import React from 'react';
-import { Heading, VStack, Button } from 'native-base';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import Screen from '../components/common/Screen';
-import { t } from '../utils';
-import TextField from '../components/common/form/TextField';
-import { AuthService } from '../providers/AuthProvider';
+import React from "react";
+import { Heading, VStack, Button } from "native-base";
+import * as Yup from "yup";
+import { Formik } from "formik";
+import Screen from "../components/common/Screen";
+import { t } from "../utils";
+import TextField from "../components/common/form/TextField";
+import { AuthService } from "../providers/AuthProvider";
 
 interface RegisterFormValue {
   displayName: string;
@@ -14,18 +14,18 @@ interface RegisterFormValue {
 }
 
 const initialValues: RegisterFormValue = {
-  displayName: '',
-  email: '',
-  password: '',
+  displayName: "",
+  email: "",
+  password: "",
 };
 
 const schema = Yup.object().shape({
-  displayName: Yup.string().required().label(t('register.displayNameLabel')),
+  displayName: Yup.string().required().label(t("register.displayNameLabel")),
   email: Yup.string()
     .required()
-    .email(t('register.emailError'))
-    .label(t('register.emailLabel')),
-  password: Yup.string().required().min(6).label(t('register.passwordLabel')),
+    .email(t("register.emailError"))
+    .label(t("register.emailLabel")),
+  password: Yup.string().required().min(6).label(t("register.passwordLabel")),
 });
 
 export default function RegisterScreen() {
@@ -37,7 +37,7 @@ export default function RegisterScreen() {
     try {
       const result = await AuthService.createUserWithEmailAndPassword(
         email,
-        password,
+        password
       );
       await result.user?.updateProfile({ displayName });
     } catch ({ message }) {
@@ -46,9 +46,9 @@ export default function RegisterScreen() {
   };
 
   return (
-    <Screen title={t('register.title')} showBackButton>
+    <Screen title={t("register.title")} showBackButton>
       <Heading mt="1" color="coolGray.600" fontWeight="medium" size="xs">
-        {t('register.subtitle')}
+        {t("register.subtitle")}
       </Heading>
 
       <Formik
@@ -60,20 +60,20 @@ export default function RegisterScreen() {
           <VStack space={3} mt="5">
             <TextField
               name="displayName"
-              label={t('register.displayNameLabel')}
-              placeholder={t('register.displayNameHint')}
+              label={t("register.displayNameLabel")}
+              placeholder={t("register.displayNameHint")}
               isRequired
             />
             <TextField
               name="email"
-              label={t('register.emailLabel')}
-              placeholder={t('register.emailHint')}
+              label={t("register.emailLabel")}
+              placeholder={t("register.emailHint")}
               isRequired
             />
             <TextField
               name="password"
-              label={t('register.passwordLabel')}
-              placeholder={t('register.passwordHint')}
+              label={t("register.passwordLabel")}
+              placeholder={t("register.passwordHint")}
               isRequired
               password
             />
@@ -83,7 +83,7 @@ export default function RegisterScreen() {
               isLoading={isSubmitting}
               isDisabled={isSubmitting}
             >
-              {t('register.register')}
+              {t("register.register")}
             </Button>
           </VStack>
         )}

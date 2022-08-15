@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
-import { NativeBaseProvider } from 'native-base';
-import React, { PropsWithChildren } from 'react';
+import { NativeBaseProvider } from "native-base";
+import React, { PropsWithChildren } from "react";
 
 export function TestRoot({ children }: PropsWithChildren<unknown>) {
   const inset = {

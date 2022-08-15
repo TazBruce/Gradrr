@@ -1,6 +1,6 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/database';
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
 
 import {
   FIREBASE_APP_ID,
@@ -10,7 +10,7 @@ import {
   FIREBASE_PROJECT_ID,
   FIREBASE_STORAGE_BUCKET,
   FIREBASE_MESSAGING_SENDER_ID,
-} from '@env';
+} from "@env";
 
 const firebaseConfig = {
   appId: FIREBASE_APP_ID,

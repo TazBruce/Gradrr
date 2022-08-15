@@ -1,13 +1,12 @@
-import React from 'react';
-import {
-  Center, HStack, Icon, Pressable, Text,
-} from 'native-base';
-import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { t } from '../../utils';
+import React from "react";
+import { Center, HStack, Icon, Pressable, Text } from "native-base";
+import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { t } from "../../utils";
 
 export default function BottomTabBar({ navigation, state }: BottomTabBarProps) {
-  const select = (index: number) => navigation.navigate(state.routeNames[index]);
+  const select = (index: number) =>
+    navigation.navigate(state.routeNames[index]);
   return (
     <HStack bg="primary.600" alignItems="center" safeAreaBottom shadow={6}>
       <Pressable
@@ -19,16 +18,16 @@ export default function BottomTabBar({ navigation, state }: BottomTabBarProps) {
         <Center>
           <Icon
             mb="1"
-            as={(
+            as={
               <MaterialCommunityIcons
-                name={state.index === 0 ? 'book-open' : 'book-open-outline'}
+                name={state.index === 0 ? "book-open" : "book-open-outline"}
               />
-            )}
+            }
             color="white"
             size="sm"
           />
           <Text color="white" fontSize="12">
-            {t('courses.title')}
+            {t("courses.title")}
           </Text>
         </Center>
       </Pressable>
@@ -41,16 +40,16 @@ export default function BottomTabBar({ navigation, state }: BottomTabBarProps) {
         <Center>
           <Icon
             mb="1"
-            as={(
+            as={
               <MaterialCommunityIcons
-                name={state.index === 1 ? 'home' : 'home-outline'}
+                name={state.index === 1 ? "home" : "home-outline"}
               />
-            )}
+            }
             color="white"
             size="sm"
           />
           <Text color="white" fontSize="12">
-            {t('home.title')}
+            {t("home.title")}
           </Text>
         </Center>
       </Pressable>
@@ -63,20 +62,20 @@ export default function BottomTabBar({ navigation, state }: BottomTabBarProps) {
         <Center>
           <Icon
             mb="1"
-            as={(
+            as={
               <MaterialCommunityIcons
                 name={
                   state.index === 2
-                    ? 'account-settings'
-                    : 'account-settings-outline'
+                    ? "account-settings"
+                    : "account-settings-outline"
                 }
               />
-            )}
+            }
             color="white"
             size="sm"
           />
           <Text color="white" fontSize="12">
-            {t('settings.title')}
+            {t("settings.title")}
           </Text>
         </Center>
       </Pressable>
