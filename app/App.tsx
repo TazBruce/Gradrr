@@ -3,9 +3,12 @@ import { NativeBaseProvider } from "native-base";
 import { LogBox } from "react-native";
 import useCachedResources from "./src/hooks/useCachedResources";
 import AppNavigator from "./src/navigators/AppNavigator";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import theme from "./theme";
 
 LogBox.ignoreLogs(["AsyncStorage has been extracted"]);
+
+const queryClient = new QueryClient();
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -15,7 +18,9 @@ export default function App() {
   }
   return (
     <NativeBaseProvider theme={theme}>
-      <AppNavigator />
+      <QueryClientProvider client={queryClient}>
+        <AppNavigator />
+      </QueryClientProvider>
     </NativeBaseProvider>
   );
 }
