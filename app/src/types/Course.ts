@@ -7,6 +7,10 @@ export type Course = {
    */
   id: string;
   /**
+   * The owner of the course
+   */
+  owner: string;
+  /**
    * The name of the course
    */
   title: string;

@@ -1,15 +1,22 @@
 import React from "react";
 import { t } from "../utils";
 import Screen from "../components/common/Screen";
-import { Box, Center, useColorModeValue } from "native-base";
+import { Box, Button, Center, useColorModeValue, Text } from "native-base";
 import { Animated, Dimensions, Pressable, StatusBar } from "react-native";
+import { getCourses } from "../providers/DataProvider";
 import { SceneMap, TabView } from "react-native-tab-view";
 
 const CurrentCourses = () => (
   <Center flex={1} my="4">
-    This is Tab 1
+    <Button onPress={() => printCourses()}>
+      <Text>Test</Text>
+    </Button>
   </Center>
 );
+
+function printCourses() {
+  console.log(getCourses());
+}
 
 const PastCourses = () => (
   <Center flex={1} my="4">
