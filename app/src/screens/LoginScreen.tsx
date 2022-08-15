@@ -8,6 +8,7 @@ import { t } from "../utils";
 import { GuestNavigatorParamList } from "../navigators/GuestNavigator";
 import TextField from "../components/common/form/TextField";
 import { AuthService } from "../providers/AuthProvider";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 interface LoginFormValue {
   email: string;
@@ -32,7 +33,7 @@ export default function LoginScreen({
 }: NativeStackScreenProps<GuestNavigatorParamList, "Login">) {
   const handleFormSubmit = async ({ email, password }: LoginFormValue) => {
     try {
-      await AuthService.signInWithEmailAndPassword(email, password);
+      await signInWithEmailAndPassword(AuthService, email, password);
     } catch ({ message }) {
       console.log(message);
     }

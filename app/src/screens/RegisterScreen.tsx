@@ -6,6 +6,7 @@ import Screen from "../components/common/Screen";
 import { t } from "../utils";
 import TextField from "../components/common/form/TextField";
 import { AuthService } from "../providers/AuthProvider";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 interface RegisterFormValue {
   displayName: string;
@@ -35,11 +36,13 @@ export default function RegisterScreen() {
     password,
   }: RegisterFormValue) => {
     try {
-      const result = await AuthService.createUserWithEmailAndPassword(
+      const result = await createUserWithEmailAndPassword(
+        AuthService,
         email,
         password
       );
-      await result.user?.updateProfile({ displayName });
+      // @ts-ignore
+      await updateProfile(result.user, displayName);
     } catch ({ message }) {
       console.log(message);
     }

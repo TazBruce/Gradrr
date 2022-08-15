@@ -1,6 +1,4 @@
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/database";
+import { initializeApp } from "firebase/app";
 
 import {
   FIREBASE_APP_ID,
@@ -22,8 +20,6 @@ const firebaseConfig = {
   messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
 };
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+const firebase = initializeApp(firebaseConfig);
 
 export default firebase;

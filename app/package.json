@@ -42,7 +42,7 @@
     "expo-splash-screen": "~0.16.1",
     "expo-status-bar": "~1.4.0",
     "expo-web-browser": "~11.0.0",
-    "firebase": "8.2.3",
+    "firebase": "9.1.0",
     "formik": "^2.2.9",
     "i18n-js": "^3.8.0",
     "native-base": "^3.2.1",
