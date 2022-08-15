@@ -1,7 +1,7 @@
 /**
  * A course within the app.
  */
-class Course {
+export type Course = {
   /**
    * The ID of the course
    */
@@ -22,26 +22,4 @@ class Course {
    * The final grade the course receives
    */
   grade: string;
-
-  /**
-   * The constructor for the Course class
-   * @param id
-   * @param title
-   * @param description
-   * @param year
-   * @param grade
-   */
-  constructor(
-    id: string,
-    title: string,
-    description: string,
-    year: number,
-    grade: string
-  ) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.year = year;
-    this.grade = grade;
-  }
-}
+};

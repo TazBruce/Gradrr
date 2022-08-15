@@ -1,7 +1,9 @@
+import { Course } from "./Course";
+
 /**
  * An assignment within a course.
  */
-class Assignment {
+export type Assignment = {
   /**
    * The ID of the assignment
    */
@@ -34,24 +36,4 @@ class Assignment {
    * The amount of marks the assignment has received
    */
   marks: number;
-
-  constructor(
-    id: string,
-    title: string,
-    weight: number,
-    course: Course,
-    dueDate: Date,
-    completed: boolean,
-    maxMarks: number,
-    marks: number
-  ) {
-    this.id = id;
-    this.title = title;
-    this.weight = weight;
-    this.course = course;
-    this.dueDate = dueDate;
-    this.completed = completed;
-    this.maxMarks = maxMarks;
-    this.marks = marks;
-  }
-}
+};
