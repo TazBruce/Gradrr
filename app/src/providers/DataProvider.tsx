@@ -4,9 +4,10 @@ import { AuthContext } from "./AuthProvider";
 import { query, collection, where } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import { Course } from "../types/Course";
-import firebase from "../services/firebase";
+import { db } from "../services/firebase";
+import { Center, Spinner } from "native-base";
 
-const firestore = getFirestore(firebase);
+const firestore = db;
 
 export function getCourses() {
   const { user } = useContext(AuthContext);
@@ -21,11 +22,16 @@ export function getCourses() {
   const hookQuery = useFirestoreQuery(["courses"], ref);
 
   if (hookQuery.isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Center flex={1}>
+        <Spinner testID="loader" size="lg" />
+      </Center>
+    );
   }
 
   const snapshot = hookQuery.data;
 
+  // @ts-ignore
   return snapshot.docs.map(
     (docSnapshot: { data: () => any; id: React.Key | null | undefined }) => {
       const data = docSnapshot.data();

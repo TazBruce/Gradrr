@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { initializeFirestore } from "firebase/firestore";
 
 import {
   FIREBASE_APP_ID,
@@ -9,6 +10,7 @@ import {
   FIREBASE_STORAGE_BUCKET,
   FIREBASE_MESSAGING_SENDER_ID,
 } from "@env";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   appId: FIREBASE_APP_ID,
@@ -20,6 +22,6 @@ const firebaseConfig = {
   messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
 };
 
-const firebase = initializeApp(firebaseConfig);
-
-export default firebase;
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = initializeFirestore(app, {});

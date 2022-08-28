@@ -8,15 +8,9 @@ import { SceneMap, TabView } from "react-native-tab-view";
 
 const CurrentCourses = () => (
   <Center flex={1} my="4">
-    <Button onPress={() => printCourses()}>
-      <Text>Test</Text>
-    </Button>
+    <Text>Hello</Text>
   </Center>
 );
-
-function printCourses() {
-  console.log(getCourses());
-}
 
 const PastCourses = () => (
   <Center flex={1} my="4">
@@ -116,6 +110,8 @@ function TabFunction() {
 }
 
 export default function CoursesScreen() {
+  const courses = getCourses();
+  console.log(courses);
   return (
     <Screen title={t("courses.title")}>
       <TabFunction />

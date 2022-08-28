@@ -5,8 +5,7 @@ import React, {
   useState,
 } from "react";
 import Loader from "../components/common/Loader";
-import firebase from "../services/firebase";
-import { getAuth } from "firebase/auth";
+import { auth } from "../services/firebase";
 import { User } from "../types";
 
 interface AuthContextValue {
@@ -15,7 +14,7 @@ interface AuthContextValue {
 
 export const AuthContext = createContext({} as AuthContextValue);
 
-export const AuthService = getAuth(firebase);
+export const AuthService = auth;
 
 export function AuthProvider(props: PropsWithChildren<unknown>) {
   const [user, setUser] = useState<User | null>(null);
