@@ -3,12 +3,12 @@ import { t } from "../utils";
 import Screen from "../components/common/Screen";
 import { Box, Button, Center, useColorModeValue, Text } from "native-base";
 import { Animated, Dimensions, Pressable, StatusBar } from "react-native";
-import { getCourses } from "../providers/DataProvider";
 import { SceneMap, TabView } from "react-native-tab-view";
+import CourseList from "../components/courses/CourseList";
 
 const CurrentCourses = () => (
   <Center flex={1} my="4">
-    <Text>Hello</Text>
+    <CourseList />
   </Center>
 );
 
@@ -111,8 +111,6 @@ function TabFunction() {
 }
 
 export default function CoursesScreen() {
-  const courses = getCourses();
-  console.log(courses);
   return (
     <Screen title={t("courses.title")}>
       <TabFunction />
