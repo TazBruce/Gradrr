@@ -4,6 +4,7 @@
     "slug": "gradrr",
     "version": "1.0.0",
     "owner": "tazbruce",
+    "sdkVersion": "46.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -19,13 +20,15 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tazbruce.gradrr"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.tazbruce.gradrr"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
