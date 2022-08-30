@@ -49,5 +49,4 @@ jobs:
         run: yarn install --immutable
 
       - name: Publish update
-        run: eas update --auto
-        working-directory: app
+        run: cd app && eas update --auto
