@@ -1,8 +1,9 @@
 {
   "expo": {
     "name": "Gradrr",
-    "slug": "Gradrr",
+    "slug": "gradrr",
     "version": "1.0.0",
+    "owner": "tazbruce",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -13,7 +14,8 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/29aeb784-4edc-4438-990d-e4976dd10c7f"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -27,6 +29,14 @@
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "29aeb784-4edc-4438-990d-e4976dd10c7f"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }
