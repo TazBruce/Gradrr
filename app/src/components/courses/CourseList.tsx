@@ -6,7 +6,7 @@ import { useFirestoreQuery } from "@react-query-firebase/firestore";
 import Loader from "../common/Loader";
 import { Course } from "../../types/Course";
 import CourseRow from "./CourseRow";
-import { VStack } from "native-base";
+import { ScrollView, VStack } from "native-base";
 
 export default function CourseList(): JSX.Element {
   const { user } = useContext(AuthContext);
@@ -39,5 +39,13 @@ export default function CourseList(): JSX.Element {
     );
   };
 
-  return <>{<VStack space={4}>{courses()}</VStack>}</>;
+  return (
+    <>
+      {
+        <ScrollView h="80">
+          <VStack space={4}>{courses()}</VStack>
+        </ScrollView>
+      }
+    </>
+  );
 }
