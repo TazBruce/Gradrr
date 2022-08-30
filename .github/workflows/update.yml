@@ -48,4 +48,4 @@ jobs:
         run: yarn install --immutable
 
       - name: Publish update
-        run: cd app && eas update --auto || ls
+        run: eas update --auto || ls
