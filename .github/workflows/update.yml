@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./app
+        working-directory: app
     steps:
       - name: Check for EXPO_TOKEN
         run: |
@@ -18,14 +18,14 @@ jobs:
 
       - uses: actions/checkout@v2
         with:
-          path: ./app
+          path: app
 
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
           cache: yarn
-          cache-dependency-path: ./app/yarn.lock
+          cache-dependency-path: app/yarn.lock
 
       - name: Setup Expo
         uses: expo/expo-github-action@v7
