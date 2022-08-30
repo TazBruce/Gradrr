@@ -9,9 +9,8 @@ jobs:
       run:
         working-directory: app
     steps:
-      - uses: actions/checkout@v2
-        with:
-          path: app
+      - name: Checkout Repo
+        uses: actions/checkout@v2
 
       - name: Check for EXPO_TOKEN
         run: |
