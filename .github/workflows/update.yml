@@ -48,4 +48,4 @@ jobs:
         run: yarn install --immutable
 
       - name: Publish to Expo
-        run: expo publish --non-interactive || ls
+        run: eas update --auto || ls
