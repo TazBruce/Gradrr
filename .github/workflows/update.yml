@@ -18,7 +18,7 @@ jobs:
 
       - name: Open App Directory
         id: open-directory
-        run: echo "cd ./app"
+        run: cd /app
 
       - name: Setup Node
         uses: actions/setup-node@v2
