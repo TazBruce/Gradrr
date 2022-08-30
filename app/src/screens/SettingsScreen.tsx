@@ -13,7 +13,7 @@ export default function SettingsScreen() {
         {t("settings.greeting", { name: user?.displayName || "N/A" })}
       </Heading>
       <VStack flex={1} justifyContent="center">
-        <Button onPress={() => AuthService.signOut()}>
+        <Button color="primary.500" onPress={() => AuthService.signOut()}>
           {t("settings.logout")}
         </Button>
       </VStack>

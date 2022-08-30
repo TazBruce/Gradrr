@@ -67,7 +67,7 @@ function TabFunction() {
               : useColorModeValue("#1f2937", "#a1a1aa");
           const borderColor =
             index === i
-              ? "cyan.500"
+              ? "primary.500"
               : useColorModeValue("coolGray.200", "gray.400");
           return (
             <Box

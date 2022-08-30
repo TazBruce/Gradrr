@@ -1,5 +1,5 @@
 import React from "react";
-import { Center, HStack, Spinner } from "native-base";
+import { Center, Spinner } from "native-base";
 
 export default function Loader() {
   return (

@@ -8,7 +8,7 @@ export default function BottomTabBar({ navigation, state }: BottomTabBarProps) {
   const select = (index: number) =>
     navigation.navigate(state.routeNames[index]);
   return (
-    <HStack bg="primary.600" alignItems="center" safeAreaBottom shadow={6}>
+    <HStack bg="primary.500" alignItems="center" safeAreaBottom shadow={6}>
       <Pressable
         opacity={state.index === 0 ? 1 : 0.5}
         py="3"

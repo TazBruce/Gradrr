@@ -13,7 +13,7 @@ export default function AppBar({ title, showBackButton = false }: AppBarProps) {
   return (
     <HStack
       safeAreaTop
-      backgroundColor="primary.600"
+      backgroundColor="primary.500"
       px="3"
       py="3"
       justifyContent="space-between"
