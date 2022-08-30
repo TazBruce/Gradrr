@@ -39,13 +39,5 @@ export default function CourseList(): JSX.Element {
     );
   };
 
-  return (
-    <>
-      {
-        <VStack space={4} alignItems={"center"}>
-          {courses()}
-        </VStack>
-      }
-    </>
-  );
+  return <>{<VStack space={4}>{courses()}</VStack>}</>;
 }
