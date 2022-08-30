@@ -8,18 +8,30 @@ import { Course } from "../../types/Course";
 import CourseRow from "./CourseRow";
 import { ScrollView, VStack } from "native-base";
 
-export default function CourseList(): JSX.Element {
+export default function CourseList(isCurrent: boolean): JSX.Element {
   const { user } = useContext(AuthContext);
 
-  // Create a Firestore collection reference
-  // @ts-ignore
-  const ref = query(
-    collection(firestore, "courses"),
-    where("owner", "==", user?.uid || "N/A")
-  );
+  let ref;
+  let firestoreQuery;
 
-  // @ts-ignore
-  const firestoreQuery = useFirestoreQuery<Course>(["courses"], ref);
+  // Create a Firestore collection reference
+  if (isCurrent) {
+    ref = query(
+      collection(firestore, "courses"),
+      where("owner", "==", user?.uid || "N/A"),
+      where("final_grade", "==", "")
+    );
+    // @ts-ignore
+    firestoreQuery = useFirestoreQuery<Course>(["current_courses"], ref);
+  } else {
+    ref = query(
+      collection(firestore, "courses"),
+      where("owner", "==", user?.uid || "N/A"),
+      where("final_grade", "!=", "")
+    );
+    // @ts-ignore
+    firestoreQuery = useFirestoreQuery<Course>(["past_courses"], ref);
+  }
 
   if (firestoreQuery.isLoading) {
     return <Loader />;

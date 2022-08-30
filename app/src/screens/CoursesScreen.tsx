@@ -15,13 +15,9 @@ import { SceneMap, TabView } from "react-native-tab-view";
 import CourseList from "../components/courses/CourseList";
 import { AntDesign } from "@expo/vector-icons";
 
-const CurrentCourses = () => <CourseList />;
+const CurrentCourses = () => CourseList(true);
 
-const PastCourses = () => (
-  <Center flex={1} my="4">
-    This is Tab 2
-  </Center>
-);
+const PastCourses = () => CourseList(false);
 
 const initialLayout = {
   width: Dimensions.get("window").width,
