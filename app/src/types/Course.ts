@@ -25,5 +25,5 @@ export type Course = {
   /**
    * The final grade the course receives
    */
-  grade: string;
+  final_grade: string;
 };
