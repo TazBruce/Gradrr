@@ -47,5 +47,5 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Publish update
-        run: eas update --auto || ls
+      - name: Publish to Expo
+        run: expo publish --non-interactive || ls

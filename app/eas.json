@@ -12,7 +12,7 @@
       "distribution": "internal"
     },
     "production": {
-      "channel": "production"
+      "channel": "default"
     }
   },
   "submit": {
