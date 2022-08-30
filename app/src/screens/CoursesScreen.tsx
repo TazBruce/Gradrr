@@ -6,11 +6,7 @@ import { Animated, Dimensions, Pressable, StatusBar } from "react-native";
 import { SceneMap, TabView } from "react-native-tab-view";
 import CourseList from "../components/courses/CourseList";
 
-const CurrentCourses = () => (
-  <Center flex={1} my="4">
-    <CourseList />
-  </Center>
-);
+const CurrentCourses = () => <CourseList />;
 
 const PastCourses = () => (
   <Center flex={1} my="4">

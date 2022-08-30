@@ -6,6 +6,7 @@ import { useFirestoreQuery } from "@react-query-firebase/firestore";
 import Loader from "../common/Loader";
 import { Course } from "../../types/Course";
 import CourseRow from "./CourseRow";
+import { VStack } from "native-base";
 
 export default function CourseList(): JSX.Element {
   const { user } = useContext(AuthContext);
@@ -26,16 +27,24 @@ export default function CourseList(): JSX.Element {
 
   const snapshot = firestoreQuery.data;
 
+  const courses = function () {
+    return (
+      // @ts-ignore
+      snapshot.docs.map(function (docSnapshot: {
+        data: () => Course;
+        id: React.Key | null | undefined;
+      }) {
+        return CourseRow(docSnapshot.data(), docSnapshot.id);
+      })
+    );
+  };
+
   return (
     <>
       {
-        // @ts-ignore
-        snapshot.docs.map(function (docSnapshot: {
-          data: () => Course;
-          id: React.Key | null | undefined;
-        }) {
-          return CourseRow(docSnapshot.data(), docSnapshot.id);
-        })
+        <VStack space={4} alignItems={"center"}>
+          {courses()}
+        </VStack>
       }
     </>
   );
