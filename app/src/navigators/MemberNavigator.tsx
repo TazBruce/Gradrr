@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import BottomTabBar from "../components/common/BottomTabBar";
 import HomeScreen from "../screens/HomeScreen";
-import CoursesScreen from "../screens/CoursesScreen";
+import CoursesScreen from "../screens/courses/CoursesScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 
 const { Navigator, Screen } = createBottomTabNavigator();

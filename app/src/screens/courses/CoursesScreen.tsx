@@ -1,31 +1,19 @@
 import React from "react";
-import { t } from "../utils";
-import Screen from "../components/common/Screen";
-import {
-  Box,
-  Button,
-  Center,
-  useColorModeValue,
-  Text,
-  IconButton,
-  Icon,
-} from "native-base";
+import { t } from "../../utils";
+import Screen from "../../components/common/Screen";
+import { Box, useColorModeValue, IconButton, Icon } from "native-base";
 import { Animated, Dimensions, Pressable, StatusBar } from "react-native";
 import { SceneMap, TabView } from "react-native-tab-view";
-import CourseList from "../components/courses/CourseList";
+import CourseList from "../../components/courses/CourseList";
 import { AntDesign } from "@expo/vector-icons";
-
-const CurrentCourses = () => CourseList(true);
-
-const PastCourses = () => CourseList(false);
 
 const initialLayout = {
   width: Dimensions.get("window").width,
 };
 
 const renderScene = SceneMap({
-  first: CurrentCourses,
-  second: PastCourses,
+  first: () => CourseList(true),
+  second: () => CourseList(false),
 });
 
 function TabFunction() {
