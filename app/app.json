@@ -39,7 +39,7 @@
       }
     },
     "runtimeVersion": {
-      "policy": "appVersion"
+      "policy": "nativeVersion"
     }
   }
 }
