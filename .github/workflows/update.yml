@@ -25,7 +25,6 @@ jobs:
         with:
           node-version: 16.x
           cache: yarn
-          cache-dependency-path: app/yarn.lock
 
       - name: Setup Expo
         uses: expo/expo-github-action@v7
