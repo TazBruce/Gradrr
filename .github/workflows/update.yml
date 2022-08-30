@@ -27,9 +27,6 @@ jobs:
           cache: yarn
           cache-dependency-path: app
 
-      - name: Install Expo-CLI
-        run: npm install -g expo-cli --force
-
       - name: Setup Expo
         uses: expo/expo-github-action@v7
         with:
@@ -52,4 +49,4 @@ jobs:
         run: yarn install --immutable
 
       - name: Publish update
-        run: cd app && eas update --auto
+        run: cd app && eas update --auto || ls
