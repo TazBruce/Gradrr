@@ -1,4 +1,3 @@
-import "expo-dev-client";
 import React from "react";
 import { NativeBaseProvider } from "native-base";
 import { LogBox } from "react-native";
