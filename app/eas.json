@@ -8,7 +8,7 @@
       "distribution": "internal"
     },
     "preview": {
-      "channel": "preview",
+      "channel": "main",
       "distribution": "internal"
     },
     "production": {
