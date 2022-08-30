@@ -16,10 +16,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Open App Directory
-        id: open-directory
-        run: cd /app
-
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
