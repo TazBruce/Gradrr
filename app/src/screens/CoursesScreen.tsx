@@ -1,10 +1,19 @@
 import React from "react";
 import { t } from "../utils";
 import Screen from "../components/common/Screen";
-import { Box, Button, Center, useColorModeValue, Text } from "native-base";
+import {
+  Box,
+  Button,
+  Center,
+  useColorModeValue,
+  Text,
+  IconButton,
+  Icon,
+} from "native-base";
 import { Animated, Dimensions, Pressable, StatusBar } from "react-native";
 import { SceneMap, TabView } from "react-native-tab-view";
 import CourseList from "../components/courses/CourseList";
+import { AntDesign } from "@expo/vector-icons";
 
 const CurrentCourses = () => <CourseList />;
 
@@ -110,6 +119,17 @@ export default function CoursesScreen() {
   return (
     <Screen title={t("courses.title")}>
       <TabFunction />
+      <IconButton
+        icon={
+          <Icon
+            size="4xl"
+            color="primary.500"
+            as={<AntDesign name="pluscircle" />}
+          />
+        }
+        onPress={() => console.log("pressed")}
+        alignSelf="flex-end"
+      />
     </Screen>
   );
 }
