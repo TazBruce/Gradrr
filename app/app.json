@@ -4,7 +4,6 @@
     "slug": "gradrr",
     "version": "1.0.0",
     "owner": "tazbruce",
-    "sdkVersion": "46.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
