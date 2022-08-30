@@ -13,10 +13,9 @@ jobs:
             exit 1
           fi
 
-      - name: checkout-files
-        uses: Bhacaz/checkout-files@v2
+      - uses: Mushus/checkout-submodule@v1
         with:
-          files: /app
+          submodulePath: ./app
 
       - name: Setup Node
         uses: actions/setup-node@v2
