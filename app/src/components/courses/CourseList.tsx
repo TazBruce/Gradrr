@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { Box, Center, HStack, Spinner } from "native-base";
 import { AuthContext } from "../../providers/AuthProvider";
 import { collection, query, where } from "firebase/firestore";
 import { db as firestore } from "../../services/firebase";
 import { useFirestoreQuery } from "@react-query-firebase/firestore";
 import Loader from "../common/Loader";
+import { Course } from "../../types/Course";
+import CourseRow from "./CourseRow";
 
 export default function CourseList(): JSX.Element {
   const { user } = useContext(AuthContext);
@@ -17,7 +18,7 @@ export default function CourseList(): JSX.Element {
   );
 
   // @ts-ignore
-  const firestoreQuery = useFirestoreQuery(["courses"], ref);
+  const firestoreQuery = useFirestoreQuery<Course>(["courses"], ref);
 
   if (firestoreQuery.isLoading) {
     return <Loader />;
@@ -29,16 +30,12 @@ export default function CourseList(): JSX.Element {
     <>
       {
         // @ts-ignore
-        snapshot.docs.map(
-          (docSnapshot: {
-            data: () => any;
-            id: React.Key | null | undefined;
-          }) => {
-            const data = docSnapshot.data();
-            console.log(data);
-            return <Box key={docSnapshot.id}>{data.description}</Box>;
-          }
-        )
+        snapshot.docs.map(function (docSnapshot: {
+          data: () => Course;
+          id: React.Key | null | undefined;
+        }) {
+          return CourseRow(docSnapshot.data(), docSnapshot.id);
+        })
       }
     </>
   );
