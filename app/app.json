@@ -39,7 +39,7 @@
       }
     },
     "runtimeVersion": {
-      "policy": "nativeVersion"
+      "policy": "sdkVersion"
     }
   }
 }
