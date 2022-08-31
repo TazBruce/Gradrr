@@ -1,6 +1,6 @@
 # Gradrr
 
-A assignment and grade management application
+An assignment and grade management application
 
 ## Repos
 
