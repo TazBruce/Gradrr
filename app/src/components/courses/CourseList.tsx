@@ -22,7 +22,9 @@ export default function CourseList(isCurrent: boolean): JSX.Element {
       where("final_grade", "==", "")
     );
     // @ts-ignore
-    firestoreQuery = useFirestoreQuery<Course>(["current_courses"], ref);
+    firestoreQuery = useFirestoreQuery<Course>(["current_courses"], ref, {
+      subscribe: true,
+    });
   } else {
     ref = query(
       collection(firestore, "courses"),
