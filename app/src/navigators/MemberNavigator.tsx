@@ -6,6 +6,7 @@ import CoursesScreen from "../screens/courses/CoursesScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CreateCourseScreen from "../screens/courses/CreateCourseScreen";
+import ViewCourseScreen from "../screens/courses/ViewCourseScreen";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -16,6 +17,7 @@ function CourseNavigation() {
     <CourseStack.Navigator screenOptions={{ headerShown: false }}>
       <CourseStack.Screen name="AllCourses" component={CoursesScreen} />
       <CourseStack.Screen name="CreateCourse" component={CreateCourseScreen} />
+      <CourseStack.Screen name="ViewCourse" component={ViewCourseScreen} />
     </CourseStack.Navigator>
   );
 }

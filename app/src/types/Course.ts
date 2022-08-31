@@ -3,10 +3,6 @@
  */
 export type Course = {
   /**
-   * The ID of the course
-   */
-  id: string;
-  /**
    * The owner of the course
    */
   owner: string;
@@ -21,7 +17,7 @@ export type Course = {
   /**
    * The year of study the course is in
    */
-  year: number;
+  year_of_study: string;
   /**
    * The final grade the course receives
    */

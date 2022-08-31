@@ -9,31 +9,29 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { collection } from "firebase/firestore";
 import { db } from "../../services/firebase";
 import { useFirestoreCollectionMutation } from "@react-query-firebase/firestore";
-
-interface CourseFormValue {
-  title: string;
-  description: string;
-  year_of_study: string;
-  final_grade: string;
-}
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { Course } from "../../types/Course";
 
 const schema = Yup.object().shape({
   title: Yup.string().required().label(t("createCourse.titleLabel")),
   description: Yup.string()
     .required()
     .label(t("createCourse.descriptionLabel")),
-  year: Yup.string().required().label(t("createCourse.yearLabel")),
+  year_of_study: Yup.string().required().label(t("createCourse.yearLabel")),
   final_grade: Yup.string().label(t("createCourse.finalGradeLabel")),
 });
 
-const initialValues: CourseFormValue = {
+const initialValues: Course = {
+  owner: "",
   title: "",
   description: "",
   year_of_study: "",
   final_grade: "",
 };
 
-export default function CreateCourseScreen() {
+export default function CreateCourseScreen({
+  navigation,
+}: NativeStackScreenProps<any>) {
   const { user } = useContext(AuthContext);
   const ref = collection(db, "courses");
   const mutation = useFirestoreCollectionMutation(ref);
@@ -43,16 +41,32 @@ export default function CreateCourseScreen() {
     description,
     year_of_study,
     final_grade,
-  }: CourseFormValue) => {
-    mutation.mutate({
-      owner: user?.uid,
-      title: title,
-      description: description,
-      year_of_study: year_of_study,
-      final_grade: final_grade,
-    });
-    if (mutation.isError) {
-      console.log(mutation.error.message);
+  }: Course) => {
+    if (user == null) {
+      console.log("User not logged in");
+    } else {
+      mutation.mutate({
+        owner: user.uid,
+        title: title,
+        description: description,
+        year_of_study: year_of_study,
+        final_grade: final_grade,
+      });
+      if (mutation.isError) {
+        console.log(mutation.error.message);
+      } else {
+        console.log("Success");
+        let course: Course = {
+          owner: user.uid,
+          title: title,
+          description: description,
+          year_of_study: year_of_study,
+          final_grade: final_grade,
+        };
+        navigation.replace("ViewCourse", {
+          course: course,
+        });
+      }
     }
   };
 
@@ -81,7 +95,7 @@ export default function CreateCourseScreen() {
               isRequired
             />
             <TextField
-              name="year"
+              name="year_of_study"
               label={t("createCourse.yearLabel")}
               placeholder={t("createCourse.yearHint")}
               isRequired
