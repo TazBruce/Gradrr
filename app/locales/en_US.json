@@ -27,6 +27,15 @@
     "currentCourses": "Current",
     "pastCourses": "Past"
   },
+  "createCourse": {
+    "title": "Create Course",
+    "subtitle": "Please fill in the following information",
+    "nameLabel": "Name",
+    "nameHint": "What is the name of the course",
+    "descriptionLabel": "Description",
+    "descriptionHint": "What is the description of the course",
+    "create": "Create"
+  },
   "home": {
     "title": "Home",
     "greeting": "This is HomeScreen"

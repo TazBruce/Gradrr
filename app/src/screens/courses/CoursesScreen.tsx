@@ -6,6 +6,7 @@ import { Animated, Dimensions, Pressable, StatusBar } from "react-native";
 import { SceneMap, TabView } from "react-native-tab-view";
 import CourseList from "../../components/courses/CourseList";
 import { AntDesign } from "@expo/vector-icons";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 const initialLayout = {
   width: Dimensions.get("window").width,
@@ -99,7 +100,9 @@ function TabFunction() {
   );
 }
 
-export default function CoursesScreen() {
+export default function CoursesScreen({
+  navigation,
+}: NativeStackScreenProps<any>) {
   return (
     <Screen title={t("courses.title")}>
       <TabFunction />
@@ -111,7 +114,7 @@ export default function CoursesScreen() {
             as={<AntDesign name="pluscircle" />}
           />
         }
-        onPress={() => console.log("pressed")}
+        onPress={() => navigation.navigate("CreateCourse")}
         alignSelf="flex-end"
       />
     </Screen>
