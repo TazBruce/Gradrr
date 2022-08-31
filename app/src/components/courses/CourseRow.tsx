@@ -40,7 +40,7 @@ export default function CourseRow(
         <Heading size="md">{course.title}</Heading>
         <Text w="40">{course.description}</Text>
       </VStack>
-      <Heading alignSelf="center" size="3xl">
+      <Heading alignSelf="center" size="2xl">
         {getGrade(course)}
       </Heading>
       <IconButton
