@@ -10,7 +10,7 @@ import { collection } from "firebase/firestore";
 import { db } from "../../services/firebase";
 import { useFirestoreCollectionMutation } from "@react-query-firebase/firestore";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Course } from "../../types/Course";
+import { Course, initialCourse } from "../../types/Course";
 
 const schema = Yup.object().shape({
   title: Yup.string().required().label(t("createCourse.titleLabel")),
@@ -20,14 +20,6 @@ const schema = Yup.object().shape({
   year_of_study: Yup.string().required().label(t("createCourse.yearLabel")),
   final_grade: Yup.string().label(t("createCourse.finalGradeLabel")),
 });
-
-const initialValues: Course = {
-  owner: "",
-  title: "",
-  description: "",
-  year_of_study: "",
-  final_grade: "",
-};
 
 export default function CreateCourseScreen({
   navigation,
@@ -77,7 +69,7 @@ export default function CreateCourseScreen({
     <Screen title={t("createCourse.title")} showBackButton={true}>
       <Formik
         validationSchema={schema}
-        initialValues={initialValues}
+        initialValues={initialCourse}
         onSubmit={handleFormSubmit}
       >
         {({ handleSubmit, isSubmitting }) => (

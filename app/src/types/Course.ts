@@ -23,3 +23,17 @@ export type Course = {
    */
   final_grade: string;
 };
+
+export const initialCourse: Course = {
+  owner: "",
+  title: "",
+  description: "",
+  year_of_study: "",
+  final_grade: "",
+};
+
+export type CourseStackParamList = {
+  AllCourses: undefined;
+  CreateCourse: undefined;
+  ViewCourse: { course: Course };
+};

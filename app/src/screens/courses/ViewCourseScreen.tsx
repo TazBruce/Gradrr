@@ -1,12 +1,12 @@
 import React from "react";
 import { Text } from "native-base";
 import Screen from "../../components/common/Screen";
-import { Course } from "../../types/Course";
-import { RouteProp } from "@react-navigation/native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { CourseStackParamList } from "../../types/Course";
 
-export default function ViewCourseScreen(
-  route: RouteProp<{ params: { course: Course } }, "params">
-) {
+export default function ViewCourseScreen({
+  route,
+}: NativeStackScreenProps<CourseStackParamList, "ViewCourse">) {
   const { course } = route.params;
 
   return (

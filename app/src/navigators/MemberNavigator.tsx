@@ -7,17 +7,22 @@ import SettingsScreen from "../screens/SettingsScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CreateCourseScreen from "../screens/courses/CreateCourseScreen";
 import ViewCourseScreen from "../screens/courses/ViewCourseScreen";
+import { CourseStackParamList, initialCourse } from "../types/Course";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
-const CourseStack = createNativeStackNavigator();
+const CourseStack = createNativeStackNavigator<CourseStackParamList>();
 
 function CourseNavigation() {
   return (
     <CourseStack.Navigator screenOptions={{ headerShown: false }}>
       <CourseStack.Screen name="AllCourses" component={CoursesScreen} />
       <CourseStack.Screen name="CreateCourse" component={CreateCourseScreen} />
-      <CourseStack.Screen name="ViewCourse" component={ViewCourseScreen} />
+      <CourseStack.Screen
+        name="ViewCourse"
+        component={ViewCourseScreen}
+        initialParams={{ course: initialCourse }}
+      />
     </CourseStack.Navigator>
   );
 }
