@@ -30,10 +30,16 @@
   "createCourse": {
     "title": "Create Course",
     "subtitle": "Please fill in the following information",
-    "nameLabel": "Name",
-    "nameHint": "What is the name of the course",
+    "titleLabel": "Title",
+    "titleHint": "What is the title of the course",
     "descriptionLabel": "Description",
     "descriptionHint": "What is the description of the course",
+    "yearLabel": "Year of study",
+    "yearHint": "What is the year of study",
+    "completedLabel": "Completed?",
+    "completedHint": "Is the course completed",
+    "gradeLabel": "Final Grade",
+    "gradeHint": "What was the final grade",
     "create": "Create"
   },
   "home": {

@@ -1,12 +1,134 @@
-import React from "react";
-import { Text } from "native-base";
+import React, { useContext } from "react";
 import { t } from "../../utils";
+import * as Yup from "yup";
 import Screen from "../../components/common/Screen";
+import TextField from "../../components/common/form/TextField";
+import { Formik } from "formik";
+import { Button, Checkbox, HStack, Select, VStack } from "native-base";
+import { AuthContext } from "../../providers/AuthProvider";
+import { collection } from "firebase/firestore";
+import { db } from "../../services/firebase";
+import { useFirestoreCollectionMutation } from "@react-query-firebase/firestore";
+
+interface CourseFormValue {
+  title: string;
+  description: string;
+  year_of_study: string;
+  final_grade: string;
+}
+
+const schema = Yup.object().shape({
+  title: Yup.string().required().label(t("createCourse.titleLabel")),
+  description: Yup.string()
+    .required()
+    .label(t("createCourse.descriptionLabel")),
+  year: Yup.string().required().label(t("createCourse.yearLabel")),
+  final_grade: Yup.string().label(t("createCourse.finalGradeLabel")),
+});
+
+const initialValues: CourseFormValue = {
+  title: "",
+  description: "",
+  year_of_study: "",
+  final_grade: "",
+};
 
 export default function CreateCourseScreen() {
+  const { user } = useContext(AuthContext);
+  const ref = collection(db, "courses");
+  const mutation = useFirestoreCollectionMutation(ref);
+
+  const handleFormSubmit = async ({
+    title,
+    description,
+    year_of_study,
+    final_grade,
+  }: CourseFormValue) => {
+    mutation.mutate({
+      owner: user?.uid,
+      title: title,
+      description: description,
+      year_of_study: year_of_study,
+      final_grade: final_grade,
+    });
+    if (mutation.isError) {
+      console.log(mutation.error.message);
+    }
+  };
+
+  const [completed, setCompleted] = React.useState(false);
+  const [grade, setGrade] = React.useState("");
+
   return (
     <Screen title={t("createCourse.title")} showBackButton={true}>
-      <Text>{t("createCourse.subtitle")}</Text>
+      <Formik
+        validationSchema={schema}
+        initialValues={initialValues}
+        onSubmit={handleFormSubmit}
+      >
+        {({ handleSubmit, isSubmitting }) => (
+          <VStack space={3} mt="5">
+            <TextField
+              name="title"
+              label={t("createCourse.titleLabel")}
+              placeholder={t("createCourse.titleHint")}
+              isRequired
+            />
+            <TextField
+              name="description"
+              label={t("createCourse.descriptionLabel")}
+              placeholder={t("createCourse.descriptionHint")}
+              isRequired
+            />
+            <TextField
+              name="year"
+              label={t("createCourse.yearLabel")}
+              placeholder={t("createCourse.yearHint")}
+              isRequired
+            />
+            <HStack space={4} justifyContent="space-evenly">
+              <Checkbox
+                value={"courseCompleted"}
+                onChange={() => setCompleted(!completed)}
+                accessibilityLabel={t("createCourse.completedLabel")}
+              >
+                {t("createCourse.completedLabel")}
+              </Checkbox>
+              <Select
+                selectedValue={grade}
+                placeholder={t("createCourse.gradeHint")}
+                onValueChange={(value) => setGrade(value)}
+                isDisabled={!completed}
+                width="3xs"
+                accessibilityLabel={t("createCourse.gradeLabel")}
+              >
+                <Select.Item label="A+" value="A+" />
+                <Select.Item label="A" value="A" />
+                <Select.Item label="A-" value="A-" />
+                <Select.Item label="B+" value="B+" />
+                <Select.Item label="B" value="B" />
+                <Select.Item label="B-" value="B-" />
+                <Select.Item label="C+" value="C+" />
+                <Select.Item label="C" value="C" />
+                <Select.Item label="C-" value="C-" />
+                <Select.Item label="D+" value="D+" />
+                <Select.Item label="D" value="D" />
+                <Select.Item label="D-" value="D-" />
+                <Select.Item label="F" value="F" />
+              </Select>
+            </HStack>
+            <Button
+              color="primary.500"
+              mt="2"
+              onPress={() => handleSubmit()}
+              isLoading={isSubmitting}
+              isDisabled={isSubmitting}
+            >
+              {t("createCourse.create")}
+            </Button>
+          </VStack>
+        )}
+      </Formik>
     </Screen>
   );
 }
