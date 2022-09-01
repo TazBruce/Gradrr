@@ -46,11 +46,18 @@ export default function CreateCourseScreen({
   const buttonText = editStatus
     ? t("createCourse.save")
     : t("createCourse.create");
-  // @ts-ignore
-  const initialValues = editStatus ? route.params.course : initialCourse;
+  const titleText = editStatus
+    ? t("createCourse.editTitle")
+    : t("createCourse.createTitle");
+
+  const initialValues = editStatus
+    ? // @ts-ignore
+      route.params.course
+    : initialCourse;
   // @ts-ignore
   const document = editStatus
-    ? doc(ref, route.params.course.id.toString())
+    ? // @ts-ignore
+      doc(ref, route.params.course.id.toString())
     : doc(ref);
 
   const mutation = useFirestoreDocumentMutation(document);
@@ -94,7 +101,7 @@ export default function CreateCourseScreen({
   const [grade, setGrade] = React.useState("");
 
   return (
-    <Screen title={t("createCourse.title")} showBackButton={true}>
+    <Screen title={titleText} showBackButton={true}>
       <Formik
         validationSchema={schema}
         initialValues={initialValues}

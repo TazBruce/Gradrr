@@ -28,7 +28,8 @@
     "pastCourses": "Past"
   },
   "createCourse": {
-    "title": "Create Course",
+    "createTitle": "Create Course",
+    "editTitle": "Edit Course",
     "subtitle": "Please fill in the following information",
     "titleLabel": "Title",
     "titleHint": "What is the title of the course",
