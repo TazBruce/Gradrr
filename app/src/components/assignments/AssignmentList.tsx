@@ -5,12 +5,13 @@ import { db as firestore } from "../../services/firebase";
 import { useFirestoreQuery } from "@react-query-firebase/firestore";
 import Loader from "../common/Loader";
 import { Course, CourseStackParamList } from "../../types/Course";
-import CourseRow from "./CourseRow";
+import AssignmentRow from "./AssignmentRow";
 import { ScrollView, VStack } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Assignment } from "../../types/Assignment";
 
-export default function CourseList(isCurrent: boolean): JSX.Element {
+export default function AssignmentList(course: Course): JSX.Element {
   const { user } = useContext(AuthContext);
   const navigation =
     useNavigation<NativeStackNavigationProp<CourseStackParamList>>();
@@ -18,26 +19,19 @@ export default function CourseList(isCurrent: boolean): JSX.Element {
   let ref;
   let firestoreQuery;
 
-  // Create a Firestore collection reference
-  if (isCurrent) {
-    ref = query(
-      collection(firestore, "courses"),
-      where("owner", "==", user?.uid || "N/A"),
-      where("final_grade", "==", "")
-    );
-    // @ts-ignore
-    firestoreQuery = useFirestoreQuery<Course>(["current_courses"], ref, {
+  ref = query(
+    collection(firestore, "assignments"),
+    where("owner", "==", user?.uid || "N/A"),
+    where("course", "==", course.id)
+  );
+  // @ts-ignore
+  firestoreQuery = useFirestoreQuery<Assignment>(
+    [course.id + "_assignments"],
+    ref,
+    {
       subscribe: true,
-    });
-  } else {
-    ref = query(
-      collection(firestore, "courses"),
-      where("owner", "==", user?.uid || "N/A"),
-      where("final_grade", "!=", "")
-    );
-    // @ts-ignore
-    firestoreQuery = useFirestoreQuery<Course>(["past_courses"], ref);
-  }
+    }
+  );
 
   if (firestoreQuery.isLoading) {
     return <Loader />;
@@ -45,14 +39,14 @@ export default function CourseList(isCurrent: boolean): JSX.Element {
 
   const snapshot = firestoreQuery.data;
 
-  const courses = function () {
+  const assignments = function () {
     return (
       // @ts-ignore
       snapshot.docs.map(function (docSnapshot: {
-        data: () => Course;
+        data: () => Assignment;
         id: React.Key | undefined;
       }) {
-        return CourseRow(navigation, docSnapshot.data(), docSnapshot.id);
+        return AssignmentRow(navigation, docSnapshot.data(), docSnapshot.id);
       })
     );
   };
@@ -61,7 +55,7 @@ export default function CourseList(isCurrent: boolean): JSX.Element {
     <>
       {
         <ScrollView h="80">
-          <VStack space={4}>{courses()}</VStack>
+          <VStack space={4}>{assignments()}</VStack>
         </ScrollView>
       }
     </>

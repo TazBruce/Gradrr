@@ -1,39 +1,37 @@
 import { Course } from "./Course";
+import firebase from "firebase/compat";
+import Timestamp = firebase.firestore.Timestamp;
 
 /**
  * An assignment within a course.
  */
 export type Assignment = {
   /**
-   * The ID of the assignment
-   */
-  id: string;
-  /**
    * The name of the assignment
    */
   title: string;
-  /**
-   * The weight of the assignment
-   */
-  weight: number;
   /**
    * The course the assignment is in
    */
   course: Course;
   /**
+   * The weight of the assignment
+   */
+  weight: number;
+  /**
    * The date the assignment is due
    */
-  dueDate: Date;
+  due_date: Timestamp;
   /**
    * Whether the assignment has been completed
    */
-  completed: boolean;
+  is_complete: boolean;
   /**
    * The maximum amount of marks the assignment can receive
    */
-  maxMarks: number;
+  max_marks: number;
   /**
    * The amount of marks the assignment has received
    */
-  marks: number;
+  earned_marks: number;
 };

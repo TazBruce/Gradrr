@@ -1,7 +1,13 @@
+import { Key } from "react";
+
 /**
  * A course within the app.
  */
 export type Course = {
+  /**
+   * The id of the course
+   */
+  id?: Key;
   /**
    * The owner of the course
    */
@@ -25,6 +31,7 @@ export type Course = {
 };
 
 export const initialCourse: Course = {
+  id: "",
   owner: "",
   title: "",
   description: "",

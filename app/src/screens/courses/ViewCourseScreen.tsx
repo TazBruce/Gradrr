@@ -3,6 +3,7 @@ import { Box, Heading, HStack, VStack, Divider } from "native-base";
 import Screen from "../../components/common/Screen";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CourseStackParamList } from "../../types/Course";
+import AssignmentList from "../../components/assignments/AssignmentList";
 
 export default function ViewCourseScreen({
   route,
@@ -44,6 +45,7 @@ export default function ViewCourseScreen({
           </HStack>
         </Box>
         <Heading>Assignments</Heading>
+        {AssignmentList(course)}
       </VStack>
     </Screen>
   );

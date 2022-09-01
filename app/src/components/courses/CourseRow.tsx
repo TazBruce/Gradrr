@@ -33,8 +33,9 @@ function getGrade(course: Course) {
 export default function CourseRow(
   navigation: NativeStackNavigationProp<CourseStackParamList>,
   course: Course,
-  key: React.Key | null | undefined
+  key: React.Key | undefined
 ): JSX.Element {
+  course.id = key;
   return (
     <HStack key={key} padding={3} space={4} justifyContent="space-evenly">
       <Square size="md" bg="primary.500" rounded="md" shadow={3} />
