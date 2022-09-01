@@ -24,9 +24,10 @@ export default function AssignmentList(course: Course): JSX.Element {
     where("owner", "==", user?.uid || "N/A"),
     where("course", "==", course.id)
   );
-  // @ts-ignore
+
   firestoreQuery = useFirestoreQuery<Assignment>(
     [course.id + "_assignments"],
+    // @ts-ignore
     ref,
     {
       subscribe: true,

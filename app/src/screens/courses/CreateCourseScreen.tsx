@@ -6,9 +6,9 @@ import TextField from "../../components/common/form/TextField";
 import { Formik } from "formik";
 import { Button, Checkbox, HStack, Select, VStack } from "native-base";
 import { AuthContext } from "../../providers/AuthProvider";
-import { collection } from "firebase/firestore";
+import { collection, doc } from "firebase/firestore";
 import { db } from "../../services/firebase";
-import { useFirestoreCollectionMutation } from "@react-query-firebase/firestore";
+import { useFirestoreDocumentMutation } from "@react-query-firebase/firestore";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Course, initialCourse } from "../../types/Course";
 
@@ -26,7 +26,8 @@ export default function CreateCourseScreen({
 }: NativeStackScreenProps<any>) {
   const { user } = useContext(AuthContext);
   const ref = collection(db, "courses");
-  const mutation = useFirestoreCollectionMutation(ref);
+  const document = doc(ref);
+  const mutation = useFirestoreDocumentMutation(document);
 
   const handleFormSubmit = async ({
     title,
@@ -49,6 +50,7 @@ export default function CreateCourseScreen({
       } else {
         console.log("Success");
         let course: Course = {
+          id: document.id,
           owner: user.uid,
           title: title,
           description: description,
