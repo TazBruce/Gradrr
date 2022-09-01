@@ -104,7 +104,12 @@ export default function CreateCourseScreen({
   const [grade, setGrade] = React.useState("");
 
   return (
-    <Screen title={titleText} showBackButton={true}>
+    <Screen
+      title={titleText}
+      currentItem={initialCourse}
+      showBackButton={true}
+      showDeleteButton={editStatus}
+    >
       <Formik
         validationSchema={schema}
         initialValues={initialValues}

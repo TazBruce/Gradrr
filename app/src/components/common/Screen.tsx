@@ -8,6 +8,7 @@ interface ScreenProps {
   title?: string;
   showBackButton?: boolean;
   showEditButton?: boolean;
+  showDeleteButton?: boolean;
   currentItem?: Course | Assignment;
 }
 
@@ -15,6 +16,7 @@ export default function Screen({
   title,
   showBackButton,
   showEditButton,
+  showDeleteButton,
   currentItem,
   children,
 }: PropsWithChildren<ScreenProps>) {
@@ -25,6 +27,7 @@ export default function Screen({
           title={title}
           showBackButton={showBackButton}
           showEditButton={showEditButton}
+          showDeleteButton={showDeleteButton}
           currentItem={currentItem}
         />
       )}

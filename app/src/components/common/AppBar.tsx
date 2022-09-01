@@ -67,10 +67,10 @@ export default function AppBar({
               <Icon
                 size="lg"
                 color="white"
-                as={<MaterialIcons name="edit" />}
+                as={<MaterialIcons name="delete" />}
               />
             }
-            onPress={() => editItem(navigation, currentItem)}
+            onPress={() => deleteItem(navigation, currentItem)}
           />
         )}
       </Box>
@@ -78,6 +78,31 @@ export default function AppBar({
   );
 }
 
+/**
+ * Function for deleting an item
+ * @param navigation - Navigation prop
+ * @param currentItem - Current item
+ */
+function deleteItem(
+  navigation: NavigationProp<any>,
+  currentItem?: Course | Assignment
+) {
+  if (currentItem == undefined) {
+    console.log(currentItem);
+  } else {
+    if ("year_of_study" in currentItem) {
+      console.log("Delete course");
+    } else {
+      console.log("Delete assignment");
+    }
+  }
+}
+
+/**
+ * Function for editing an item
+ * @param navigation - Navigation prop
+ * @param currentItem - Current item
+ */
 function editItem(
   navigation: NavigationProp<any>,
   currentItem?: Course | Assignment
