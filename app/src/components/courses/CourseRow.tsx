@@ -9,8 +9,10 @@ import {
   VStack,
   Text,
 } from "native-base";
-import { Course } from "../../types/Course";
+import { Course, CourseStackParamList } from "../../types/Course";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 /**
  * Determines whether a course should show it's current or past status.
@@ -25,11 +27,13 @@ function getGrade(course: Course) {
 
 /**
  * Renders a course row.
+ * @param navigation
  * @param course The Course to render.
  * @param key The key to use for the Course.
  * @constructor Creates a CourseRow.
  */
 export default function CourseRow(
+  navigation: NativeStackNavigationProp<CourseStackParamList>,
   course: Course,
   key: React.Key | null | undefined
 ): JSX.Element {
@@ -51,7 +55,7 @@ export default function CourseRow(
             as={<MaterialIcons name="keyboard-arrow-right" />}
           />
         }
-        onPress={() => console.log("pressed")}
+        onPress={() => navigation.navigate("ViewCourse", { course: course })}
       />
     </HStack>
   );

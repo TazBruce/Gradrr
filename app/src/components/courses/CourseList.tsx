@@ -4,12 +4,16 @@ import { collection, query, where } from "firebase/firestore";
 import { db as firestore } from "../../services/firebase";
 import { useFirestoreQuery } from "@react-query-firebase/firestore";
 import Loader from "../common/Loader";
-import { Course } from "../../types/Course";
+import { Course, CourseStackParamList } from "../../types/Course";
 import CourseRow from "./CourseRow";
 import { ScrollView, VStack } from "native-base";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export default function CourseList(isCurrent: boolean): JSX.Element {
   const { user } = useContext(AuthContext);
+  const navigation =
+    useNavigation<NativeStackNavigationProp<CourseStackParamList>>();
 
   let ref;
   let firestoreQuery;
@@ -48,7 +52,7 @@ export default function CourseList(isCurrent: boolean): JSX.Element {
         data: () => Course;
         id: React.Key | null | undefined;
       }) {
-        return CourseRow(docSnapshot.data(), docSnapshot.id);
+        return CourseRow(navigation, docSnapshot.data(), docSnapshot.id);
       })
     );
   };
