@@ -40,7 +40,9 @@
     "completedHint": "Is the course completed",
     "gradeLabel": "Final Grade",
     "gradeHint": "What was the final grade",
-    "create": "Create"
+    "create": "Create",
+    "cancel": "Cancel",
+    "save": "Save"
   },
   "home": {
     "title": "Home",

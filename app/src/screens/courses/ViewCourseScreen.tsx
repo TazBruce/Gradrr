@@ -11,7 +11,12 @@ export default function ViewCourseScreen({
   const { course } = route.params;
 
   return (
-    <Screen title={course.title} showBackButton={true} showEditButton={true}>
+    <Screen
+      title={course.title}
+      showBackButton={true}
+      showEditButton={true}
+      currentItem={course}
+    >
       <VStack space="md">
         <Heading size="md">{course.description}</Heading>
         <Box

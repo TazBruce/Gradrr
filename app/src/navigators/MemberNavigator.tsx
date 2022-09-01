@@ -17,7 +17,11 @@ function CourseNavigation() {
   return (
     <CourseStack.Navigator screenOptions={{ headerShown: false }}>
       <CourseStack.Screen name="AllCourses" component={CoursesScreen} />
-      <CourseStack.Screen name="CreateCourse" component={CreateCourseScreen} />
+      <CourseStack.Screen
+        name="CreateCourse"
+        component={CreateCourseScreen}
+        initialParams={{ course: initialCourse }}
+      />
       <CourseStack.Screen
         name="ViewCourse"
         component={ViewCourseScreen}

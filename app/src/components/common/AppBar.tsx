@@ -1,18 +1,25 @@
 import React from "react";
 import { HStack, Icon, IconButton, Text, Box } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { Course } from "../../types/Course";
+import { Assignment } from "../../types/Assignment";
 
 interface AppBarProps {
   title: string;
   showBackButton?: boolean;
   showEditButton?: boolean;
+  showDeleteButton?: boolean;
+  // @ts-ignore
+  currentItem?: Course | Assignment;
 }
 
 export default function AppBar({
   title,
   showBackButton = false,
   showEditButton = false,
+  showDeleteButton = false,
+  currentItem,
 }: AppBarProps) {
   const navigation = useNavigation();
   return (
@@ -51,10 +58,37 @@ export default function AppBar({
                 as={<MaterialIcons name="edit" />}
               />
             }
-            onPress={() => console.log("Edit Pressed")}
+            onPress={() => editItem(navigation, currentItem)}
+          />
+        )}
+        {showDeleteButton && !showEditButton && (
+          <IconButton
+            icon={
+              <Icon
+                size="lg"
+                color="white"
+                as={<MaterialIcons name="edit" />}
+              />
+            }
+            onPress={() => editItem(navigation, currentItem)}
           />
         )}
       </Box>
     </HStack>
   );
+}
+
+function editItem(
+  navigation: NavigationProp<any>,
+  currentItem?: Course | Assignment
+) {
+  if (currentItem == undefined) {
+    console.log(currentItem);
+  } else {
+    if ("year_of_study" in currentItem) {
+      navigation.navigate("CreateCourse", { course: currentItem });
+    } else {
+      navigation.navigate("CreateAssignment", { assignment: currentItem });
+    }
+  }
 }

@@ -41,6 +41,6 @@ export const initialCourse: Course = {
 
 export type CourseStackParamList = {
   AllCourses: undefined;
-  CreateCourse: undefined;
+  CreateCourse: { course: Course } | undefined;
   ViewCourse: { course: Course };
 };

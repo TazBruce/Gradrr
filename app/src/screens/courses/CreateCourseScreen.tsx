@@ -6,11 +6,20 @@ import TextField from "../../components/common/form/TextField";
 import { Formik } from "formik";
 import { Button, Checkbox, HStack, Select, VStack } from "native-base";
 import { AuthContext } from "../../providers/AuthProvider";
-import { collection, doc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  DocumentData,
+  DocumentReference,
+} from "firebase/firestore";
 import { db } from "../../services/firebase";
 import { useFirestoreDocumentMutation } from "@react-query-firebase/firestore";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Course, initialCourse } from "../../types/Course";
+import {
+  Course,
+  CourseStackParamList,
+  initialCourse,
+} from "../../types/Course";
 
 const schema = Yup.object().shape({
   title: Yup.string().required().label(t("createCourse.titleLabel")),
@@ -21,12 +30,29 @@ const schema = Yup.object().shape({
   final_grade: Yup.string().label(t("createCourse.finalGradeLabel")),
 });
 
+/**
+ * Create or edit a course.
+ * @param navigation The navigation object.
+ * @param route The route object.
+ * @constructor Create or edit a course.
+ */
 export default function CreateCourseScreen({
   navigation,
-}: NativeStackScreenProps<any>) {
+  route,
+}: NativeStackScreenProps<CourseStackParamList, "CreateCourse">) {
   const { user } = useContext(AuthContext);
   const ref = collection(db, "courses");
-  const document = doc(ref);
+  const editStatus = isEditing(route.params);
+  const buttonText = editStatus
+    ? t("createCourse.save")
+    : t("createCourse.create");
+  // @ts-ignore
+  const initialValues = editStatus ? route.params.course : initialCourse;
+  // @ts-ignore
+  const document = editStatus
+    ? doc(ref, route.params.course.id.toString())
+    : doc(ref);
+
   const mutation = useFirestoreDocumentMutation(document);
 
   const handleFormSubmit = async ({
@@ -71,7 +97,7 @@ export default function CreateCourseScreen({
     <Screen title={t("createCourse.title")} showBackButton={true}>
       <Formik
         validationSchema={schema}
-        initialValues={initialCourse}
+        initialValues={initialValues}
         onSubmit={handleFormSubmit}
       >
         {({ handleSubmit, isSubmitting }) => (
@@ -132,11 +158,17 @@ export default function CreateCourseScreen({
               isLoading={isSubmitting}
               isDisabled={isSubmitting}
             >
-              {t("createCourse.create")}
+              {buttonText}
             </Button>
           </VStack>
         )}
       </Formik>
     </Screen>
   );
+}
+
+function isEditing(
+  params: Readonly<{ course: Course } | undefined> | null
+): boolean {
+  return params != null && params.course.id != null && params.course.id != "";
 }
