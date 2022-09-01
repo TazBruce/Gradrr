@@ -10,7 +10,7 @@ export default function ViewCourseScreen({
   const { course } = route.params;
 
   return (
-    <Screen title={course.title} showBackButton={true}>
+    <Screen title={course.title} showBackButton={true} showEditButton={true}>
       <Text>{course.description}</Text>
     </Screen>
   );

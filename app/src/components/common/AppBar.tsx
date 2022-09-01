@@ -6,9 +6,14 @@ import { useNavigation } from "@react-navigation/native";
 interface AppBarProps {
   title: string;
   showBackButton?: boolean;
+  showEditButton?: boolean;
 }
 
-export default function AppBar({ title, showBackButton = false }: AppBarProps) {
+export default function AppBar({
+  title,
+  showBackButton = false,
+  showEditButton = false,
+}: AppBarProps) {
   const navigation = useNavigation();
   return (
     <HStack
@@ -36,7 +41,20 @@ export default function AppBar({ title, showBackButton = false }: AppBarProps) {
       <Text color="white" fontSize="20" fontWeight="bold" py="2">
         {title}
       </Text>
-      <Box width="50" />
+      <Box width="50">
+        {showEditButton && (
+          <IconButton
+            icon={
+              <Icon
+                size="lg"
+                color="white"
+                as={<MaterialIcons name="edit" />}
+              />
+            }
+            onPress={() => console.log("Edit Pressed")}
+          />
+        )}
+      </Box>
     </HStack>
   );
 }
