@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  Box,
-  Center,
   Heading,
   HStack,
   Icon,
@@ -12,7 +10,6 @@ import {
 } from "native-base";
 import { Course, CourseStackParamList } from "../../types/Course";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 /**
