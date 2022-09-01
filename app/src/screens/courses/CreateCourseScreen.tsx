@@ -90,9 +90,11 @@ export default function CreateCourseScreen({
           year_of_study: year_of_study,
           final_grade: final_grade,
         };
-        navigation.replace("ViewCourse", {
-          course: course,
-        });
+        editStatus
+          ? navigation.goBack()
+          : navigation.replace("ViewCourse", {
+              course: course,
+            });
       }
     }
   };
