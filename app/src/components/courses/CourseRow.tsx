@@ -8,6 +8,7 @@ import {
   IconButton,
   VStack,
   Text,
+  Square,
 } from "native-base";
 import { Course, CourseStackParamList } from "../../types/Course";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -39,7 +40,7 @@ export default function CourseRow(
 ): JSX.Element {
   return (
     <HStack key={key} padding={3} space={4} justifyContent="space-evenly">
-      <Center h="20" w="20" bg="primary.500" rounded="md" shadow={3} />
+      <Square size="md" bg="primary.500" rounded="md" shadow={3} />
       <VStack paddingTop={2} paddingLeft={3} alignContent="center">
         <Heading size="md">{course.title}</Heading>
         <Text w="40">{course.description}</Text>
