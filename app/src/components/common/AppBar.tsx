@@ -1,7 +1,7 @@
 import React from "react";
 import { HStack, Icon, IconButton, Text, Box } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { Course } from "../../types/Course";
 import { Assignment } from "../../types/Assignment";
 import { collection, doc, FirestoreError } from "firebase/firestore";
