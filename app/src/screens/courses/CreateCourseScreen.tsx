@@ -6,12 +6,7 @@ import TextField from "../../components/common/form/TextField";
 import { Formik } from "formik";
 import { Button, Checkbox, HStack, Select, VStack } from "native-base";
 import { AuthContext } from "../../providers/AuthProvider";
-import {
-  collection,
-  doc,
-  DocumentData,
-  DocumentReference,
-} from "firebase/firestore";
+import { collection, doc } from "firebase/firestore";
 import { db } from "../../services/firebase";
 import { useFirestoreDocumentMutation } from "@react-query-firebase/firestore";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
