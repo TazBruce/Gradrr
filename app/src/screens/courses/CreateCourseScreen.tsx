@@ -101,7 +101,7 @@ export default function CreateCourseScreen({
   return (
     <Screen
       title={titleText}
-      currentItem={initialCourse}
+      currentItem={initialValues}
       showBackButton={true}
       showDeleteButton={editStatus}
     >

@@ -1,11 +1,16 @@
 import { Course } from "./Course";
 import firebase from "firebase/compat";
 import Timestamp = firebase.firestore.Timestamp;
+import { Key } from "react";
 
 /**
  * An assignment within a course.
  */
 export type Assignment = {
+  /**
+   * The id of the assignment
+   */
+  id?: Key;
   /**
    * The name of the assignment
    */

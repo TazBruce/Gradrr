@@ -4,6 +4,11 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { Course } from "../../types/Course";
 import { Assignment } from "../../types/Assignment";
+import { collection, doc, FirestoreError } from "firebase/firestore";
+import { useFirestoreDocumentDeletion } from "@react-query-firebase/firestore";
+import { db } from "../../services/firebase";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { UseMutationResult } from "react-query";
 
 interface AppBarProps {
   title: string;
@@ -21,7 +26,72 @@ export default function AppBar({
   showDeleteButton = false,
   currentItem,
 }: AppBarProps) {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  let col;
+  let ref;
+  let mutation: UseMutationResult<void, FirestoreError, void, unknown> | null;
+
+  if (showEditButton || showDeleteButton) {
+    if (
+      typeof currentItem === "undefined" ||
+      currentItem?.id === undefined ||
+      currentItem?.id === null ||
+      currentItem?.id === ""
+    ) {
+      console.log("Error: Item is undefined");
+    } else {
+      if ("year_of_study" in currentItem) {
+        col = collection(db, "courses");
+        ref = doc(col, currentItem.id.toString());
+      } else {
+        col = collection(db, "assignments");
+        ref = doc(col, currentItem.id.toString());
+      }
+      mutation = useFirestoreDocumentDeletion(ref);
+    }
+  }
+
+  /**
+   * Function for deleting an item
+   */
+  const deleteItem = async () => {
+    if (mutation == null) {
+      console.log("Error: Mutation is undefined");
+    } else {
+      console.log("Deleting item");
+      mutation.mutate();
+      if (mutation.isError) {
+        console.log("Error deleting item:" + mutation.error.message);
+      } else {
+        console.log("Item deleted");
+        navigation.popToTop();
+      }
+    }
+  };
+
+  /**
+   * Function for editing an item
+   */
+  function editItem() {
+    if (
+      typeof currentItem === "undefined" ||
+      currentItem?.id === undefined ||
+      currentItem?.id === null ||
+      currentItem?.id === ""
+    ) {
+      console.log("Error: Item is undefined");
+    } else {
+      if ("year_of_study" in currentItem) {
+        console.log("Editing course");
+        console.log(currentItem.id.toString());
+        navigation.navigate("CreateCourse", { course: currentItem });
+      } else {
+        console.log("Editing assignment");
+        navigation.navigate("CreateAssignment", { assignment: currentItem });
+      }
+    }
+  }
+
   return (
     <HStack
       safeAreaTop
@@ -58,7 +128,7 @@ export default function AppBar({
                 as={<MaterialIcons name="edit" />}
               />
             }
-            onPress={() => editItem(navigation, currentItem)}
+            onPress={() => editItem()}
           />
         )}
         {showDeleteButton && !showEditButton && (
@@ -70,50 +140,10 @@ export default function AppBar({
                 as={<MaterialIcons name="delete" />}
               />
             }
-            onPress={() => deleteItem(navigation, currentItem)}
+            onPress={() => deleteItem()}
           />
         )}
       </Box>
     </HStack>
   );
-}
-
-/**
- * Function for deleting an item
- * @param navigation - Navigation prop
- * @param currentItem - Current item
- */
-function deleteItem(
-  navigation: NavigationProp<any>,
-  currentItem?: Course | Assignment
-) {
-  if (currentItem == undefined) {
-    console.log(currentItem);
-  } else {
-    if ("year_of_study" in currentItem) {
-      console.log("Delete course");
-    } else {
-      console.log("Delete assignment");
-    }
-  }
-}
-
-/**
- * Function for editing an item
- * @param navigation - Navigation prop
- * @param currentItem - Current item
- */
-function editItem(
-  navigation: NavigationProp<any>,
-  currentItem?: Course | Assignment
-) {
-  if (currentItem == undefined) {
-    console.log(currentItem);
-  } else {
-    if ("year_of_study" in currentItem) {
-      navigation.navigate("CreateCourse", { course: currentItem });
-    } else {
-      navigation.navigate("CreateAssignment", { assignment: currentItem });
-    }
-  }
 }
