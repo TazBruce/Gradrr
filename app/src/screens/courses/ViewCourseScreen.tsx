@@ -1,9 +1,18 @@
 import React from "react";
-import { Box, Heading, HStack, VStack, Divider } from "native-base";
+import {
+  Box,
+  Heading,
+  HStack,
+  VStack,
+  Divider,
+  IconButton,
+  Icon,
+} from "native-base";
 import Screen from "../../components/common/Screen";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CourseStackParamList } from "../../types/Course";
 import AssignmentList from "../../components/assignments/AssignmentList";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function ViewCourseScreen({
   route,
@@ -51,6 +60,17 @@ export default function ViewCourseScreen({
         </Box>
         <Heading>Assignments</Heading>
         {AssignmentList(course)}
+        <IconButton
+          icon={
+            <Icon
+              size="4xl"
+              color="primary.500"
+              as={<AntDesign name="pluscircle" />}
+            />
+          }
+          onPress={() => console.log("Add assignment")}
+          alignSelf="flex-end"
+        />
       </VStack>
     </Screen>
   );
