@@ -1,6 +1,4 @@
-import { Course } from "./Course";
-import firebase from "firebase/compat";
-import Timestamp = firebase.firestore.Timestamp;
+import { Timestamp } from "firebase/firestore";
 import { Key } from "react";
 
 /**
@@ -16,9 +14,13 @@ export type Assignment = {
    */
   title: string;
   /**
+   * The description of the assignment
+   */
+  description: string;
+  /**
    * The course the assignment is in
    */
-  course: Course;
+  course?: Key;
   /**
    * The weight of the assignment
    */
@@ -31,6 +33,14 @@ export type Assignment = {
    * Whether the assignment has been completed
    */
   is_complete: boolean;
+  /**
+   * Whether the grade is a percentage or a letter
+   */
+  is_letter_grade: boolean;
+  /**
+   * The grade the assignment received (if letter grade)
+   */
+  grade: string;
   /**
    * The maximum amount of marks the assignment can receive
    */
