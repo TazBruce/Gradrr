@@ -1,11 +1,16 @@
-import React, { useContext } from "react";
+import React, { Key, useContext } from "react";
 import { db as firestore } from "../services/firebase";
 import { Course } from "../types/Course";
 import { AuthContext } from "./AuthProvider";
 import { collection, query, where } from "firebase/firestore";
 import { useFirestoreQuery } from "@react-query-firebase/firestore";
 import Loader from "../components/common/Loader";
+import { Assignment } from "../types/Assignment";
 
+/**
+ * A React Context that provides the current user's courses.
+ * @param isCurrent Whether to only return courses that are currently active.
+ */
 export function getAllCourses(isCurrent: boolean): Course[] | JSX.Element {
   const { user } = useContext(AuthContext);
   let ref;
@@ -47,6 +52,51 @@ export function getAllCourses(isCurrent: boolean): Course[] | JSX.Element {
       let course: Course = docSnapshot.data();
       course.id = docSnapshot.id;
       return course;
+    })
+  );
+}
+
+/**
+ * A React Context that pulls all the assignments for a given course.
+ * @param courseId The ID of the course to pull assignments for.
+ */
+export function getCourseAssignments(
+  courseId: Key
+): Assignment[] | JSX.Element {
+  const { user } = useContext(AuthContext);
+  let ref;
+  let firestoreQuery;
+
+  ref = query(
+    collection(firestore, "assignments"),
+    where("owner", "==", user?.uid || "N/A"),
+    where("course", "==", courseId)
+  );
+
+  firestoreQuery = useFirestoreQuery<Assignment>(
+    ["get_assignments", courseId],
+    // @ts-ignore
+    ref,
+    {
+      subscribe: true,
+    }
+  );
+
+  if (firestoreQuery.isLoading) {
+    return <Loader />;
+  }
+
+  const snapshot = firestoreQuery.data;
+
+  return (
+    // @ts-ignore
+    snapshot.docs.map(function (docSnapshot: {
+      data: () => Assignment;
+      id: React.Key | undefined;
+    }) {
+      let assignment: Assignment = docSnapshot.data();
+      assignment.id = docSnapshot.id;
+      return assignment;
     })
   );
 }
