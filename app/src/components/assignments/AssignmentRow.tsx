@@ -23,7 +23,16 @@ export default function AssignmentRow(
   navigation: NativeStackNavigationProp<CourseStackParamList>,
   assignment: Assignment
 ): JSX.Element {
-  const dueDate = assignment.due_date.toDate().toDateString();
+  const dueDate = () => {
+    if (assignment.due_date) {
+      let date = assignment.due_date.toDate().toDateString();
+      console.log(date);
+      return date.substring(0, date.length - 4);
+    } else {
+      return "";
+    }
+  };
+
   return (
     <HStack
       key={assignment.id}
@@ -34,7 +43,7 @@ export default function AssignmentRow(
       <Square size="xs" bg="primary.500" rounded="md" shadow={3} />
       <VStack>
         <Heading>{assignment.title}</Heading>
-        <Heading>{dueDate.substring(0, dueDate.length - 4)}</Heading>
+        <Heading>{dueDate()}</Heading>
       </VStack>
       <Divider bg="coolGray.500" orientation="vertical" mx={4} thickness="2" />
       <VStack>

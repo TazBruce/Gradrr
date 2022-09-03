@@ -32,7 +32,7 @@ export type Assignment = {
   /**
    * The date the assignment is due
    */
-  due_date?: Timestamp;
+  due_date: Timestamp | null;
   /**
    * Whether the assignment has been completed
    */
@@ -48,11 +48,11 @@ export type Assignment = {
   /**
    * The maximum amount of marks the assignment can receive
    */
-  max_marks?: number;
+  max_marks: number | null;
   /**
    * The amount of marks the assignment has received
    */
-  earned_marks?: number;
+  earned_marks: number | null;
 };
 
 export const initialAssignment: Assignment = {
@@ -62,10 +62,10 @@ export const initialAssignment: Assignment = {
   description: "",
   course: "",
   weight: 0,
-  due_date: undefined,
+  due_date: null,
   is_complete: false,
   is_letter_grade: false,
   grade: "",
-  max_marks: undefined,
-  earned_marks: undefined,
+  max_marks: null,
+  earned_marks: null,
 };

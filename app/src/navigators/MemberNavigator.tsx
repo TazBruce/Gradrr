@@ -8,6 +8,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CreateCourseScreen from "../screens/courses/CreateCourseScreen";
 import ViewCourseScreen from "../screens/courses/ViewCourseScreen";
 import { CourseStackParamList, initialCourse } from "../types/Course";
+import CreateAssignmentScreen from "../screens/assignments/CreateAssignmentScreen";
+import { initialAssignment } from "../types/Assignment";
+import ViewAssignmentScreen from "../screens/assignments/ViewAssignmentScreen";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -26,6 +29,16 @@ function CourseNavigation() {
         name="ViewCourse"
         component={ViewCourseScreen}
         initialParams={{ course: initialCourse }}
+      />
+      <CourseStack.Screen
+        name="CreateAssignment"
+        component={CreateAssignmentScreen}
+        initialParams={{ assignment: initialAssignment }}
+      />
+      <CourseStack.Screen
+        name="ViewAssignment"
+        component={ViewAssignmentScreen}
+        initialParams={{ assignment: initialAssignment }}
       />
     </CourseStack.Navigator>
   );

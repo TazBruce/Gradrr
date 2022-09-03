@@ -44,6 +44,8 @@ export type CourseStackParamList = {
   AllCourses: undefined;
   CreateCourse: { course: Course } | undefined;
   ViewCourse: { course: Course };
-  CreateAssignment: { assignment: Assignment } | undefined;
+  CreateAssignment:
+    | { courseID: Key | undefined; assignment: Assignment }
+    | undefined;
   ViewAssignment: { assignment: Assignment };
 };

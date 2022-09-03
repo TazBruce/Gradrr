@@ -13,8 +13,10 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CourseStackParamList } from "../../types/Course";
 import AssignmentList from "../../components/assignments/AssignmentList";
 import { AntDesign } from "@expo/vector-icons";
+import { initialAssignment } from "../../types/Assignment";
 
 export default function ViewCourseScreen({
+  navigation,
   route,
 }: NativeStackScreenProps<CourseStackParamList, "ViewCourse">) {
   const { course } = route.params;
@@ -68,7 +70,12 @@ export default function ViewCourseScreen({
               as={<AntDesign name="pluscircle" />}
             />
           }
-          onPress={() => console.log("Add assignment")}
+          onPress={() =>
+            navigation.navigate("CreateAssignment", {
+              courseID: course.id,
+              assignment: initialAssignment,
+            })
+          }
           alignSelf="flex-end"
         />
       </VStack>
