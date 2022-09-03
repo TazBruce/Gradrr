@@ -45,6 +45,30 @@
     "cancel": "Cancel",
     "save": "Save"
   },
+  "createAssignment": {
+    "createTitle": "Create Assignment",
+    "editTitle": "Edit Assignment",
+    "subtitle": "Please fill in the following information",
+    "titleLabel": "Title",
+    "titleHint": "What is the title of the assignment",
+    "descriptionLabel": "Description",
+    "descriptionHint": "What is the description of the assignment",
+    "dueDateLabel": "Due Date",
+    "dueDateHint": "When is the assignment due",
+    "completedLabel": "Completed?",
+    "completedHint": "Is the assignment completed",
+    "isLetterGradeLabel": "Letter Grade?",
+    "isLetterGradeHint": "Is the assignment graded on a letter scale",
+    "gradeLabel": "Grade",
+    "gradeHint": "What was the grade",
+    "marksReceivedLabel": "Marks Received",
+    "marksReceivedHint": "What was the marks received",
+    "marksOutOfLabel": "Marks Out Of",
+    "marksOutOfHint": "What was the marks out of",
+    "create": "Create",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
   "home": {
     "title": "Home",
     "greeting": "This is HomeScreen"
