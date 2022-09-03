@@ -1,4 +1,5 @@
 import { Key } from "react";
+import { Assignment } from "./Assignment";
 
 /**
  * A course within the app.
@@ -43,4 +44,6 @@ export type CourseStackParamList = {
   AllCourses: undefined;
   CreateCourse: { course: Course } | undefined;
   ViewCourse: { course: Course };
+  CreateAssignment: { assignment: Assignment } | undefined;
+  ViewAssignment: { assignment: Assignment };
 };

@@ -10,6 +10,10 @@ export type Assignment = {
    */
   id?: Key;
   /**
+   * The owner of the assignment
+   */
+  owner: string;
+  /**
    * The name of the assignment
    */
   title: string;
@@ -28,7 +32,7 @@ export type Assignment = {
   /**
    * The date the assignment is due
    */
-  due_date: Timestamp;
+  due_date?: Timestamp;
   /**
    * Whether the assignment has been completed
    */
@@ -44,9 +48,24 @@ export type Assignment = {
   /**
    * The maximum amount of marks the assignment can receive
    */
-  max_marks: number;
+  max_marks?: number;
   /**
    * The amount of marks the assignment has received
    */
-  earned_marks: number;
+  earned_marks?: number;
+};
+
+export const initialAssignment: Assignment = {
+  id: "",
+  owner: "",
+  title: "",
+  description: "",
+  course: "",
+  weight: 0,
+  due_date: undefined,
+  is_complete: false,
+  is_letter_grade: false,
+  grade: "",
+  max_marks: undefined,
+  earned_marks: undefined,
 };
