@@ -27,16 +27,14 @@ function getGrade(course: Course) {
  * Renders a course row.
  * @param navigation
  * @param course The Course to render.
- * @param key The key to use for the Course.
  * @constructor Creates a CourseRow.
  */
 export default function CourseRow(
   navigation: NativeStackNavigationProp<CourseStackParamList>,
-  course: Course,
-  key: React.Key | undefined
+  course: Course
 ): JSX.Element {
   return (
-    <HStack key={key} padding={3} space={4} justifyContent="space-evenly">
+    <HStack key={course.id} padding={3} space={4} justifyContent="space-evenly">
       <Square size="md" bg="primary.500" rounded="md" shadow={3} />
       <VStack paddingTop={2} paddingLeft={3} alignContent="center">
         <Heading size="md">{course.title}</Heading>
