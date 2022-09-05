@@ -6,6 +6,7 @@ import {
   Icon,
   Pressable,
   Square,
+  Text,
   VStack,
 } from "native-base";
 import { CourseStackParamList } from "../../types/Course";
@@ -26,7 +27,6 @@ export default function AssignmentRow(
   const dueDate = () => {
     if (assignment.due_date) {
       let date = assignment.due_date.toDate().toDateString();
-      console.log(date);
       return date.substring(0, date.length - 4);
     } else {
       return "";
@@ -37,10 +37,12 @@ export default function AssignmentRow(
     <Pressable
       key={assignment.id}
       onPress={() => navigation.navigate("ViewAssignment", { assignment })}
-      padding={3}
+      paddingRight={3}
+      paddingLeft={3}
+      paddingBottom={3}
       _pressed={{ bg: "coolGray.200" }}
     >
-      <HStack space={4} h="78" w="100%" justifyContent="flex-start">
+      <HStack space={3} h="60" w="100%" justifyContent="flex-start">
         <Square
           bg="primary.500"
           rounded="md"
@@ -49,9 +51,11 @@ export default function AssignmentRow(
           w="15%"
           alignSelf="center"
         />
-        <VStack alignSelf="center" w="30%">
-          <Heading>{assignment.title}</Heading>
-          <Heading>{dueDate()}</Heading>
+        <VStack alignSelf="center" w="36%">
+          <Heading size="md" numberOfLines={1}>
+            {assignment.title}
+          </Heading>
+          <Heading size="md">{dueDate()}</Heading>
         </VStack>
         <Divider
           bg="coolGray.500"
@@ -59,9 +63,13 @@ export default function AssignmentRow(
           mx={4}
           thickness="2"
         />
-        <VStack alignSelf="center" alignContent="flex-end" w="25%">
-          <Heading>Weight</Heading>
-          <Heading>25%</Heading>
+        <VStack alignSelf="center" w="20%">
+          <Heading alignSelf="center" size="md">
+            Weight
+          </Heading>
+          <Heading alignSelf="center" size="md">
+            25%
+          </Heading>
         </VStack>
         <Icon
           size="xl"
