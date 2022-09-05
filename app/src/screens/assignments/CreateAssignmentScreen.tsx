@@ -12,6 +12,7 @@ import { useFirestoreDocumentMutation } from "@react-query-firebase/firestore";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CourseStackParamList } from "../../types/Course";
 import { Assignment, initialAssignment } from "../../types/Assignment";
+import DateField from "../../components/common/form/DateField";
 
 const schema = Yup.object().shape({
   title: Yup.string().required().label(t("createAssignment.titleLabel")),
@@ -150,7 +151,7 @@ export default function CreateAssignmentScreen({
               label={t("createAssignment.descriptionLabel")}
               placeholder={t("createAssignment.descriptionHint")}
             />
-            <TextField
+            <DateField
               name="due_date"
               label={t("createAssignment.dueDateLabel")}
               placeholder={t("createAssignment.dueDateHint")}
