@@ -38,22 +38,25 @@ export default function CourseRow(
     <Pressable
       key={course.id}
       onPress={() => navigation.navigate("ViewCourse", { course: course })}
+      paddingTop={3}
+      paddingBottom={3}
+      _pressed={{ bg: "coolGray.200" }}
     >
-      <HStack
-        paddingTop={3}
-        paddingBottom={2}
-        space={4}
-        justifyContent="flex-start"
-      >
+      <HStack h="78" w="100%" space={4} justifyContent="flex-start">
         <Square
-          size="md"
           bg="primary.500"
           rounded="md"
           shadow={3}
+          h="100%"
           w="15%"
           alignSelf="center"
         />
-        <VStack paddingTop={2} alignContent="flex-start" w="45%">
+        <VStack
+          paddingTop={2}
+          alignSelf="flex-start"
+          alignContent="center"
+          w="45%"
+        >
           <Heading size="md">{course.title}</Heading>
           <Text numberOfLines={2}>{course.description}</Text>
         </VStack>
