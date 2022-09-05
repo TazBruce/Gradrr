@@ -4,7 +4,6 @@ import {
   Heading,
   HStack,
   Icon,
-  IconButton,
   Pressable,
   Square,
   VStack,
@@ -37,7 +36,7 @@ export default function AssignmentRow(
   return (
     <Pressable
       key={assignment.id}
-      onPress={() => console.log("Assignment pressed")}
+      onPress={() => navigation.navigate("ViewAssignment", { assignment })}
       padding={3}
       _pressed={{ bg: "coolGray.200" }}
     >
