@@ -64,7 +64,8 @@ export default function AppBar({
         console.log("Error deleting item:" + mutation.error.message);
       } else {
         console.log("Item deleted");
-        navigation.popToTop();
+        navigation.goBack();
+        navigation.goBack();
       }
     }
   };
