@@ -34,13 +34,10 @@ export default function ViewCourseScreen({
           borderRadius="4"
           borderWidth="4"
           borderColor="primary.500"
-          display="flex"
-          flexDirection="row"
-          justifyContent="space-evenly"
           padding="4"
         >
-          <HStack space="md">
-            <VStack alignItems="center">
+          <HStack justifyContent="space-evenly">
+            <VStack alignItems="center" w="45%">
               <Heading>Current</Heading>
               <Heading size="xl" marginTop="4">
                 25%
@@ -52,7 +49,7 @@ export default function ViewCourseScreen({
               mx={4}
               thickness="4"
             />
-            <VStack alignItems="center">
+            <VStack alignItems="center" w="45%">
               <Heading>Maximum</Heading>
               <Heading size="xl" marginTop="4">
                 100%
