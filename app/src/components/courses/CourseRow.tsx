@@ -34,13 +34,20 @@ export default function CourseRow(
   course: Course
 ): JSX.Element {
   return (
-    <HStack key={course.id} padding={3} space={4} justifyContent="space-evenly">
-      <Square size="md" bg="primary.500" rounded="md" shadow={3} />
-      <VStack paddingTop={2} paddingLeft={3} alignContent="center">
+    <HStack
+      key={course.id}
+      paddingTop={3}
+      paddingBottom={2}
+      space={4}
+      w="100%"
+      justifyContent="flex-start"
+    >
+      <Square size="md" bg="primary.500" rounded="md" shadow={3} w="15%" />
+      <VStack paddingTop={2} alignContent="flex-start" w="45%">
         <Heading size="md">{course.title}</Heading>
-        <Text w="40">{course.description}</Text>
+        <Text numberOfLines={2}>{course.description}</Text>
       </VStack>
-      <Heading alignSelf="center" size="2xl">
+      <Heading alignSelf="center" size="2xl" alignContent="flex-end" w="20%">
         {getGrade(course)}
       </Heading>
       <IconButton
@@ -52,6 +59,8 @@ export default function CourseRow(
           />
         }
         onPress={() => navigation.navigate("ViewCourse", { course: course })}
+        w="5%"
+        alignContent="flex-end"
       />
     </HStack>
   );
