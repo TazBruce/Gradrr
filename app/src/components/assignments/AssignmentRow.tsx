@@ -5,6 +5,7 @@ import {
   HStack,
   Icon,
   IconButton,
+  Pressable,
   Square,
   VStack,
 } from "native-base";
@@ -34,32 +35,44 @@ export default function AssignmentRow(
   };
 
   return (
-    <HStack
+    <Pressable
       key={assignment.id}
+      onPress={() => console.log("Assignment pressed")}
       padding={3}
-      space={4}
-      justifyContent="space-evenly"
+      _pressed={{ bg: "coolGray.200" }}
     >
-      <Square size="xs" bg="primary.500" rounded="md" shadow={3} />
-      <VStack>
-        <Heading>{assignment.title}</Heading>
-        <Heading>{dueDate()}</Heading>
-      </VStack>
-      <Divider bg="coolGray.500" orientation="vertical" mx={4} thickness="2" />
-      <VStack>
-        <Heading>Weight</Heading>
-        <Heading>25%</Heading>
-      </VStack>
-      <IconButton
-        icon={
-          <Icon
-            size="xl"
-            color="black"
-            as={<MaterialIcons name="keyboard-arrow-right" />}
-          />
-        }
-        onPress={() => console.log("Assignment pressed")}
-      />
-    </HStack>
+      <HStack space={4} h="78" w="100%" justifyContent="flex-start">
+        <Square
+          bg="primary.500"
+          rounded="md"
+          shadow={3}
+          h="100%"
+          w="15%"
+          alignSelf="center"
+        />
+        <VStack alignSelf="center" w="30%">
+          <Heading>{assignment.title}</Heading>
+          <Heading>{dueDate()}</Heading>
+        </VStack>
+        <Divider
+          bg="coolGray.500"
+          orientation="vertical"
+          mx={4}
+          thickness="2"
+        />
+        <VStack alignSelf="center" alignContent="flex-end" w="25%">
+          <Heading>Weight</Heading>
+          <Heading>25%</Heading>
+        </VStack>
+        <Icon
+          size="xl"
+          color="black"
+          as={<MaterialIcons name="keyboard-arrow-right" />}
+          w="5%"
+          alignSelf="center"
+          alignContent="flex-end"
+        />
+      </HStack>
+    </Pressable>
   );
 }
