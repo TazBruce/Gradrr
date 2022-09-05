@@ -51,12 +51,7 @@ export default function CourseRow(
           w="15%"
           alignSelf="center"
         />
-        <VStack
-          paddingTop={2}
-          alignSelf="flex-start"
-          alignContent="center"
-          w="45%"
-        >
+        <VStack alignSelf="center" w="45%">
           <Heading size="md">{course.title}</Heading>
           <Text numberOfLines={2}>{course.description}</Text>
         </VStack>
