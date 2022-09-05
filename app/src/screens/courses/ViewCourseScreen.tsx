@@ -7,6 +7,7 @@ import {
   Divider,
   IconButton,
   Icon,
+  Fab,
 } from "native-base";
 import Screen from "../../components/common/Screen";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -59,21 +60,19 @@ export default function ViewCourseScreen({
         </Box>
         <Heading>Assignments</Heading>
         {AssignmentList(course)}
-        <IconButton
-          icon={
-            <Icon
-              size="4xl"
-              color="primary.500"
-              as={<AntDesign name="pluscircle" />}
-            />
-          }
+        <Fab
+          renderInPortal={false}
+          shadow={2}
+          size="sm"
+          backgroundColor="primary.500"
+          _pressed={{ backgroundColor: "primary.600" }}
+          icon={<Icon color="white" as={<AntDesign name="plus" />} />}
           onPress={() =>
             navigation.navigate("CreateAssignment", {
               courseID: course.id,
               assignment: initialAssignment,
             })
           }
-          alignSelf="flex-end"
         />
       </VStack>
     </Screen>
