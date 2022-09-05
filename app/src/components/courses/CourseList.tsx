@@ -24,7 +24,7 @@ export default function CourseList(isCurrent: boolean): JSX.Element {
   return (
     <>
       {
-        <ScrollView h="80">
+        <ScrollView h="80%">
           <VStack space={4}>{courses()}</VStack>
         </ScrollView>
       }
