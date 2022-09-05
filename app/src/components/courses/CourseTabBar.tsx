@@ -90,9 +90,6 @@ export default function CourseTabBar() {
       renderTabBar={renderTabBar}
       onIndexChange={setIndex}
       initialLayout={initialLayout}
-      style={{
-        marginTop: StatusBar.currentHeight,
-      }}
     />
   );
 }
