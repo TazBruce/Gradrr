@@ -37,8 +37,6 @@ export default function AssignmentRow(
     <Pressable
       key={assignment.id}
       onPress={() => navigation.navigate("ViewAssignment", { assignment })}
-      paddingRight={3}
-      paddingLeft={3}
       paddingBottom={3}
       _pressed={{ bg: "coolGray.200" }}
     >

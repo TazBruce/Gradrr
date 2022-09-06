@@ -42,7 +42,7 @@ export default function CourseRow(
       paddingBottom={3}
       _pressed={{ bg: "coolGray.200" }}
     >
-      <HStack h="78" w="100%" space={4} justifyContent="flex-start">
+      <HStack h="78" w="100%" space={3} justifyContent="flex-start">
         <Square
           bg="primary.500"
           rounded="md"
@@ -55,7 +55,7 @@ export default function CourseRow(
           <Heading size="md">{course.title}</Heading>
           <Text numberOfLines={2}>{course.description}</Text>
         </VStack>
-        <Heading alignSelf="center" size="2xl" alignContent="flex-end" w="20%">
+        <Heading alignSelf="center" size="xl" alignContent="flex-end" w="20%">
           {getGrade(course)}
         </Heading>
         <Icon

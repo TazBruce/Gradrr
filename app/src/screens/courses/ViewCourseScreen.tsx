@@ -62,6 +62,7 @@ export default function ViewCourseScreen({
         {AssignmentList(course)}
         <Fab
           renderInPortal={false}
+          bottom={30}
           shadow={2}
           size="sm"
           backgroundColor="primary.500"

@@ -27,7 +27,7 @@ export default function AssignmentList(course: Course): JSX.Element {
   return (
     <>
       {
-        <ScrollView h="65%">
+        <ScrollView h="61%">
           <VStack space={4}>{assignments()}</VStack>
         </ScrollView>
       }
