@@ -69,3 +69,18 @@ export const initialAssignment: Assignment = {
   max_marks: null,
   earned_marks: null,
 };
+
+export const getDueDate = (assignment: Assignment) => {
+  if (assignment.due_date) {
+    console.log(assignment.due_date);
+    let date;
+    if (assignment.due_date instanceof Timestamp) {
+      date = assignment.due_date.toDate().toDateString();
+    } else {
+      date = assignment.due_date.toDateString();
+    }
+    return date.substring(0, date.length - 4);
+  } else {
+    return "";
+  }
+};

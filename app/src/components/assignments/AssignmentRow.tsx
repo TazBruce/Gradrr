@@ -10,7 +10,7 @@ import {
 } from "native-base";
 import { CourseStackParamList } from "../../types/Course";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Assignment } from "../../types/Assignment";
+import { Assignment, getDueDate } from "../../types/Assignment";
 import { MaterialIcons } from "@expo/vector-icons";
 import { AuthContext } from "../../providers/AuthProvider";
 import { collection, doc } from "firebase/firestore";
@@ -49,15 +49,6 @@ export default function AssignmentRow(props: RowProps): JSX.Element {
     });
   };
 
-  const dueDate = () => {
-    if (assignment.due_date) {
-      let date = assignment.due_date.toDate().toDateString();
-      return date.substring(0, date.length - 4);
-    } else {
-      return "";
-    }
-  };
-
   return (
     <Pressable
       key={assignment.id}
@@ -83,7 +74,7 @@ export default function AssignmentRow(props: RowProps): JSX.Element {
           <Heading size="md" numberOfLines={1}>
             {assignment.title}
           </Heading>
-          <Heading size="md">{dueDate()}</Heading>
+          <Heading size="md">{getDueDate(assignment)}</Heading>
         </VStack>
         <Divider
           bg="coolGray.500"
