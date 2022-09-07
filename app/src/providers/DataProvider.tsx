@@ -58,6 +58,40 @@ export function getAllCourses(isCurrent: boolean): Course[] | JSX.Element {
 }
 
 /**
+ * A React Context that provides the current user's assignments.
+ */
+export function getAllAssignments(): Assignment[] | JSX.Element {
+  const { user } = useContext(AuthContext);
+  const ref = query(
+    collection(firestore, "assignments"),
+    where("owner", "==", user?.uid || "N/A")
+  );
+  // @ts-ignore
+  const firestoreQuery = useFirestoreQuery<Assignment>(
+    ["all_assignments"],
+    ref
+  );
+
+  if (firestoreQuery.isLoading) {
+    return <Loader />;
+  }
+
+  const snapshot = firestoreQuery.data;
+
+  return (
+    // @ts-ignore
+    snapshot.docs.map(function (docSnapshot: {
+      data: () => Assignment;
+      id: React.Key | undefined;
+    }) {
+      let assignment: Assignment = docSnapshot.data();
+      assignment.id = docSnapshot.id;
+      return assignment;
+    })
+  );
+}
+
+/**
  * A React Context that pulls all the assignments for a given course.
  * @param courseId The ID of the course to pull assignments for.
  */

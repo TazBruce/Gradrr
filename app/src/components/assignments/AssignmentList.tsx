@@ -5,28 +5,48 @@ import { ScrollView, VStack } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Assignment } from "../../types/Assignment";
-import { getCourseAssignments } from "../../providers/DataProvider";
+import {
+  getAllAssignments,
+  getCourseAssignments,
+} from "../../providers/DataProvider";
 
-export default function AssignmentList(course: Course): JSX.Element {
+/**
+ * Renders a list of assignments.
+ * @param course The course to render assignments for.
+ * @param allAssignments Whether it should be from all assignments or just the course's assignments.
+ * @constructor
+ */
+export default function AssignmentList(
+  course: Course | null = null,
+  allAssignments: boolean = false
+): JSX.Element {
   const navigation =
     useNavigation<NativeStackNavigationProp<CourseStackParamList>>();
 
+  const mapAssignments = function (assignmentList: Assignment[]) {
+    return assignmentList.map(function (assignment: Assignment) {
+      return (
+        <AssignmentRow
+          key={assignment.id}
+          navigation={navigation}
+          assignment={assignment}
+        />
+      );
+    });
+  };
+
   const assignments = function () {
-    if (course.id) {
-      let result = getCourseAssignments(course.id);
-      if (result instanceof Array) {
-        return result.map(function (assignment: Assignment) {
-          return (
-            <AssignmentRow
-              key={assignment.id}
-              assignment={assignment}
-              navigation={navigation}
-            />
-          );
-        });
-      } else {
-        return result;
-      }
+    let result;
+    if (course != null && course.id) {
+      result = getCourseAssignments(course.id);
+    } else if (course == null && allAssignments) {
+      result = getAllAssignments();
+    }
+
+    if (result instanceof Array) {
+      return mapAssignments(result);
+    } else {
+      return result;
     }
   };
 

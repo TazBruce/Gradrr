@@ -1,12 +1,8 @@
 import React from "react";
-import { Text } from "native-base";
 import { t } from "../utils";
 import Screen from "../components/common/Screen";
+import AssignmentList from "../components/assignments/AssignmentList";
 
 export default function HomeScreen() {
-  return (
-    <Screen title={t("home.title")}>
-      <Text>{t("home.greeting")}</Text>
-    </Screen>
-  );
+  return <Screen title={t("home.title")}>{AssignmentList(null, true)}</Screen>;
 }
