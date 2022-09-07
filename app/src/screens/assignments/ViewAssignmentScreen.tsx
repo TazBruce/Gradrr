@@ -4,8 +4,8 @@ import Screen from "../../components/common/Screen";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CourseStackParamList } from "../../types/Course";
 import { getDueDate, getWeight } from "../../types/Assignment";
-import { AntDesign } from "@expo/vector-icons";
 import SubtaskList from "../../components/subtasks/SubtaskList";
+import SubtaskModal from "../../components/subtasks/SubtaskModal";
 
 export default function ViewAssignmentScreen({
   route,
@@ -27,18 +27,7 @@ export default function ViewAssignmentScreen({
       </VStack>
       {SubtaskList(assignment)}
       <Button>Mark as Complete</Button>
-      <Fab
-        renderInPortal={false}
-        bottom={30}
-        shadow={2}
-        size="sm"
-        backgroundColor="primary.500"
-        _pressed={{ backgroundColor: "primary.600" }}
-        icon={<Icon color="white" as={<AntDesign name="plus" />} />}
-        onPress={() =>
-          console.log("Add subtask to assignment " + assignment.title)
-        }
-      />
+      <SubtaskModal assignment={assignment} subtask={null} />
     </Screen>
   );
 }

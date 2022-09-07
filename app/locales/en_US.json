@@ -74,6 +74,8 @@
   "createSubtask": {
     "createTitle": "Create Subtask",
     "editTitle": "Edit Subtask",
+    "titleLabel": "Title",
+    "titleHint": "What is the title of the subtask",
     "dueDateLabel": "Due Date",
     "dueDateHint": "When is the subtask due",
     "create": "Create",

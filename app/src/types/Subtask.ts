@@ -11,6 +11,10 @@ export type Subtask = {
    */
   owner: string;
   /**
+   * The assignment of the subtask
+   */
+  assignment?: Key;
+  /**
    * The name of the subtask
    */
   title: string;
