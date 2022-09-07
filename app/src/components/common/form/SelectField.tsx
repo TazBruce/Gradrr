@@ -26,6 +26,7 @@ export default function SelectField(props: SelectFieldProps) {
   return (
     <FormControl isRequired={isRequired} isInvalid={Boolean(meta.error)}>
       <FormControl.Label>{label}</FormControl.Label>
+      {/* @ts-ignore */}
       <Select
         testID="selectfield-input"
         selectedValue={props.isDisabled ? "" : field.value}
