@@ -4,6 +4,7 @@ import { IInputProps, FormControl, Input, IconButton, Icon } from "native-base";
 import { useField } from "formik";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Timestamp } from "firebase/firestore";
 
 interface TextFieldProps extends IInputProps {
   name: string;
@@ -19,19 +20,22 @@ const defaultProps = {
 export default function DateField(props: TextFieldProps) {
   const { name, label, isRequired } = props;
   const [field, meta, { setValue }] = useField(name);
+  const [dateEnabled, setDateEnabled] = useState(false);
   const [date, setDate] = useState(() => {
-    if (field.value && field.value instanceof Date) {
-      return new Date(field.value);
+    if (field.value && field.value instanceof Timestamp) {
+      setDateEnabled(true);
+      return field.value.toDate();
     } else {
       return new Date();
     }
   });
+
   const [show, setShow] = useState(false);
 
   const onChange = (event: any, selectedDate: Date | undefined) => {
     setShow(false);
     if (selectedDate) {
-      console.log("Changed:");
+      setDateEnabled(true);
       setDate(selectedDate);
       setValue(selectedDate);
     }
@@ -42,7 +46,8 @@ export default function DateField(props: TextFieldProps) {
   };
 
   const handleClick = () => {
-    console.log("Clear date pressed");
+    setDateEnabled(false);
+    setValue(null);
   };
 
   return (
@@ -50,7 +55,7 @@ export default function DateField(props: TextFieldProps) {
       <FormControl.Label>{label}</FormControl.Label>
       <Input
         isDisabled={true}
-        value={date.toDateString()}
+        value={dateEnabled ? date.toDateString() : ""}
         InputLeftElement={
           <IconButton
             icon={
