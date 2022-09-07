@@ -2,8 +2,11 @@ import React, { Key, useContext } from "react";
 import { db as firestore } from "../services/firebase";
 import { Course } from "../types/Course";
 import { AuthContext } from "./AuthProvider";
-import { collection, query, where } from "firebase/firestore";
-import { useFirestoreQuery } from "@react-query-firebase/firestore";
+import { collection, doc, query, where } from "firebase/firestore";
+import {
+  useFirestoreDocumentMutation,
+  useFirestoreQuery,
+} from "@react-query-firebase/firestore";
 import Loader from "../components/common/Loader";
 import { Assignment } from "../types/Assignment";
 
@@ -99,4 +102,20 @@ export function getCourseAssignments(
       return assignment;
     })
   );
+}
+
+export function mutateAssignment(assignment: Assignment) {
+  const { user } = useContext(AuthContext);
+  const ref = collection(firestore, "assignments");
+  const document = assignment.id
+    ? // @ts-ignore
+      doc(ref, assignment.id.toString())
+    : doc(ref);
+  const mutation = useFirestoreDocumentMutation(document);
+  const { mutate } = mutation;
+
+  mutate({
+    ...assignment,
+    owner: user?.uid,
+  });
 }
