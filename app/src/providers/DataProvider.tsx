@@ -2,11 +2,8 @@ import React, { Key, useContext } from "react";
 import { db as firestore } from "../services/firebase";
 import { Course } from "../types/Course";
 import { AuthContext } from "./AuthProvider";
-import { collection, doc, query, where } from "firebase/firestore";
-import {
-  useFirestoreDocumentMutation,
-  useFirestoreQuery,
-} from "@react-query-firebase/firestore";
+import { collection, query, where } from "firebase/firestore";
+import { useFirestoreQuery } from "@react-query-firebase/firestore";
 import Loader from "../components/common/Loader";
 import { Assignment } from "../types/Assignment";
 
