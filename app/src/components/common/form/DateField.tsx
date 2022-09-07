@@ -5,6 +5,7 @@ import { useField } from "formik";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Timestamp } from "firebase/firestore";
+import * as Device from "expo-device";
 
 interface TextFieldProps extends IInputProps {
   name: string;
@@ -29,8 +30,8 @@ export default function DateField(props: TextFieldProps) {
       return new Date();
     }
   });
-
   const [show, setShow] = useState(false);
+  const mode = Device.brand === "Apple" ? "spinner" : "default";
 
   const onChange = (event: any, selectedDate: Date | undefined) => {
     setShow(false);
@@ -82,7 +83,12 @@ export default function DateField(props: TextFieldProps) {
         }
       ></Input>
       {show && (
-        <RNDateTimePicker display="spinner" value={date} onChange={onChange} />
+        <RNDateTimePicker
+          display={mode}
+          value={date}
+          onChange={onChange}
+          textColor={"#000000"}
+        />
       )}
       {meta.error && (
         <FormControl.ErrorMessage>{meta.error}</FormControl.ErrorMessage>
