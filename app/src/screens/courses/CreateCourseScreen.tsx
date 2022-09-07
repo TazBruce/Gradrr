@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import Screen from "../../components/common/Screen";
 import TextField from "../../components/common/form/TextField";
 import { Formik } from "formik";
-import { Button, Checkbox, HStack, Select, VStack } from "native-base";
+import { Button, Checkbox, VStack } from "native-base";
 import { AuthContext } from "../../providers/AuthProvider";
 import { collection, doc } from "firebase/firestore";
 import { db } from "../../services/firebase";
