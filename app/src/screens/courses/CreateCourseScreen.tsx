@@ -15,6 +15,7 @@ import {
   CourseStackParamList,
   initialCourse,
 } from "../../types/Course";
+import SelectField from "../../components/common/form/SelectField";
 
 const schema = Yup.object().shape({
   title: Yup.string().required().label(t("createCourse.titleLabel")),
@@ -95,8 +96,9 @@ export default function CreateCourseScreen({
     }
   };
 
-  const [completed, setCompleted] = React.useState(false);
-  const [grade, setGrade] = React.useState("");
+  const [completed, setCompleted] = React.useState(() => {
+    return initialValues.final_grade != "";
+  });
 
   return (
     <Screen
@@ -130,37 +132,32 @@ export default function CreateCourseScreen({
               placeholder={t("createCourse.yearHint")}
               isRequired
             />
-            <HStack space={4} justifyContent="space-evenly">
-              <Checkbox
-                value={"courseCompleted"}
-                onChange={() => setCompleted(!completed)}
-                accessibilityLabel={t("createCourse.completedLabel")}
-              >
-                {t("createCourse.completedLabel")}
-              </Checkbox>
-              <Select
-                selectedValue={grade}
-                placeholder={t("createCourse.gradeHint")}
-                onValueChange={(value) => setGrade(value)}
-                isDisabled={!completed}
-                width="3xs"
-                accessibilityLabel={t("createCourse.gradeLabel")}
-              >
-                <Select.Item label="A+" value="A+" />
-                <Select.Item label="A" value="A" />
-                <Select.Item label="A-" value="A-" />
-                <Select.Item label="B+" value="B+" />
-                <Select.Item label="B" value="B" />
-                <Select.Item label="B-" value="B-" />
-                <Select.Item label="C+" value="C+" />
-                <Select.Item label="C" value="C" />
-                <Select.Item label="C-" value="C-" />
-                <Select.Item label="D+" value="D+" />
-                <Select.Item label="D" value="D" />
-                <Select.Item label="D-" value="D-" />
-                <Select.Item label="F" value="F" />
-              </Select>
-            </HStack>
+            <Checkbox
+              isChecked={completed}
+              value={"courseCompleted"}
+              onChange={() => setCompleted(!completed)}
+              accessibilityLabel={t("createCourse.completedLabel")}
+            >
+              {t("createCourse.completedLabel")}
+            </Checkbox>
+            <SelectField
+              name={"final_grade"}
+              label={t("createCourse.gradeLabel")}
+              values={[
+                "A+",
+                "A",
+                "A-",
+                "B+",
+                "B",
+                "B-",
+                "C+",
+                "C",
+                "C-",
+                "D",
+                "E",
+              ]}
+              isDisabled={!completed}
+            />
             <Button
               color="primary.500"
               mt="2"
