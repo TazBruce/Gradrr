@@ -3,11 +3,7 @@ import { Button, Fab, Heading, Icon, VStack } from "native-base";
 import Screen from "../../components/common/Screen";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CourseStackParamList } from "../../types/Course";
-import {
-  getDueDate,
-  getWeight,
-  initialAssignment,
-} from "../../types/Assignment";
+import { getDueDate, getWeight } from "../../types/Assignment";
 import { AntDesign } from "@expo/vector-icons";
 
 export default function ViewAssignmentScreen({
