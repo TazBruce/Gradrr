@@ -5,6 +5,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CourseStackParamList } from "../../types/Course";
 import { getDueDate, getWeight } from "../../types/Assignment";
 import { AntDesign } from "@expo/vector-icons";
+import SubtaskList from "../../components/subtasks/SubtaskList";
 
 export default function ViewAssignmentScreen({
   route,
@@ -24,6 +25,7 @@ export default function ViewAssignmentScreen({
         <Heading size="md">{getWeight(assignment)}</Heading>
         <Heading size="md">Subtasks</Heading>
       </VStack>
+      {SubtaskList(assignment)}
       <Button>Mark as Complete</Button>
       <Fab
         renderInPortal={false}

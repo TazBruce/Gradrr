@@ -1,5 +1,6 @@
 import { Timestamp } from "firebase/firestore";
 import { Key } from "react";
+import { Subtask } from "./Subtask";
 
 /**
  * An assignment within a course.
@@ -70,7 +71,7 @@ export const initialAssignment: Assignment = {
   earned_marks: null,
 };
 
-export const getDueDate = (assignment: Assignment) => {
+export const getDueDate = (assignment: Assignment | Subtask) => {
   if (assignment.due_date) {
     let date;
     if (assignment.due_date instanceof Timestamp) {

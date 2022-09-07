@@ -6,6 +6,7 @@ import { collection, query, where } from "firebase/firestore";
 import { useFirestoreQuery } from "@react-query-firebase/firestore";
 import Loader from "../components/common/Loader";
 import { Assignment } from "../types/Assignment";
+import { Subtask } from "../types/Subtask";
 
 /**
  * A React Context that provides the current user's courses.
@@ -97,6 +98,51 @@ export function getCourseAssignments(
       let assignment: Assignment = docSnapshot.data();
       assignment.id = docSnapshot.id;
       return assignment;
+    })
+  );
+}
+
+/**
+ * A React Context that pulls all the subtasks for a given assignment.
+ * @param assignmentId The ID of the assignment to pull subtasks for.
+ */
+export function getAssignmentSubtasks(
+  assignmentId: Key
+): Subtask[] | JSX.Element {
+  const { user } = useContext(AuthContext);
+  let ref;
+  let firestoreQuery;
+
+  ref = query(
+    collection(firestore, "subtasks"),
+    where("owner", "==", user?.uid || "N/A"),
+    where("assignment", "==", assignmentId)
+  );
+
+  firestoreQuery = useFirestoreQuery<Subtask>(
+    ["get_subtasks", assignmentId],
+    // @ts-ignore
+    ref,
+    {
+      subscribe: true,
+    }
+  );
+
+  if (firestoreQuery.isLoading) {
+    return <Loader />;
+  }
+
+  const snapshot = firestoreQuery.data;
+
+  return (
+    // @ts-ignore
+    snapshot.docs.map(function (docSnapshot: {
+      data: () => Subtask;
+      id: React.Key | undefined;
+    }) {
+      let subtask: Subtask = docSnapshot.data();
+      subtask.id = docSnapshot.id;
+      return subtask;
     })
   );
 }
