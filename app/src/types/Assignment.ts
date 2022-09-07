@@ -83,3 +83,11 @@ export const getDueDate = (assignment: Assignment) => {
     return "";
   }
 };
+
+export const getWeight = (assignment: Assignment) => {
+  if (assignment.weight) {
+    return assignment.weight + "%";
+  } else {
+    return "0%";
+  }
+};
