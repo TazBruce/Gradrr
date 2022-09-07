@@ -19,7 +19,7 @@ const defaultProps = {
 };
 
 export default function DateField(props: TextFieldProps) {
-  const { name, label, isRequired } = props;
+  const { name, label, isRequired, ...rest } = props;
   const [field, meta, { setValue }] = useField(name);
   const [dateEnabled, setDateEnabled] = useState(false);
   const [date, setDate] = useState(() => {
@@ -57,8 +57,11 @@ export default function DateField(props: TextFieldProps) {
       <Input
         isDisabled={true}
         value={dateEnabled ? date.toDateString() : ""}
+        _disabled={{ opacity: 1 }}
         InputLeftElement={
           <IconButton
+            borderColor={"coolGray.400"}
+            borderWidth={1}
             icon={
               <Icon
                 size="lg"
@@ -71,10 +74,12 @@ export default function DateField(props: TextFieldProps) {
         }
         InputRightElement={
           <IconButton
+            borderColor={"coolGray.400"}
+            borderWidth={1}
             icon={
               <Icon
                 size="lg"
-                color="primary.400"
+                color="primary.500"
                 as={<MaterialIcons name="delete" />}
               />
             }
