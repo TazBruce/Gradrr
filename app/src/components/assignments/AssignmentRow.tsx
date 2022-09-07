@@ -62,6 +62,7 @@ export default function AssignmentRow(props: RowProps): JSX.Element {
     <Pressable
       key={assignment.id}
       onPress={() => navigation.navigate("ViewAssignment", { assignment })}
+      paddingTop={3}
       paddingBottom={3}
       _pressed={{ bg: "coolGray.200" }}
     >
