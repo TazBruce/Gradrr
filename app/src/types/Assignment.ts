@@ -72,7 +72,6 @@ export const initialAssignment: Assignment = {
 
 export const getDueDate = (assignment: Assignment) => {
   if (assignment.due_date) {
-    console.log(assignment.due_date);
     let date;
     if (assignment.due_date instanceof Timestamp) {
       date = assignment.due_date.toDate().toDateString();
