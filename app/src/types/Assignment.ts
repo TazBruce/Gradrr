@@ -32,7 +32,7 @@ export type Assignment = {
   /**
    * The date the assignment is due
    */
-  due_date: Timestamp | null;
+  due_date: Timestamp | Date | null;
   /**
    * Whether the assignment has been completed
    */
