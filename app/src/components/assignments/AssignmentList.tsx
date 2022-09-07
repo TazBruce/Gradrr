@@ -16,7 +16,13 @@ export default function AssignmentList(course: Course): JSX.Element {
       let result = getCourseAssignments(course.id);
       if (result instanceof Array) {
         return result.map(function (assignment: Assignment) {
-          return AssignmentRow(navigation, assignment);
+          return (
+            <AssignmentRow
+              key={assignment.id}
+              assignment={assignment}
+              navigation={navigation}
+            />
+          );
         });
       } else {
         return result;

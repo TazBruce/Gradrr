@@ -1,29 +1,54 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   Divider,
   Heading,
   HStack,
   Icon,
+  IconButton,
   Pressable,
-  Square,
-  Text,
   VStack,
 } from "native-base";
 import { CourseStackParamList } from "../../types/Course";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Assignment } from "../../types/Assignment";
 import { MaterialIcons } from "@expo/vector-icons";
+import { AuthContext } from "../../providers/AuthProvider";
+import { collection, doc } from "firebase/firestore";
+import { db as firestore } from "../../services/firebase";
+import { useFirestoreDocumentMutation } from "@react-query-firebase/firestore";
+
+interface RowProps {
+  navigation: NativeStackNavigationProp<CourseStackParamList>;
+  assignment: Assignment;
+}
 
 /**
  * Renders an assignment row.
- * @param navigation
- * @param assignment The assignment to render.
  * @constructor Creates an AssignmentRow.
+ * @param props
  */
-export default function AssignmentRow(
-  navigation: NativeStackNavigationProp<CourseStackParamList>,
-  assignment: Assignment
-): JSX.Element {
+export default function AssignmentRow(props: RowProps): JSX.Element {
+  const assignment = props.assignment;
+  const navigation = props.navigation;
+  const [completed, setCompleted] = useState(assignment.is_complete);
+  const { user } = useContext(AuthContext);
+  const ref = collection(firestore, "assignments");
+  const document = assignment.id
+    ? // @ts-ignore
+      doc(ref, assignment.id.toString())
+    : doc(ref);
+  const mutation = useFirestoreDocumentMutation(document);
+  const { mutate } = mutation;
+
+  const markComplete = () => {
+    setCompleted(!completed);
+    assignment.is_complete = !completed;
+    mutate({
+      ...assignment,
+      owner: user?.uid,
+    });
+  };
+
   const dueDate = () => {
     if (assignment.due_date) {
       let date = assignment.due_date.toDate().toDateString();
@@ -41,13 +66,17 @@ export default function AssignmentRow(
       _pressed={{ bg: "coolGray.200" }}
     >
       <HStack space={3} h="60" w="100%" justifyContent="flex-start">
-        <Square
-          bg="primary.500"
+        <IconButton
+          onPress={markComplete}
+          bg={completed ? "primary.500" : "white"}
           rounded="md"
+          borderColor={completed ? "primary.500" : "coolGray.500"}
+          borderWidth={4}
           shadow={3}
           h="100%"
           w="15%"
           alignSelf="center"
+          icon={<Icon as={MaterialIcons} name="check" color="white" />}
         />
         <VStack alignSelf="center" w="36%">
           <Heading size="md" numberOfLines={1}>

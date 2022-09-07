@@ -103,19 +103,3 @@ export function getCourseAssignments(
     })
   );
 }
-
-export function mutateAssignment(assignment: Assignment) {
-  const { user } = useContext(AuthContext);
-  const ref = collection(firestore, "assignments");
-  const document = assignment.id
-    ? // @ts-ignore
-      doc(ref, assignment.id.toString())
-    : doc(ref);
-  const mutation = useFirestoreDocumentMutation(document);
-  const { mutate } = mutation;
-
-  mutate({
-    ...assignment,
-    owner: user?.uid,
-  });
-}
