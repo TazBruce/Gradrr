@@ -1,6 +1,6 @@
-import { Button, Fab, Icon, Modal, VStack } from "native-base";
-import React, { useContext, useState } from "react";
-import { AntDesign } from "@expo/vector-icons";
+import { Button, Fab, Icon, IconButton, Modal, VStack } from "native-base";
+import React, { Key, useContext, useState } from "react";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import * as Yup from "yup";
 import { t } from "../../utils";
 import { initialSubtask, Subtask } from "../../types/Subtask";
@@ -19,7 +19,7 @@ const schema = Yup.object().shape({
 });
 
 interface ModalProps {
-  assignment: Assignment;
+  assignmentID: Key;
   subtask: Subtask | null;
 }
 
@@ -47,12 +47,12 @@ export default function SubtaskModal(props: ModalProps) {
     due_date,
     is_complete,
   }: Subtask) => {
-    if (user == null || props.assignment.id == null) {
+    if (user == null || props.assignmentID == null) {
       console.log("User not logged in");
     } else {
       mutation.mutate({
         owner: user.uid,
-        assignment: props.assignment.id,
+        assignment: props.assignmentID,
         title: title,
         due_date: due_date,
         is_complete: is_complete,
@@ -68,7 +68,7 @@ export default function SubtaskModal(props: ModalProps) {
 
   return (
     <>
-      {!showModal && (
+      {!showModal && !editStatus && (
         <Fab
           renderInPortal={false}
           bottom={30}
@@ -78,6 +78,17 @@ export default function SubtaskModal(props: ModalProps) {
           _pressed={{ backgroundColor: "primary.600" }}
           icon={<Icon color="white" as={<AntDesign name="plus" />} />}
           onPress={() => setShowModal(!showModal)}
+        />
+      )}
+      {!showModal && editStatus && (
+        <IconButton
+          onPress={() => setShowModal(!showModal)}
+          bg="white"
+          shadow={3}
+          h="100%"
+          w="15%"
+          alignContent="flex-end"
+          icon={<Icon as={MaterialIcons} name="edit" color="primary.500" />}
         />
       )}
       <Modal
@@ -94,7 +105,7 @@ export default function SubtaskModal(props: ModalProps) {
             {({ handleSubmit, isSubmitting }) => (
               <>
                 <Modal.CloseButton />
-                <Modal.Header>Create Subtask</Modal.Header>
+                <Modal.Header>{titleText}</Modal.Header>
                 <Modal.Body>
                   <VStack space={3} mt="5">
                     <TextField

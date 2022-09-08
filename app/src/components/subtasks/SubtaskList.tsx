@@ -11,7 +11,14 @@ export default function SubtaskList(assignment: Assignment): JSX.Element {
       let result = getAssignmentSubtasks(assignment.id);
       if (result instanceof Array) {
         return result.map(function (subtask: Subtask) {
-          return <SubtaskRow key={subtask.id} subtask={subtask} />;
+          // @ts-ignore
+          return (
+            <SubtaskRow
+              key={subtask.id}
+              subtask={subtask}
+              assignmentId={assignment.id}
+            />
+          );
         });
       } else {
         return result;

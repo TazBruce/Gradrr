@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Fab, Heading, Icon, VStack } from "native-base";
+import { Button, Heading, VStack } from "native-base";
 import Screen from "../../components/common/Screen";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CourseStackParamList } from "../../types/Course";
@@ -27,7 +27,7 @@ export default function ViewAssignmentScreen({
       </VStack>
       {SubtaskList(assignment)}
       <Button>Mark as Complete</Button>
-      <SubtaskModal assignment={assignment} subtask={null} />
+      <SubtaskModal assignmentID={assignment.id} subtask={null} />
     </Screen>
   );
 }

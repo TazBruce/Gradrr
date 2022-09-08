@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { Key, useContext, useState } from "react";
 import {
   Container,
   Heading,
@@ -15,9 +15,11 @@ import { db as firestore } from "../../services/firebase";
 import { useFirestoreDocumentMutation } from "@react-query-firebase/firestore";
 import { Subtask } from "../../types/Subtask";
 import { getDueDate } from "../../types/Assignment";
+import SubtaskModal from "./SubtaskModal";
 
 interface RowProps {
   subtask: Subtask;
+  assignmentId: Key;
 }
 
 /**
@@ -91,15 +93,7 @@ export default function SubtaskRow(props: RowProps): JSX.Element {
           <Text>{getDueDate(subtask)}</Text>
         </HStack>
       </VStack>
-      <IconButton
-        onPress={editSubtask}
-        bg="white"
-        shadow={3}
-        h="100%"
-        w="15%"
-        alignContent="flex-end"
-        icon={<Icon as={MaterialIcons} name="edit" color="primary.500" />}
-      />
+      <SubtaskModal assignmentID={props.assignmentId} subtask={subtask} />
       <IconButton
         onPress={deleteSubtask}
         bg="white"
