@@ -14,8 +14,8 @@ import TextField from "../common/form/TextField";
 import DateField from "../common/form/DateField";
 
 const schema = Yup.object().shape({
-  title: Yup.string().required().label(t("createAssignment.titleLabel")),
-  due_date: Yup.date().nullable().label(t("createAssignment.dueDateLabel")),
+  title: Yup.string().required().label(t("createSubtask.titleLabel")),
+  due_date: Yup.date().nullable().label(t("createSubtask.dueDateLabel")),
 });
 
 interface ModalProps {
@@ -116,8 +116,8 @@ export default function SubtaskModal(props: ModalProps) {
                     />
                     <DateField
                       name="due_date"
-                      label={t("createAssignment.dueDateLabel")}
-                      placeholder={t("createAssignment.dueDateHint")}
+                      label={t("createSubtask.dueDateLabel")}
+                      placeholder={t("createSubtask.dueDateHint")}
                     />
                   </VStack>
                 </Modal.Body>
