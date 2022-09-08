@@ -48,6 +48,7 @@
   "createAssignment": {
     "createTitle": "Create Assignment",
     "editTitle": "Edit Assignment",
+    "completeTitle": "Complete Assignment",
     "subtitle": "Please fill in the following information",
     "titleLabel": "Title",
     "titleHint": "What is the title of the assignment",
@@ -59,6 +60,7 @@
     "weightHint": "What is the weight of the assignment",
     "completedLabel": "Completed?",
     "completedHint": "Is the assignment completed",
+    "gradesReleasedLabel": "Grades Released?",
     "isLetterGradeLabel": "Letter Grade?",
     "isLetterGradeHint": "Is the assignment graded on a letter scale",
     "gradeLabel": "Grade",
@@ -67,6 +69,8 @@
     "earnedMarksHint": "What was the marks received",
     "maxMarksLabel": "Marks Out Of",
     "maxMarksHint": "What was the marks out of",
+    "markAsComplete": "Mark as Complete",
+    "complete": "Complete",
     "create": "Create",
     "cancel": "Cancel",
     "save": "Save"
