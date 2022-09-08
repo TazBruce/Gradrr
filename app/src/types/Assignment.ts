@@ -129,27 +129,27 @@ export const getGrade = (
 export const convertToPercentage = (grade: string): number => {
   switch (grade) {
     case "A+":
-      return 95;
+      return 0.95;
     case "A":
-      return 87;
+      return 0.87;
     case "A-":
-      return 82;
+      return 0.82;
     case "B+":
-      return 77;
+      return 0.77;
     case "B":
-      return 72;
+      return 0.72;
     case "B-":
-      return 67;
+      return 0.67;
     case "C+":
-      return 62;
+      return 0.62;
     case "C":
-      return 57;
+      return 0.57;
     case "C-":
-      return 52;
+      return 0.52;
     case "D":
-      return 45;
+      return 0.45;
     default:
-      return 20;
+      return 0.2;
   }
 };
 
