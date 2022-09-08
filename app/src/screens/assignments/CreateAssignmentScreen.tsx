@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import Screen from "../../components/common/Screen";
 import TextField from "../../components/common/form/TextField";
 import { Formik } from "formik";
-import { Button, Checkbox, VStack } from "native-base";
+import { Button, Checkbox, HStack, VStack } from "native-base";
 import { AuthContext } from "../../providers/AuthProvider";
 import { collection, doc } from "firebase/firestore";
 import { db } from "../../services/firebase";
@@ -18,15 +18,13 @@ import {
   initialAssignment,
 } from "../../types/Assignment";
 import DateField from "../../components/common/form/DateField";
+import SelectField from "../../components/common/form/SelectField";
 
 const schema = Yup.object().shape({
   title: Yup.string().required().label(t("createAssignment.titleLabel")),
   description: Yup.string().label(t("createAssignment.descriptionLabel")),
   due_date: Yup.date().nullable().label(t("createAssignment.dueDateLabel")),
   weight: Yup.number().label(t("createAssignment.weightLabel")),
-  is_complete: Yup.boolean()
-    .required()
-    .label(t("createAssignment.completedLabel")),
   grade: Yup.string().label(t("createAssignment.gradeLabel")),
   earned_marks: Yup.number()
     .nullable()
@@ -83,6 +81,19 @@ export default function CreateAssignmentScreen({
     if (user == null) {
       console.log("User not logged in");
     } else {
+      if (!gradesReleased) {
+        grade = "";
+        earned_marks = null;
+        max_marks = null;
+        is_complete = false;
+      } else if (isLetter) {
+        earned_marks = null;
+        max_marks = null;
+        is_complete = true;
+      } else {
+        grade = "";
+        is_complete = true;
+      }
       const newGrade = getGrade(grade, earned_marks, max_marks);
       const newPercentage = getPercentage(
         weight,
@@ -131,8 +142,19 @@ export default function CreateAssignmentScreen({
     }
   };
 
-  const [completed, setCompleted] = React.useState(false);
-  const [isLetter, setIsLetter] = React.useState(false);
+  const [completed, setCompleted] = React.useState(
+    editStatus ? initialValues.is_complete : false
+  );
+  const [gradesReleased, setGradesReleased] = React.useState(
+    editStatus
+      ? initialValues.grade !== "" ||
+          (initialValues.earned_marks != null &&
+            initialValues.max_marks != null)
+      : true
+  );
+  const [isLetter, setIsLetter] = React.useState(
+    editStatus ? initialValues.grade != "" : false
+  );
 
   return (
     <Screen
@@ -147,7 +169,7 @@ export default function CreateAssignmentScreen({
         onSubmit={handleFormSubmit}
       >
         {({ handleSubmit, isSubmitting }) => (
-          <VStack space={3} mt="5">
+          <VStack space={3}>
             <TextField
               name="title"
               label={t("createAssignment.titleLabel")}
@@ -170,19 +192,72 @@ export default function CreateAssignmentScreen({
               placeholder={t("createAssignment.weightHint")}
             />
             <Checkbox
-              value={"is_complete"}
+              value={completed.toString()}
+              isChecked={completed}
               onChange={() => setCompleted(!completed)}
               accessibilityLabel={t("createAssignment.completedLabel")}
             >
               {t("createAssignment.completedLabel")}
             </Checkbox>
-            <Checkbox
-              value={"is_letter_grade"}
-              onChange={() => setIsLetter(!isLetter)}
-              accessibilityLabel={t("createAssignment.isLetterGradeLabel")}
-            >
-              {t("createAssignment.isLetterGradeLabel")}
-            </Checkbox>
+            {completed && (
+              <HStack space={3}>
+                <Checkbox
+                  value={gradesReleased.toString()}
+                  isChecked={gradesReleased}
+                  onChange={() => setGradesReleased(!gradesReleased)}
+                  accessibilityLabel={t("createAssignment.gradesReleasedLabel")}
+                >
+                  {t("createAssignment.gradesReleasedLabel")}
+                </Checkbox>
+                {completed && gradesReleased && (
+                  <Checkbox
+                    value={isLetter.toString()}
+                    onChange={() => setIsLetter(!isLetter)}
+                    accessibilityLabel={t(
+                      "createAssignment.isLetterGradeLabel"
+                    )}
+                  >
+                    {t("createAssignment.isLetterGradeLabel")}
+                  </Checkbox>
+                )}
+              </HStack>
+            )}
+            {completed && gradesReleased && isLetter && (
+              <SelectField
+                name={"grade"}
+                label={t("createAssignment.gradeLabel")}
+                values={[
+                  "A+",
+                  "A",
+                  "A-",
+                  "B+",
+                  "B",
+                  "B-",
+                  "C+",
+                  "C",
+                  "C-",
+                  "D",
+                  "E",
+                ]}
+                isDisabled={!gradesReleased || !isLetter}
+              />
+            )}
+            {completed && gradesReleased && !isLetter && (
+              <VStack space={3}>
+                <TextField
+                  name={"earned_marks"}
+                  label={t("createAssignment.earnedMarksLabel")}
+                  placeholder={t("createAssignment.earnedMarksHint")}
+                  isDisabled={!gradesReleased || isLetter}
+                />
+                <TextField
+                  name={"max_marks"}
+                  label={t("createAssignment.maxMarksLabel")}
+                  placeholder={t("createAssignment.maxMarksHint")}
+                  isDisabled={!gradesReleased || isLetter}
+                />
+              </VStack>
+            )}
             <Button
               color="primary.500"
               mt="2"
