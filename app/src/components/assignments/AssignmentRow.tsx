@@ -17,6 +17,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { collection, doc } from "firebase/firestore";
 import { db as firestore } from "../../services/firebase";
 import { useFirestoreDocumentMutation } from "@react-query-firebase/firestore";
+import { t } from "../../utils";
 
 interface RowProps {
   navigation: NativeStackNavigationProp<CourseStackParamList>;
@@ -93,10 +94,14 @@ export default function AssignmentRow(props: RowProps): JSX.Element {
         />
         <VStack alignSelf="center" w="20%">
           <Heading alignSelf="center" size="md">
-            Weight
+            {assignment.is_complete
+              ? t("createAssignment.earned")
+              : t("createAssignment.weightLabel")}
           </Heading>
           <Heading alignSelf="center" size="md">
-            25%
+            {assignment.is_complete
+              ? assignment.percentage + "%"
+              : assignment.weight + "%"}
           </Heading>
         </VStack>
         <Icon
