@@ -77,7 +77,7 @@ export default function SubtaskRow(props: RowProps): JSX.Element {
         alignSelf="center"
         icon={<Icon as={MaterialIcons} name="check" color="white" />}
       />
-      <VStack alignSelf="center" w="36%">
+      <VStack alignSelf="center" w="36%" space={1}>
         <Heading size="md" numberOfLines={1}>
           {subtask.title}
         </Heading>

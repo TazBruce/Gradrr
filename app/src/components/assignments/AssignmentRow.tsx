@@ -7,6 +7,7 @@ import {
   IconButton,
   Pressable,
   VStack,
+  Text,
 } from "native-base";
 import { CourseStackParamList } from "../../types/Course";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -70,11 +71,19 @@ export default function AssignmentRow(props: RowProps): JSX.Element {
           alignSelf="center"
           icon={<Icon as={MaterialIcons} name="check" color="white" />}
         />
-        <VStack alignSelf="center" w="36%">
-          <Heading size="md" numberOfLines={1}>
+        <VStack alignSelf="center" w="36%" space={1}>
+          <Heading size="sm" numberOfLines={1}>
             {assignment.title}
           </Heading>
-          <Heading size="md">{getDueDate(assignment)}</Heading>
+          <HStack space={2}>
+            <Icon
+              as={MaterialIcons}
+              name="date-range"
+              size="md"
+              color={"primary.500"}
+            />
+            <Text>{getDueDate(assignment)}</Text>
+          </HStack>
         </VStack>
         <Divider
           bg="coolGray.500"
