@@ -23,7 +23,7 @@ export default function ViewAssignmentScreen({
         <Heading size="md">{assignment.description}</Heading>
         <Heading size="md">{getDueDate(assignment)}</Heading>
         <Heading size="md">{getWeight(assignment)}</Heading>
-        <Heading size="md">Subtasks</Heading>
+        <Heading>Subtasks</Heading>
       </VStack>
       {SubtaskList(assignment)}
       <Button>Mark as Complete</Button>
