@@ -22,9 +22,6 @@ const schema = Yup.object().shape({
   is_complete: Yup.boolean()
     .required()
     .label(t("createAssignment.completedLabel")),
-  is_letter_grade: Yup.boolean().label(
-    t("createAssignment.isLetterGradeLabel")
-  ),
   grade: Yup.string().label(t("createAssignment.gradeLabel")),
   earned_marks: Yup.number()
     .nullable()
@@ -74,7 +71,6 @@ export default function CreateAssignmentScreen({
     due_date,
     weight,
     is_complete,
-    is_letter_grade,
     grade,
     earned_marks,
     max_marks,
@@ -90,7 +86,6 @@ export default function CreateAssignmentScreen({
         due_date: due_date,
         weight: weight,
         is_complete: is_complete,
-        is_letter_grade: is_letter_grade,
         grade: grade,
         earned_marks: earned_marks,
         max_marks: max_marks,
@@ -108,7 +103,6 @@ export default function CreateAssignmentScreen({
           due_date: due_date,
           weight: weight,
           is_complete: is_complete,
-          is_letter_grade: is_letter_grade,
           grade: grade,
           earned_marks: earned_marks,
           max_marks: max_marks,

@@ -29,7 +29,7 @@ export default function TextField(props: TextFieldProps) {
       <Input
         testID="textfield-input"
         type={textHidden ? "password" : "text"}
-        value={field.value}
+        value={props.isDisabled ? "" : field.value}
         {...rest}
         InputRightElement={
           password ? (

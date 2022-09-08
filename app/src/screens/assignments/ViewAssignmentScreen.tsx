@@ -6,6 +6,7 @@ import { CourseStackParamList } from "../../types/Course";
 import { getDueDate, getWeight } from "../../types/Assignment";
 import SubtaskList from "../../components/subtasks/SubtaskList";
 import SubtaskModal from "../../components/subtasks/SubtaskModal";
+import AssignmentModal from "../../components/assignments/AssignmentModal";
 
 export default function ViewAssignmentScreen({
   route,
@@ -27,7 +28,7 @@ export default function ViewAssignmentScreen({
         <Heading>Subtasks</Heading>
       </VStack>
       {SubtaskList(assignment)}
-      <Button>Mark as Complete</Button>
+      <AssignmentModal assignment={assignment} />
       <SubtaskModal assignmentID={assignmentID} subtask={null} />
     </Screen>
   );

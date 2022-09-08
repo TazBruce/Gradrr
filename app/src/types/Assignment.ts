@@ -39,10 +39,6 @@ export type Assignment = {
    */
   is_complete: boolean;
   /**
-   * Whether the grade is a percentage or a letter
-   */
-  is_letter_grade: boolean;
-  /**
    * The grade the assignment received (if letter grade)
    */
   grade: string;
@@ -65,7 +61,6 @@ export const initialAssignment: Assignment = {
   weight: 0,
   due_date: null,
   is_complete: false,
-  is_letter_grade: false,
   grade: "",
   max_marks: null,
   earned_marks: null,

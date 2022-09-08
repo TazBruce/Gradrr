@@ -17,7 +17,7 @@ const defaultProps = {
 
 export default function SelectField(props: SelectFieldProps) {
   const { name, label, isRequired, ...rest } = props;
-  const [field, meta, { setValue }] = useField(name);
+  const [field, meta] = useField(name);
   const { handleChange } = useFormikContext();
   const items = props.values.map((value) => {
     return <Select.Item key={value} label={value} value={value} />;
