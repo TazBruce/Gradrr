@@ -11,6 +11,7 @@ export default function ViewAssignmentScreen({
   route,
 }: NativeStackScreenProps<CourseStackParamList, "ViewAssignment">) {
   const { assignment } = route.params;
+  const assignmentID = assignment.id === undefined ? 0 : assignment.id;
 
   return (
     <Screen
@@ -27,7 +28,7 @@ export default function ViewAssignmentScreen({
       </VStack>
       {SubtaskList(assignment)}
       <Button>Mark as Complete</Button>
-      <SubtaskModal assignmentID={assignment.id} subtask={null} />
+      <SubtaskModal assignmentID={assignmentID} subtask={null} />
     </Screen>
   );
 }
