@@ -11,7 +11,12 @@ import { db } from "../../services/firebase";
 import { useFirestoreDocumentMutation } from "@react-query-firebase/firestore";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CourseStackParamList } from "../../types/Course";
-import { Assignment, initialAssignment } from "../../types/Assignment";
+import {
+  Assignment,
+  getGrade,
+  getPercentage,
+  initialAssignment,
+} from "../../types/Assignment";
 import DateField from "../../components/common/form/DateField";
 
 const schema = Yup.object().shape({
@@ -78,6 +83,13 @@ export default function CreateAssignmentScreen({
     if (user == null) {
       console.log("User not logged in");
     } else {
+      const newGrade = getGrade(grade, earned_marks, max_marks);
+      const newPercentage = getPercentage(
+        weight,
+        grade,
+        earned_marks,
+        max_marks
+      );
       mutation.mutate({
         owner: user.uid,
         course: initialValues.course,
@@ -86,9 +98,10 @@ export default function CreateAssignmentScreen({
         due_date: due_date,
         weight: weight,
         is_complete: is_complete,
-        grade: grade,
         earned_marks: earned_marks,
         max_marks: max_marks,
+        grade: newGrade,
+        percentage: newPercentage,
       });
       if (mutation.isError) {
         console.log(mutation.error.message);
@@ -103,9 +116,10 @@ export default function CreateAssignmentScreen({
           due_date: due_date,
           weight: weight,
           is_complete: is_complete,
-          grade: grade,
           earned_marks: earned_marks,
           max_marks: max_marks,
+          grade: newGrade,
+          percentage: newPercentage,
         };
         if (editStatus) {
           navigation.pop();

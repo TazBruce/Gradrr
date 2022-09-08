@@ -71,7 +71,7 @@ export default function ViewAssignmentScreen({
           <VStack alignItems="center" w="45%">
             <Heading>Percentage</Heading>
             <Heading size="xl" marginTop="4">
-              {getPercentage(assignment)}
+              {assignment.percentage + "%"}
             </Heading>
           </VStack>
           <Divider
@@ -83,7 +83,7 @@ export default function ViewAssignmentScreen({
           <VStack alignItems="center" w="45%">
             <Heading>Letter</Heading>
             <Heading size="xl" marginTop="4">
-              {getGrade(assignment)}
+              {assignment.grade}
             </Heading>
           </VStack>
         </HStack>

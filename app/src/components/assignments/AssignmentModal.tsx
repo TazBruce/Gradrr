@@ -7,7 +7,12 @@ import { collection, doc } from "firebase/firestore";
 import { db } from "../../services/firebase";
 import { useFirestoreDocumentMutation } from "@react-query-firebase/firestore";
 import { Formik } from "formik";
-import { Assignment, initialAssignment } from "../../types/Assignment";
+import {
+  Assignment,
+  getGrade,
+  getPercentage,
+  initialAssignment,
+} from "../../types/Assignment";
 import TextField from "../common/form/TextField";
 import SelectField from "../common/form/SelectField";
 
@@ -51,12 +56,20 @@ export default function AssignmentModal(props: ModalProps) {
       } else {
         grade = "";
       }
+      const newGrade = getGrade(grade, earned_marks, max_marks);
+      const newPercentage = getPercentage(
+        props.assignment.weight,
+        grade,
+        earned_marks,
+        max_marks
+      );
       mutation.mutate({
         ...props.assignment,
         is_complete: true,
-        grade: grade,
         earned_marks: earned_marks,
         max_marks: max_marks,
+        grade: newGrade,
+        percentage: newPercentage,
       });
       if (mutation.isError) {
         console.log(mutation.error.message);

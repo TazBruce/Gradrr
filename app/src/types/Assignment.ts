@@ -39,10 +39,6 @@ export type Assignment = {
    */
   is_complete: boolean;
   /**
-   * The grade the assignment received (if letter grade)
-   */
-  grade: string;
-  /**
    * The maximum amount of marks the assignment can receive
    */
   max_marks: number | null;
@@ -50,6 +46,14 @@ export type Assignment = {
    * The amount of marks the assignment has received
    */
   earned_marks: number | null;
+  /**
+   * The grade the assignment received
+   */
+  grade: string;
+  /**
+   * The percentage the assignment has received
+   */
+  percentage: number | null;
 };
 
 export const initialAssignment: Assignment = {
@@ -61,9 +65,10 @@ export const initialAssignment: Assignment = {
   weight: 0,
   due_date: null,
   is_complete: false,
-  grade: "",
   max_marks: null,
   earned_marks: null,
+  percentage: null,
+  grade: "",
 };
 
 export const getDueDate = (assignment: Assignment | Subtask) => {
@@ -88,40 +93,40 @@ export const getWeight = (assignment: Assignment) => {
   }
 };
 
-export const getPercentage = (assignment: Assignment) => {
-  if (assignment.weight) {
-    if (assignment.earned_marks && assignment.max_marks) {
-      return (
-        (
-          ((assignment.earned_marks / assignment.max_marks) *
-            assignment.weight) /
-          100
-        ).toString() + "%"
-      );
-    } else if (assignment.grade) {
-      return (
-        (
-          (convertToPercentage(assignment.grade) * assignment.weight) /
-          100
-        ).toString() + "%"
-      );
+export const getPercentage = (
+  weight: number | null = null,
+  grade: string = "",
+  earned_marks: number | null = null,
+  max_marks: number | null = null
+): number => {
+  if (weight) {
+    if (earned_marks && max_marks) {
+      return (earned_marks / max_marks) * weight;
+    } else if (grade) {
+      return convertToPercentage(grade) * weight;
+    } else {
+      return 0;
     }
   } else {
-    return "N/A";
+    return 0;
   }
 };
 
-export const getGrade = (assignment: Assignment) => {
-  if (assignment.grade) {
-    return assignment.grade;
-  } else if (assignment.earned_marks && assignment.max_marks) {
-    return convertToGrade(assignment.earned_marks / assignment.max_marks);
+export const getGrade = (
+  grade: string = "",
+  earned_marks: number | null = null,
+  max_marks: number | null = null
+): string => {
+  if (grade) {
+    return grade;
+  } else if (earned_marks && max_marks) {
+    return convertToGrade(earned_marks / max_marks);
   } else {
     return "N/A";
   }
 };
 
-export const convertToPercentage = (grade: String): number => {
+export const convertToPercentage = (grade: string): number => {
   switch (grade) {
     case "A+":
       return 95;
@@ -148,7 +153,7 @@ export const convertToPercentage = (grade: String): number => {
   }
 };
 
-export const convertToGrade = (percentage: number): String => {
+export const convertToGrade = (percentage: number): string => {
   if (percentage >= 0.9) {
     return "A+";
   } else if (percentage >= 0.85) {
