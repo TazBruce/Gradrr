@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Heading,
-  HStack,
-  VStack,
-  Divider,
-  IconButton,
-  Icon,
-  Fab,
-} from "native-base";
+import { Box, Heading, HStack, VStack, Divider, Icon, Fab } from "native-base";
 import Screen from "../../components/common/Screen";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CourseStackParamList } from "../../types/Course";

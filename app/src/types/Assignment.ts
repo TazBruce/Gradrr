@@ -76,7 +76,7 @@ export const getDueDate = (assignment: Assignment | Subtask) => {
     }
     return date.substring(0, date.length - 4);
   } else {
-    return "";
+    return "N/A";
   }
 };
 
@@ -85,5 +85,91 @@ export const getWeight = (assignment: Assignment) => {
     return assignment.weight + "%";
   } else {
     return "0%";
+  }
+};
+
+export const getPercentage = (assignment: Assignment) => {
+  if (assignment.weight) {
+    if (assignment.earned_marks && assignment.max_marks) {
+      return (
+        (
+          ((assignment.earned_marks / assignment.max_marks) *
+            assignment.weight) /
+          100
+        ).toString() + "%"
+      );
+    } else if (assignment.grade) {
+      return (
+        (
+          (convertToPercentage(assignment.grade) * assignment.weight) /
+          100
+        ).toString() + "%"
+      );
+    }
+  } else {
+    return "N/A";
+  }
+};
+
+export const getGrade = (assignment: Assignment) => {
+  if (assignment.grade) {
+    return assignment.grade;
+  } else if (assignment.earned_marks && assignment.max_marks) {
+    return convertToGrade(assignment.earned_marks / assignment.max_marks);
+  } else {
+    return "N/A";
+  }
+};
+
+export const convertToPercentage = (grade: String): number => {
+  switch (grade) {
+    case "A+":
+      return 95;
+    case "A":
+      return 87;
+    case "A-":
+      return 82;
+    case "B+":
+      return 77;
+    case "B":
+      return 72;
+    case "B-":
+      return 67;
+    case "C+":
+      return 62;
+    case "C":
+      return 57;
+    case "C-":
+      return 52;
+    case "D":
+      return 45;
+    default:
+      return 20;
+  }
+};
+
+export const convertToGrade = (percentage: number): String => {
+  if (percentage >= 0.9) {
+    return "A+";
+  } else if (percentage >= 0.85) {
+    return "A";
+  } else if (percentage >= 0.8) {
+    return "A-";
+  } else if (percentage >= 0.75) {
+    return "B+";
+  } else if (percentage >= 0.7) {
+    return "B";
+  } else if (percentage >= 0.65) {
+    return "B-";
+  } else if (percentage >= 0.6) {
+    return "C+";
+  } else if (percentage >= 0.55) {
+    return "C";
+  } else if (percentage >= 0.5) {
+    return "C-";
+  } else if (percentage >= 0.4) {
+    return "D";
+  } else {
+    return "E";
   }
 };
