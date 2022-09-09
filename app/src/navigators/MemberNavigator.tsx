@@ -46,7 +46,10 @@ function CourseNavigation() {
 
 export default function MemberNavigator() {
   return (
-    <Navigator screenOptions={{ headerShown: false }} tabBar={BottomTabBar}>
+    <Navigator
+      screenOptions={{ tabBarHideOnKeyboard: true, headerShown: false }}
+      tabBar={BottomTabBar}
+    >
       <Screen name="Courses" component={CourseNavigation} />
       <Screen name="Home" component={HomeScreen} />
       <Screen name="Settings" component={SettingsScreen} />

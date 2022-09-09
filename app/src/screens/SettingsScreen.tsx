@@ -9,9 +9,6 @@ export default function SettingsScreen() {
 
   return (
     <Screen title={t("settings.title")}>
-      <Heading size="lg">
-        {t("settings.greeting", { name: user?.displayName || "N/A" })}
-      </Heading>
       <VStack flex={1} justifyContent="center">
         <Button color="primary.500" onPress={() => AuthService.signOut()}>
           {t("settings.logout")}

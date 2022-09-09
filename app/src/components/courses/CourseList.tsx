@@ -14,7 +14,9 @@ export default function CourseList(isCurrent: boolean): JSX.Element {
     let result = getAllCourses(isCurrent);
     if (result instanceof Array) {
       return result.map(function (course: Course) {
-        return CourseRow(navigation, course);
+        return (
+          <CourseRow key={course.id} navigation={navigation} course={course} />
+        );
       });
     } else {
       return result;

@@ -19,9 +19,7 @@ import SelectField from "../../components/common/form/SelectField";
 
 const schema = Yup.object().shape({
   title: Yup.string().required().label(t("createCourse.titleLabel")),
-  description: Yup.string()
-    .required()
-    .label(t("createCourse.descriptionLabel")),
+  description: Yup.string().label(t("createCourse.descriptionLabel")),
   year_of_study: Yup.string().required().label(t("createCourse.yearLabel")),
   final_grade: Yup.string().label(t("createCourse.finalGradeLabel")),
 });
@@ -133,7 +131,6 @@ export default function CreateCourseScreen({
               name="description"
               label={t("createCourse.descriptionLabel")}
               placeholder={t("createCourse.descriptionHint")}
-              isRequired
             />
             <TextField
               name="year_of_study"

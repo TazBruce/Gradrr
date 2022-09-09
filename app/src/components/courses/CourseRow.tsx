@@ -24,20 +24,22 @@ function getGrade(course: Course) {
   return course.final_grade;
 }
 
+interface RowProps {
+  navigation: NativeStackNavigationProp<CourseStackParamList>;
+  course: Course;
+}
+
 /**
  * Renders a course row.
- * @param navigation
- * @param course The Course to render.
  * @constructor Creates a CourseRow.
+ * @param props
  */
-export default function CourseRow(
-  navigation: NativeStackNavigationProp<CourseStackParamList>,
-  course: Course
-): JSX.Element {
+export default function CourseRow(props: RowProps): JSX.Element {
+  const course = props.course;
+  const navigation = props.navigation;
   return (
     <Pressable
-      key={course.id}
-      onPress={() => navigation.navigate("ViewCourse", { course: course })}
+      onPress={() => navigation.navigate("ViewCourse", { course })}
       paddingTop={3}
       paddingBottom={3}
       _pressed={{ bg: "coolGray.200" }}

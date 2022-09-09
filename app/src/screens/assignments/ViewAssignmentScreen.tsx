@@ -5,14 +5,11 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CourseStackParamList } from "../../types/Course";
 import {
   getDueDate,
-  getGrade,
-  getPercentage,
   getWeight,
   removeTrailingDecimals,
 } from "../../types/Assignment";
 import SubtaskList from "../../components/subtasks/SubtaskList";
 import SubtaskModal from "../../components/subtasks/SubtaskModal";
-import AssignmentModal from "../../components/assignments/AssignmentModal";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
 export default function ViewAssignmentScreen({
@@ -25,7 +22,6 @@ export default function ViewAssignmentScreen({
     <>
       <Heading>Subtasks</Heading>
       {SubtaskList(assignment)}
-      <AssignmentModal assignment={assignment} />
       <SubtaskModal assignmentID={assignmentID} subtask={null} />
     </>
   );

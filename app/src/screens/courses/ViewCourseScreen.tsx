@@ -15,9 +15,11 @@ export default function ViewCourseScreen({
   route,
 }: NativeStackScreenProps<CourseStackParamList, "ViewCourse">) {
   const { course } = route.params;
-  const currentPec = 100 - course.current_percentage;
-  const leftOverWeight = course.total_weight - course.graded_weight;
-  const calc = removeTrailingDecimals(100 - (currentPec - leftOverWeight));
+  const calc = () => {
+    const currentPec = 100 - course.current_percentage;
+    const leftOverWeight = course.total_weight - course.graded_weight;
+    return removeTrailingDecimals(100 - (currentPec - leftOverWeight));
+  };
   return (
     <Screen
       title={course.title}
@@ -53,7 +55,7 @@ export default function ViewCourseScreen({
                 {course.final_grade == "" ? "Maximum" : "Final Grade"}
               </Heading>
               <Heading size="xl" marginTop="4">
-                {course.final_grade == "" ? calc + "%" : course.final_grade}
+                {course.final_grade == "" ? calc() + "%" : course.final_grade}
               </Heading>
             </VStack>
           </HStack>
