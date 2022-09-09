@@ -212,6 +212,7 @@ export default function CreateAssignmentScreen({
                 {completed && gradesReleased && (
                   <Checkbox
                     value={isLetter.toString()}
+                    isChecked={isLetter}
                     onChange={() => setIsLetter(!isLetter)}
                     accessibilityLabel={t(
                       "createAssignment.isLetterGradeLabel"
