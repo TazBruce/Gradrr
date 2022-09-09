@@ -11,7 +11,11 @@ import {
 } from "native-base";
 import { CourseStackParamList } from "../../types/Course";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Assignment, getDueDate } from "../../types/Assignment";
+import {
+  Assignment,
+  getDueDate,
+  removeTrailingDecimals,
+} from "../../types/Assignment";
 import { MaterialIcons } from "@expo/vector-icons";
 import { AuthContext } from "../../providers/AuthProvider";
 import { collection, doc } from "firebase/firestore";
@@ -100,8 +104,10 @@ export default function AssignmentRow(props: RowProps): JSX.Element {
           </Heading>
           <Heading alignSelf="center" size="md">
             {assignment.is_complete
-              ? assignment.percentage + "%"
-              : assignment.weight + "%"}
+              ? // @ts-ignore
+                removeTrailingDecimals(assignment.percentage)
+              : removeTrailingDecimals(assignment.weight)}
+            %
           </Heading>
         </VStack>
         <Icon

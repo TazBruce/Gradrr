@@ -5,7 +5,10 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CourseStackParamList } from "../../types/Course";
 import AssignmentList from "../../components/assignments/AssignmentList";
 import { AntDesign } from "@expo/vector-icons";
-import { initialAssignment } from "../../types/Assignment";
+import {
+  initialAssignment,
+  removeTrailingDecimals,
+} from "../../types/Assignment";
 
 export default function ViewCourseScreen({
   navigation,
@@ -36,7 +39,7 @@ export default function ViewCourseScreen({
                 {course.final_grade == "" ? "Current" : "Earned"}
               </Heading>
               <Heading size="xl" marginTop="4">
-                {course.current_percentage}%
+                {removeTrailingDecimals(course.current_percentage)}%
               </Heading>
             </VStack>
             <Divider
@@ -50,7 +53,7 @@ export default function ViewCourseScreen({
                 {course.final_grade == "" ? "Maximum" : "Final Grade"}
               </Heading>
               <Heading size="xl" marginTop="4">
-                {course.final_grade == "" ? calc : course.final_grade}
+                {course.final_grade == "" ? calc + "%" : course.final_grade}
               </Heading>
             </VStack>
           </HStack>

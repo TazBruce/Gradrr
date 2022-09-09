@@ -8,6 +8,7 @@ import {
   getGrade,
   getPercentage,
   getWeight,
+  removeTrailingDecimals,
 } from "../../types/Assignment";
 import SubtaskList from "../../components/subtasks/SubtaskList";
 import SubtaskModal from "../../components/subtasks/SubtaskModal";
@@ -71,7 +72,7 @@ export default function ViewAssignmentScreen({
           <VStack alignItems="center" w="45%">
             <Heading>Percentage</Heading>
             <Heading size="xl" marginTop="4">
-              {assignment.percentage + "%"}
+              {removeTrailingDecimals(assignment.percentage) + "%"}
             </Heading>
           </VStack>
           <Divider

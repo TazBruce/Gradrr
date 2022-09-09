@@ -11,6 +11,7 @@ import {
 import { Course, CourseStackParamList } from "../../types/Course";
 import { MaterialIcons } from "@expo/vector-icons";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { removeTrailingDecimals } from "../../types/Assignment";
 
 /**
  * Determines whether a course should show it's current or past status.
@@ -18,7 +19,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
  */
 function getGrade(course: Course) {
   if (course.final_grade === "") {
-    return course.current_percentage + "%";
+    return removeTrailingDecimals(course.current_percentage) + "%";
   }
   return course.final_grade;
 }

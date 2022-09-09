@@ -48,6 +48,8 @@ export const assignmentOnUpdate =
             newGradedWeight = assignment.weight - oldAssignment.weight;
           }
         }
+        console.log(`Updating course ${assignment.course} 
+        with new graded weight ${newGradedWeight}`);
         await firestore.collection("courses").doc(assignment.course).update({
           current_percentage: admin.firestore.FieldValue.increment(
               assignment.percentage - oldAssignment.percentage),

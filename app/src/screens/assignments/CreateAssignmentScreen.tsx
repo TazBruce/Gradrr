@@ -24,7 +24,10 @@ const schema = Yup.object().shape({
   title: Yup.string().required().label(t("createAssignment.titleLabel")),
   description: Yup.string().label(t("createAssignment.descriptionLabel")),
   due_date: Yup.date().nullable().label(t("createAssignment.dueDateLabel")),
-  weight: Yup.number().label(t("createAssignment.weightLabel")),
+  weight: Yup.number()
+    .min(0, "must be at least 0%")
+    .max(100, "cannot be over 100%")
+    .label(t("createAssignment.weightLabel")),
   grade: Yup.string().label(t("createAssignment.gradeLabel")),
   earned_marks: Yup.number()
     .nullable()

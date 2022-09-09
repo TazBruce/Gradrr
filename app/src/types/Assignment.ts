@@ -93,6 +93,10 @@ export const getWeight = (assignment: Assignment) => {
   }
 };
 
+export const removeTrailingDecimals = (num: number) => {
+  return num % 1 === 0 ? num : num.toFixed(2);
+};
+
 export const getPercentage = (
   weight: number | null = null,
   grade: string = "",
