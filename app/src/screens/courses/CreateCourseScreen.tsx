@@ -67,6 +67,9 @@ export default function CreateCourseScreen({
     if (user == null) {
       console.log("User not logged in");
     } else {
+      if (!completed) {
+        final_grade = "";
+      }
       mutation.mutate({
         owner: user.uid,
         title: title,
