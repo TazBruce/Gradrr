@@ -20,6 +20,7 @@ export const authOnDelete =
 
 /**
  * Update a courses total percentage when an assignment is updated
+ * Also marks all subtasks as complete if the assignment is complete
  */
 export const assignmentOnUpdate =
   functions.firestore.document("assignments/{assignmentId}")
@@ -31,6 +32,14 @@ export const assignmentOnUpdate =
         if (assignment.is_complete !== oldAssignment.is_complete) {
           if (assignment.is_complete) {
             newGradedWeight = assignment.weight;
+
+            // Mark all subtasks as complete
+            const subtasks = await firestore.collection("subtasks")
+                .where("assignment", "==", context.params.assignmentId)
+                .get();
+            subtasks.forEach(async (subtask) => {
+              await subtask.ref.update({is_complete: true});
+            });
           } else {
             newGradedWeight = -oldAssignment.weight;
           }
@@ -118,5 +127,29 @@ export const courseOnDelete =
         assignments.forEach(async (assignment) => {
           await assignment.ref.delete();
         });
+      }
+      );
+
+/**
+ * Mark all assignments as complete when a course is marked as complete
+ */
+export const courseOnUpdate =
+  functions.firestore.document("courses/{courseId}")
+      .onUpdate(async (change, context) => {
+        const course = change.after.data();
+        const oldCourse = change.before.data();
+
+        if (course.is_complete !== oldCourse.is_complete) {
+          if (course.is_complete) {
+            const assignments = await firestore
+                .collection("assignments")
+                .where("course", "==", context.params.courseId)
+                .get();
+
+            assignments.forEach(async (assignment) => {
+              await assignment.ref.update({is_complete: true});
+            });
+          }
+        }
       }
       );
