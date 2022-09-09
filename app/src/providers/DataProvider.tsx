@@ -10,32 +10,46 @@ import { Subtask } from "../types/Subtask";
 
 /**
  * A React Context that provides the current user's courses.
+ * @param getAll Whether to get all courses
  * @param isCurrent Whether to only return courses that are currently active.
  */
-export function getAllCourses(isCurrent: boolean): Course[] | JSX.Element {
+export function getAllCourses(
+  isCurrent: boolean = true,
+  getAll: boolean = false
+): Course[] | JSX.Element {
   const { user } = useContext(AuthContext);
   let ref;
   let firestoreQuery;
 
-  // Create a Firestore collection reference
-  if (isCurrent) {
+  if (getAll) {
     ref = query(
       collection(firestore, "courses"),
-      where("owner", "==", user?.uid || "N/A"),
-      where("final_grade", "==", "")
+      where("owner", "==", user?.uid || "N/A")
     );
     // @ts-ignore
-    firestoreQuery = useFirestoreQuery<Course>(["current_courses"], ref, {
-      subscribe: true,
-    });
+    firestoreQuery = useFirestoreQuery<Course>(["all_courses"], ref);
   } else {
-    ref = query(
-      collection(firestore, "courses"),
-      where("owner", "==", user?.uid || "N/A"),
-      where("final_grade", "!=", "")
-    );
-    // @ts-ignore
-    firestoreQuery = useFirestoreQuery<Course>(["past_courses"], ref);
+    if (isCurrent) {
+      ref = query(
+        collection(firestore, "courses"),
+        where("owner", "==", user?.uid || "N/A"),
+        where("final_grade", "==", "")
+      );
+      // @ts-ignore
+      firestoreQuery = useFirestoreQuery<Course>(["current_courses"], ref, {
+        subscribe: true,
+      });
+    } else {
+      ref = query(
+        collection(firestore, "courses"),
+        where("owner", "==", user?.uid || "N/A"),
+        where("final_grade", "!=", "")
+      );
+      // @ts-ignore
+      firestoreQuery = useFirestoreQuery<Course>(["past_courses"], ref, {
+        subscribe: true,
+      });
+    }
   }
 
   if (firestoreQuery.isLoading) {
@@ -58,17 +72,18 @@ export function getAllCourses(isCurrent: boolean): Course[] | JSX.Element {
 }
 
 /**
- * A React Context that provides the current user's assignments.
+ * A React Context that provides the user's current assignments.
  */
 export function getAllAssignments(): Assignment[] | JSX.Element {
   const { user } = useContext(AuthContext);
   const ref = query(
     collection(firestore, "assignments"),
-    where("owner", "==", user?.uid || "N/A")
+    where("owner", "==", user?.uid || "N/A"),
+    where("is_complete", "==", false)
   );
-  // @ts-ignore
   const firestoreQuery = useFirestoreQuery<Assignment>(
     ["all_assignments"],
+    // @ts-ignore
     ref
   );
 
