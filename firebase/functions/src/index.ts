@@ -24,51 +24,29 @@ export const authOnDelete =
 export const assignmentOnUpdate =
   functions.firestore.document("assignments/{assignmentId}")
       .onUpdate(async (change, context) => {
-        const assignmentId = context.params.assignmentId;
         const assignment = change.after.data();
         const oldAssignment = change.before.data();
 
-        if (assignment.percentage !== oldAssignment.percentage) {
-          console.log(`Assignment ${assignmentId} 
-          percentage changed to ${assignment.percentage}`);
-          await firestore.collection("courses").doc(assignment.course).update({
-            current_percentage: admin.firestore.FieldValue.increment(
-                assignment.percentage - oldAssignment.percentage),
-            total_weight: admin.firestore.FieldValue.increment(
-                assignment.weight - oldAssignment.weight),
-            graded_weight: assignment.is_complete ?
-              admin.firestore.FieldValue.increment(
-                  assignment.weight - oldAssignment.weight) :
-              (!assignment.is_complete && oldAssignment.is_complete) ?
-                admin.firestore.FieldValue.increment(
-                    -oldAssignment.weight) :
-                admin.firestore.FieldValue.increment(0)
-            ,
-          });
+        let newGradedWeight = 0;
+        if (assignment.is_complete !== oldAssignment.is_complete) {
+          if (assignment.is_complete) {
+            newGradedWeight = assignment.weight;
+          } else {
+            newGradedWeight = -oldAssignment.weight;
+          }
+        } else if (assignment.weight !== oldAssignment.weight) {
+          if (assignment.is_complete) {
+            newGradedWeight = assignment.weight - oldAssignment.weight;
+          }
         }
-      });
-
-/**
- * Update a courses total percentage when an assignment is deleted
- */
-export const assignmentOnDelete =
-  functions.firestore.document("assignments/{assignmentId}")
-      .onDelete(async (snapshot, context) => {
-        const assignmentId = context.params.assignmentId;
-        const assignment = snapshot.data();
-
-        console.log(`Deleting assignment ${assignmentId}`);
         await firestore.collection("courses").doc(assignment.course).update({
           current_percentage: admin.firestore.FieldValue.increment(
-              -assignment.percentage),
-          // eslint-disable-next-line max-len
-          total_weight: admin.firestore.FieldValue.increment(-assignment.weight),
-          graded_weight: assignment.is_complete ?
-            admin.firestore.FieldValue.increment(-assignment.weight) :
-            admin.firestore.FieldValue.increment(0),
+              assignment.percentage - oldAssignment.percentage),
+          total_weight: admin.firestore.FieldValue.increment(
+              assignment.weight - oldAssignment.weight),
+          graded_weight: admin.firestore.FieldValue.increment(newGradedWeight),
         });
-      }
-      );
+      });
 
 /**
  * Update a courses total percentage when an assignment is created
@@ -88,6 +66,37 @@ export const assignmentOnCreate =
           graded_weight: assignment.is_complete ?
             admin.firestore.FieldValue.increment(assignment.weight) :
             admin.firestore.FieldValue.increment(0),
+        });
+      }
+      );
+
+/**
+ * Update a courses total percentage when an assignment is deleted
+ * Also delete all subtasks associated with the assignment
+ */
+export const assignmentOnDelete =
+  functions.firestore.document("assignments/{assignmentId}")
+      .onDelete(async (snapshot, context) => {
+        const assignmentId = context.params.assignmentId;
+        const assignment = snapshot.data();
+
+        // Update course
+        console.log(`Deleting assignment ${assignmentId}`);
+        await firestore.collection("courses").doc(assignment.course).update({
+          current_percentage: admin.firestore.FieldValue.increment(
+              -assignment.percentage),
+          // eslint-disable-next-line max-len
+          total_weight: admin.firestore.FieldValue.increment(-assignment.weight),
+          graded_weight: assignment.is_complete ?
+            admin.firestore.FieldValue.increment(-assignment.weight) :
+            admin.firestore.FieldValue.increment(0),
+        });
+
+        // Delete all subtasks associated with the assignment
+        const subtasks = await firestore.collection("subtasks")
+            .where("assignment", "==", assignmentId).get();
+        subtasks.forEach(async (subtask) => {
+          await subtask.ref.delete();
         });
       }
       );
