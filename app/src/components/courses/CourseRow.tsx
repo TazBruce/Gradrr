@@ -3,7 +3,6 @@ import {
   Heading,
   HStack,
   Icon,
-  IconButton,
   VStack,
   Text,
   Square,
@@ -19,7 +18,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
  */
 function getGrade(course: Course) {
   if (course.final_grade === "") {
-    return "25%";
+    return course.current_percentage + "%";
   }
   return course.final_grade;
 }
@@ -51,11 +50,11 @@ export default function CourseRow(
           w="15%"
           alignSelf="center"
         />
-        <VStack alignSelf="center" w="45%">
+        <VStack alignSelf="center" w="40%">
           <Heading size="md">{course.title}</Heading>
           <Text numberOfLines={2}>{course.description}</Text>
         </VStack>
-        <Heading alignSelf="center" size="xl" alignContent="flex-end" w="20%">
+        <Heading alignSelf="center" size="xl" alignContent="flex-end" w="28%">
           {getGrade(course)}
         </Heading>
         <Icon
