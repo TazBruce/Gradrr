@@ -4,7 +4,10 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { AuthContext } from "../../providers/AuthProvider";
 import { collection, doc } from "firebase/firestore";
 import { db as firestore } from "../../services/firebase";
-import { useFirestoreDocumentMutation } from "@react-query-firebase/firestore";
+import {
+  useFirestoreDocumentDeletion,
+  useFirestoreDocumentMutation,
+} from "@react-query-firebase/firestore";
 import { Subtask } from "../../types/Subtask";
 import { getDueDate } from "../../types/Assignment";
 import SubtaskModal from "./SubtaskModal";
@@ -29,6 +32,7 @@ export default function SubtaskRow(props: RowProps): JSX.Element {
       doc(ref, subtask.id.toString())
     : doc(ref);
   const mutation = useFirestoreDocumentMutation(document);
+  const deleteMutation = useFirestoreDocumentDeletion(document);
   const { mutate } = mutation;
 
   const markComplete = () => {
@@ -41,11 +45,8 @@ export default function SubtaskRow(props: RowProps): JSX.Element {
   };
 
   const deleteSubtask = () => {
-    console.log("Delete subtask");
-  };
-
-  const editSubtask = () => {
-    console.log("Edit subtask");
+    deleteMutation.mutate();
+    console.log("Deleting subtask");
   };
 
   return (

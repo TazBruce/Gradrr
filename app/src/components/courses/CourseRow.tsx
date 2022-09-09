@@ -53,11 +53,11 @@ export default function CourseRow(props: RowProps): JSX.Element {
           w="15%"
           alignSelf="center"
         />
-        <VStack alignSelf="center" w="40%">
+        <VStack alignSelf="center" w="30%">
           <Heading size="md">{course.title}</Heading>
           <Text numberOfLines={2}>{course.description}</Text>
         </VStack>
-        <Heading alignSelf="center" size="xl" alignContent="flex-end" w="28%">
+        <Heading alignSelf="center" size="xl" alignContent="flex-end" w="34%">
           {getGrade(course)}
         </Heading>
         <Icon
