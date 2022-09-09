@@ -32,7 +32,9 @@ export default function ViewCourseScreen({
         >
           <HStack justifyContent="space-evenly">
             <VStack alignItems="center" w="45%">
-              <Heading>Current</Heading>
+              <Heading>
+                {course.final_grade == "" ? "Current" : "Earned"}
+              </Heading>
               <Heading size="xl" marginTop="4">
                 {course.current_percentage}%
               </Heading>
@@ -44,9 +46,11 @@ export default function ViewCourseScreen({
               thickness="4"
             />
             <VStack alignItems="center" w="45%">
-              <Heading>Maximum</Heading>
+              <Heading>
+                {course.final_grade == "" ? "Maximum" : "Final Grade"}
+              </Heading>
               <Heading size="xl" marginTop="4">
-                {calc}%
+                {course.final_grade == "" ? calc : course.final_grade}
               </Heading>
             </VStack>
           </HStack>
