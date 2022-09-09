@@ -14,6 +14,11 @@ const defaultProps = {
   isRequired: false,
 };
 
+/**
+ * Renders a checkbox field.
+ * @param props The props for the checkbox field.
+ * @constructor Creates a CheckboxField.
+ */
 export default function CheckboxField(props: CheckboxFieldProps) {
   const { name, label, isRequired } = props;
   const [field, meta] = useField(name);

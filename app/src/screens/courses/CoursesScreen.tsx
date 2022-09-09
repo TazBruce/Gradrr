@@ -6,6 +6,11 @@ import { AntDesign } from "@expo/vector-icons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import CourseTabBar from "../../components/courses/CourseTabBar";
 
+/**
+ * The courses screen.
+ * @param navigation The navigation object.
+ * @constructor The courses screen.
+ */
 export default function CoursesScreen({
   navigation,
 }: NativeStackScreenProps<any>) {

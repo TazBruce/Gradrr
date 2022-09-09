@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
-import { Button, Heading, VStack } from "native-base";
-import { AuthContext, AuthService } from "../providers/AuthProvider";
+import React from "react";
+import { Button, VStack } from "native-base";
+import { AuthService } from "../providers/AuthProvider";
 import { t } from "../utils";
 import Screen from "../components/common/Screen";
 
+/**
+ * Settings screen.
+ * @constructor Settings screen.
+ */
 export default function SettingsScreen() {
-  const { user } = useContext(AuthContext);
-
   return (
     <Screen title={t("settings.title")}>
       <VStack flex={1} justifyContent="center">

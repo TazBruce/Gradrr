@@ -4,6 +4,10 @@ import { AuthProvider, AuthContext } from "../providers/AuthProvider";
 import MemberNavigator from "./MemberNavigator";
 import GuestNavigator from "./GuestNavigator";
 
+/**
+ * AppNavigator
+ * @constructor AppNavigator
+ */
 function AppNavigator() {
   return (
     <AuthProvider>

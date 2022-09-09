@@ -4,7 +4,6 @@ import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import * as Yup from "yup";
 import { t } from "../../utils";
 import { initialSubtask, Subtask } from "../../types/Subtask";
-import { Assignment } from "../../types/Assignment";
 import { AuthContext } from "../../providers/AuthProvider";
 import { collection, doc } from "firebase/firestore";
 import { db } from "../../services/firebase";
@@ -23,6 +22,11 @@ interface ModalProps {
   subtask: Subtask | null;
 }
 
+/**
+ * Renders a modal for creating or editing a subtask.
+ * @param props The props for the modal.
+ * @constructor Creates a SubtaskModal.
+ */
 export default function SubtaskModal(props: ModalProps) {
   const [showModal, setShowModal] = useState(false);
   const { user } = useContext(AuthContext);

@@ -1,6 +1,9 @@
 import { Key } from "react";
 import { Timestamp } from "firebase/firestore";
 
+/**
+ * A subtask within an assignment.
+ */
 export type Subtask = {
   /**
    * The id of the subtask

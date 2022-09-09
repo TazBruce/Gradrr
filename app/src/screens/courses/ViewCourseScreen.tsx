@@ -10,6 +10,12 @@ import {
   removeTrailingDecimals,
 } from "../../types/Assignment";
 
+/**
+ * View a course.
+ * @param navigation The navigation object.
+ * @param route The route object.
+ * @constructor View a course.
+ */
 export default function ViewCourseScreen({
   navigation,
   route,

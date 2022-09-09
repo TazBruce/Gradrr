@@ -12,6 +12,16 @@ interface ScreenProps {
   currentItem?: Course | Assignment;
 }
 
+/**
+ * Renders a screen.
+ * @param title The title of the screen.
+ * @param showBackButton Whether to show the back button.
+ * @param showEditButton Whether to show the edit button.
+ * @param showDeleteButton Whether to show the delete button.
+ * @param currentItem The current item to edit or delete.
+ * @param children The children of the screen.
+ * @constructor Creates a Screen.
+ */
 export default function Screen({
   title,
   showBackButton,

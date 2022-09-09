@@ -1,7 +1,7 @@
 import React from "react";
 import { t } from "../../utils";
 import { Box, useColorModeValue } from "native-base";
-import { Animated, Dimensions, Pressable, StatusBar } from "react-native";
+import { Animated, Dimensions, Pressable } from "react-native";
 import { SceneMap, TabView } from "react-native-tab-view";
 import CourseList from "./CourseList";
 
@@ -14,6 +14,10 @@ const renderScene = SceneMap({
   second: () => CourseList(false),
 });
 
+/**
+ * Renders the tab bar for the courses screen.
+ * @constructor Creates a CourseTabBar.
+ */
 export default function CourseTabBar() {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([

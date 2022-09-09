@@ -3,6 +3,9 @@ import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import * as React from "react";
 
+/**
+ * Hook to load assets and fonts for the app.
+ */
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
 

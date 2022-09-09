@@ -28,6 +28,11 @@ const schema = Yup.object().shape({
   password: Yup.string().required().label(t("login.passwordLabel")),
 });
 
+/**
+ * Login screen.
+ * @param navigation The navigation object.
+ * @constructor Login screen.
+ */
 export default function LoginScreen({
   navigation,
 }: NativeStackScreenProps<GuestNavigatorParamList, "Login">) {

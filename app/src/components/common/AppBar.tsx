@@ -19,6 +19,15 @@ interface AppBarProps {
   currentItem?: Course | Assignment;
 }
 
+/**
+ * Renders the app bar.
+ * @param title The title of the app bar.
+ * @param showBackButton Whether to show the back button.
+ * @param showEditButton Whether to show the edit button.
+ * @param showDeleteButton Whether to show the delete button.
+ * @param currentItem The current item to edit or delete.
+ * @constructor Creates an AppBar.
+ */
 export default function AppBar({
   title,
   showBackButton = false,

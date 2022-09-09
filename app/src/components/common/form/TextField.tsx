@@ -17,6 +17,11 @@ const defaultProps = {
   password: false,
 };
 
+/**
+ * Renders a text field.
+ * @param props The props for the text field.
+ * @constructor Creates a TextField.
+ */
 export default function TextField(props: TextFieldProps) {
   const { name, label, isRequired, password, ...rest } = props;
   const [textHidden, setTextHidden] = useState(password);

@@ -16,6 +16,10 @@ const { Navigator, Screen } = createBottomTabNavigator();
 
 const CourseStack = createNativeStackNavigator<CourseStackParamList>();
 
+/**
+ * CourseStackScreen
+ * @constructor CourseStackScreen
+ */
 function CourseNavigation() {
   return (
     <CourseStack.Navigator screenOptions={{ headerShown: false }}>
@@ -44,6 +48,10 @@ function CourseNavigation() {
   );
 }
 
+/**
+ * MemberNavigator
+ * @constructor MemberNavigator
+ */
 export default function MemberNavigator() {
   return (
     <Navigator

@@ -16,6 +16,11 @@ export const AuthContext = createContext({} as AuthContextValue);
 
 export const AuthService = auth;
 
+/**
+ * AuthProvider
+ * @param props PropsWithChildren
+ * @constructor AuthProvider
+ */
 export function AuthProvider(props: PropsWithChildren<unknown>) {
   const [user, setUser] = useState<User | null>(null);
   const [authPending, setAuthPending] = useState(true);

@@ -71,6 +71,10 @@ export const initialAssignment: Assignment = {
   grade: "",
 };
 
+/**
+ * Formats the due date of an assignment or subtask
+ * @param assignment The assignment or subtask to format the due date of
+ */
 export const getDueDate = (assignment: Assignment | Subtask) => {
   if (assignment.due_date) {
     let date;
@@ -85,6 +89,10 @@ export const getDueDate = (assignment: Assignment | Subtask) => {
   }
 };
 
+/**
+ * Formats the weight of an assignment
+ * @param assignment The assignment to format the weight of
+ */
 export const getWeight = (assignment: Assignment) => {
   if (assignment.weight) {
     return assignment.weight + "%";
@@ -93,6 +101,10 @@ export const getWeight = (assignment: Assignment) => {
   }
 };
 
+/**
+ * Formats the trailing decimals of a number
+ * @param num The number to format
+ */
 export const removeTrailingDecimals = (num: number | null) => {
   if (num) {
     return num % 1 === 0 ? num : num.toFixed(2);
@@ -100,6 +112,13 @@ export const removeTrailingDecimals = (num: number | null) => {
   return num;
 };
 
+/**
+ * Calculates the percentage of a given grade or mark
+ * @param weight The weight of the assignment
+ * @param grade The grade of the assignment
+ * @param earned_marks The amount of marks the assignment has received
+ * @param max_marks The maximum amount of marks the assignment can receive
+ */
 export const getPercentage = (
   weight: number | null = null,
   grade: string = "",
@@ -119,6 +138,12 @@ export const getPercentage = (
   }
 };
 
+/**
+ * Converts a percentage or mark into a grade
+ * @param grade The grade to convert
+ * @param earned_marks The amount of marks the assignment has received
+ * @param max_marks The maximum amount of marks the assignment can receive
+ */
 export const getGrade = (
   grade: string = "",
   earned_marks: number | null = null,
@@ -133,6 +158,10 @@ export const getGrade = (
   }
 };
 
+/**
+ * Converts a grade into a percentage
+ * @param grade The grade to convert
+ */
 export const convertToPercentage = (grade: string): number => {
   switch (grade) {
     case "A+":
@@ -160,6 +189,10 @@ export const convertToPercentage = (grade: string): number => {
   }
 };
 
+/**
+ * Converts a percentage into a grade
+ * @param percentage The percentage to convert
+ */
 export const convertToGrade = (percentage: number): string => {
   if (percentage >= 0.9) {
     return "A+";

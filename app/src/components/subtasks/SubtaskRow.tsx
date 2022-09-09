@@ -1,13 +1,5 @@
 import React, { Key, useContext, useState } from "react";
-import {
-  Container,
-  Heading,
-  HStack,
-  Icon,
-  IconButton,
-  VStack,
-  Text,
-} from "native-base";
+import { Heading, HStack, Icon, IconButton, VStack, Text } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 import { AuthContext } from "../../providers/AuthProvider";
 import { collection, doc } from "firebase/firestore";

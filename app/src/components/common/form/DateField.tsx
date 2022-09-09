@@ -18,6 +18,11 @@ const defaultProps = {
   isRequired: false,
 };
 
+/**
+ * Renders a text field.
+ * @param props The props for the text field.
+ * @constructor Creates a TextField.
+ */
 export default function DateField(props: TextFieldProps) {
   const { name, label, isRequired, ...rest } = props;
   const [field, meta, { setValue }] = useField(name);

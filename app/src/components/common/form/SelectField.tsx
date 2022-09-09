@@ -15,6 +15,11 @@ const defaultProps = {
   isRequired: false,
 };
 
+/**
+ * Renders a select field.
+ * @param props The props for the select field.
+ * @constructor Creates a SelectField.
+ */
 export default function SelectField(props: SelectFieldProps) {
   const { name, label, isRequired, ...rest } = props;
   const [field, meta] = useField(name);

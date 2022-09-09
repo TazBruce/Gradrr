@@ -10,6 +10,10 @@ export type GuestNavigatorParamList = {
   Register: undefined;
 };
 
+/**
+ * GuestNavigator
+ * @constructor GuestNavigator
+ */
 export default function GuestNavigator() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>

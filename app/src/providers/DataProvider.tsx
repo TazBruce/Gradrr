@@ -111,6 +111,45 @@ export function getAllAssignments(): Assignment[] | JSX.Element {
 }
 
 /**
+ * A React Context that provides the user's current subtasks.
+ */
+export function getAllSubtasks(): Subtask[] | JSX.Element {
+  const { user } = useContext(AuthContext);
+  const ref = query(
+    collection(firestore, "subtasks"),
+    where("owner", "==", user?.uid || "N/A"),
+    where("is_complete", "==", false),
+    orderBy("due_date", "asc")
+  );
+  const firestoreQuery = useFirestoreQuery<Assignment>(
+    ["all_subtasks"],
+    // @ts-ignore
+    ref,
+    {
+      subscribe: true,
+    }
+  );
+
+  if (firestoreQuery.isLoading) {
+    return <Loader />;
+  }
+
+  const snapshot = firestoreQuery.data;
+
+  return (
+    // @ts-ignore
+    snapshot.docs.map(function (docSnapshot: {
+      data: () => Subtask;
+      id: React.Key | undefined;
+    }) {
+      let subtask: Subtask = docSnapshot.data();
+      subtask.id = docSnapshot.id;
+      return subtask;
+    })
+  );
+}
+
+/**
  * A React Context that pulls all the assignments for a given course.
  * @param courseId The ID of the course to pull assignments for.
  */

@@ -12,6 +12,11 @@ import SubtaskList from "../../components/subtasks/SubtaskList";
 import SubtaskModal from "../../components/subtasks/SubtaskModal";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
+/**
+ * View an assignment.
+ * @param route The route object.
+ * @constructor View an assignment.
+ */
 export default function ViewAssignmentScreen({
   route,
 }: NativeStackScreenProps<CourseStackParamList, "ViewAssignment">) {

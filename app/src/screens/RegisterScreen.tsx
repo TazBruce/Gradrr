@@ -29,6 +29,10 @@ const schema = Yup.object().shape({
   password: Yup.string().required().min(6).label(t("register.passwordLabel")),
 });
 
+/**
+ * Register screen.
+ * @constructor Register screen.
+ */
 export default function RegisterScreen() {
   const handleFormSubmit = async ({
     displayName,

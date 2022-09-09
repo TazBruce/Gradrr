@@ -1,16 +1,10 @@
-import React, { Key, useContext } from "react";
+import React, { useContext } from "react";
 import { t } from "../../utils";
 import * as Yup from "yup";
 import Screen from "../../components/common/Screen";
 import TextField from "../../components/common/form/TextField";
 import { Formik } from "formik";
-import {
-  Button,
-  Checkbox,
-  HStack,
-  KeyboardAvoidingView,
-  VStack,
-} from "native-base";
+import { Button, Checkbox, HStack, VStack } from "native-base";
 import { AuthContext } from "../../providers/AuthProvider";
 import { collection, doc } from "firebase/firestore";
 import { db } from "../../services/firebase";

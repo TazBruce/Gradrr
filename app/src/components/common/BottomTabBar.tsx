@@ -4,6 +4,12 @@ import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { t } from "../../utils";
 
+/**
+ * Renders the bottom tab bar.
+ * @param navigation The navigation object.
+ * @param state The state object.
+ * @constructor Creates a BottomTabBar.
+ */
 export default function BottomTabBar({ navigation, state }: BottomTabBarProps) {
   const select = (index: number) =>
     navigation.navigate(state.routeNames[index]);

@@ -6,6 +6,11 @@ import { getAllCourses } from "../../providers/DataProvider";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
+/**
+ * CourseList component
+ * @param isCurrent - true if the list is for current courses, false if it is for past courses
+ * @constructor - CourseList component
+ */
 export default function CourseList(isCurrent: boolean): JSX.Element {
   const navigation =
     useNavigation<NativeStackNavigationProp<CourseStackParamList>>();
