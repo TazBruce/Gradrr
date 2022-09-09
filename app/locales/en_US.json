@@ -89,7 +89,8 @@
   },
   "home": {
     "title": "Home",
-    "greeting": "This is HomeScreen"
+    "upcoming": "Upcoming Tasks",
+    "gpa": "Overall GPA"
   },
   "settings": {
     "title": "Settings",
