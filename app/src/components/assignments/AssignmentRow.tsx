@@ -51,6 +51,9 @@ export default function AssignmentRow(props: RowProps): JSX.Element {
     assignment.is_complete = !completed;
     if (completed) {
       assignment.percentage = 0;
+      assignment.earned_marks = 0;
+      assignment.max_marks = 0;
+      assignment.grade = "";
     }
     mutate({
       ...assignment,
