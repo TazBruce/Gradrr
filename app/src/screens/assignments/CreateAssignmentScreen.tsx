@@ -81,11 +81,11 @@ export default function CreateAssignmentScreen({
     if (user == null) {
       console.log("User not logged in");
     } else {
-      if (!gradesReleased) {
+      if (!completed || !gradesReleased) {
         grade = "";
         earned_marks = null;
         max_marks = null;
-        is_complete = false;
+        is_complete = !!completed;
       } else if (isLetter) {
         earned_marks = null;
         max_marks = null;

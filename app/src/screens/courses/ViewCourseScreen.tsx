@@ -12,6 +12,9 @@ export default function ViewCourseScreen({
   route,
 }: NativeStackScreenProps<CourseStackParamList, "ViewCourse">) {
   const { course } = route.params;
+  const currentPec = 100 - course.current_percentage;
+  const leftOverWeight = course.total_weight - course.graded_weight;
+  const calc = 100 - (currentPec - leftOverWeight);
 
   return (
     <Screen
@@ -44,10 +47,7 @@ export default function ViewCourseScreen({
             <VStack alignItems="center" w="45%">
               <Heading>Maximum</Heading>
               <Heading size="xl" marginTop="4">
-                {100 -
-                  (100 - course.current_percentage) -
-                  (course.total_weight - course.graded_weight)}
-                %
+                {calc}%
               </Heading>
             </VStack>
           </HStack>

@@ -37,9 +37,13 @@ export const assignmentOnUpdate =
             total_weight: admin.firestore.FieldValue.increment(
                 assignment.weight - oldAssignment.weight),
             graded_weight: assignment.is_complete ?
+              admin.firestore.FieldValue.increment(
+                  assignment.weight - oldAssignment.weight) :
+              (!assignment.is_complete && oldAssignment.is_complete) ?
                 admin.firestore.FieldValue.increment(
-                    assignment.weight - oldAssignment.weight) :
-                admin.firestore.FieldValue.increment(0),
+                    -oldAssignment.weight) :
+                admin.firestore.FieldValue.increment(0)
+            ,
           });
         }
       });
