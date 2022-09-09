@@ -2,7 +2,7 @@ import React, { Key, useContext } from "react";
 import { db as firestore } from "../services/firebase";
 import { Course } from "../types/Course";
 import { AuthContext } from "./AuthProvider";
-import { collection, query, where } from "firebase/firestore";
+import { collection, query, where, orderBy } from "firebase/firestore";
 import { useFirestoreQuery } from "@react-query-firebase/firestore";
 import Loader from "../components/common/Loader";
 import { Assignment } from "../types/Assignment";
@@ -79,7 +79,8 @@ export function getAllAssignments(): Assignment[] | JSX.Element {
   const ref = query(
     collection(firestore, "assignments"),
     where("owner", "==", user?.uid || "N/A"),
-    where("is_complete", "==", false)
+    where("is_complete", "==", false),
+    orderBy("due_date", "asc")
   );
   const firestoreQuery = useFirestoreQuery<Assignment>(
     ["all_assignments"],
@@ -123,7 +124,8 @@ export function getCourseAssignments(
   ref = query(
     collection(firestore, "assignments"),
     where("owner", "==", user?.uid || "N/A"),
-    where("course", "==", courseId)
+    where("course", "==", courseId),
+    orderBy("due_date", "asc")
   );
 
   firestoreQuery = useFirestoreQuery<Assignment>(
@@ -168,7 +170,8 @@ export function getAssignmentSubtasks(
   ref = query(
     collection(firestore, "subtasks"),
     where("owner", "==", user?.uid || "N/A"),
-    where("assignment", "==", assignmentId)
+    where("assignment", "==", assignmentId),
+    orderBy("due_date", "asc")
   );
 
   firestoreQuery = useFirestoreQuery<Subtask>(
