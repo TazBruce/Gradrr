@@ -34,6 +34,12 @@ export const assignmentOnUpdate =
           await firestore.collection("courses").doc(assignment.course).update({
             current_percentage: admin.firestore.FieldValue.increment(
                 assignment.percentage - oldAssignment.percentage),
+            total_weight: admin.firestore.FieldValue.increment(
+                assignment.weight - oldAssignment.weight),
+            graded_weight: assignment.is_complete ?
+                admin.firestore.FieldValue.increment(
+                    assignment.weight - oldAssignment.weight) :
+                admin.firestore.FieldValue.increment(0),
           });
         }
       });
@@ -51,6 +57,11 @@ export const assignmentOnDelete =
         await firestore.collection("courses").doc(assignment.course).update({
           current_percentage: admin.firestore.FieldValue.increment(
               -assignment.percentage),
+          // eslint-disable-next-line max-len
+          total_weight: admin.firestore.FieldValue.increment(-assignment.weight),
+          graded_weight: assignment.is_complete ?
+            admin.firestore.FieldValue.increment(-assignment.weight) :
+            admin.firestore.FieldValue.increment(0),
         });
       }
       );
@@ -68,6 +79,11 @@ export const assignmentOnCreate =
         await firestore.collection("courses").doc(assignment.course).update({
           current_percentage: admin.firestore.FieldValue.increment(
               assignment.percentage),
+          total_weight: admin.firestore.FieldValue.increment(
+              assignment.weight),
+          graded_weight: assignment.is_complete ?
+            admin.firestore.FieldValue.increment(assignment.weight) :
+            admin.firestore.FieldValue.increment(0),
         });
       }
       );

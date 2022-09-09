@@ -32,7 +32,7 @@ export default function ViewCourseScreen({
             <VStack alignItems="center" w="45%">
               <Heading>Current</Heading>
               <Heading size="xl" marginTop="4">
-                25%
+                {course.current_percentage}%
               </Heading>
             </VStack>
             <Divider

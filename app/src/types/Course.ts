@@ -33,6 +33,14 @@ export type Course = {
    * The current percentage of the course
    */
   current_percentage: number;
+  /**
+   * Total weights of the course
+   */
+  total_weight: number;
+  /**
+   * Graded weights of the course
+   */
+  graded_weight: number;
 };
 
 export const initialCourse: Course = {
@@ -43,6 +51,8 @@ export const initialCourse: Course = {
   year_of_study: "",
   final_grade: "",
   current_percentage: 0,
+  total_weight: 0,
+  graded_weight: 0,
 };
 
 export type CourseStackParamList = {

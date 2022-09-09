@@ -68,6 +68,7 @@ export default function AssignmentModal(props: ModalProps) {
         is_complete: true,
         earned_marks: earned_marks,
         max_marks: max_marks,
+        weight: Number.parseInt(props.assignment.weight.toString()),
         grade: newGrade,
         percentage: newPercentage,
       });
