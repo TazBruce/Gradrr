@@ -64,3 +64,31 @@ export type CourseStackParamList = {
     | undefined;
   ViewAssignment: { assignment: Assignment };
 };
+
+/**
+ * Function that converts a letter grade to its corresponding GPA value
+ */
+export function letterGradeToGPA(grade: string): number {
+  switch (grade) {
+    case "A+":
+      return 9;
+    case "A":
+      return 8;
+    case "A-":
+      return 7;
+    case "B+":
+      return 6;
+    case "B":
+      return 5;
+    case "B-":
+      return 4;
+    case "C+":
+      return 3;
+    case "C":
+      return 2;
+    case "C-":
+      return 1;
+    default:
+      return 0;
+  }
+}
