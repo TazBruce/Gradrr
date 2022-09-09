@@ -44,7 +44,10 @@ export default function ViewCourseScreen({
             <VStack alignItems="center" w="45%">
               <Heading>Maximum</Heading>
               <Heading size="xl" marginTop="4">
-                100%
+                {100 -
+                  (100 - course.current_percentage) -
+                  (course.total_weight - course.graded_weight)}
+                %
               </Heading>
             </VStack>
           </HStack>
