@@ -49,6 +49,9 @@ export default function AssignmentRow(props: RowProps): JSX.Element {
   const markComplete = () => {
     setCompleted(!completed);
     assignment.is_complete = !completed;
+    if (completed) {
+      assignment.percentage = 0;
+    }
     mutate({
       ...assignment,
       owner: user?.uid,

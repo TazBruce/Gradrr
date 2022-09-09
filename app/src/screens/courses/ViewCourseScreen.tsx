@@ -17,7 +17,7 @@ export default function ViewCourseScreen({
   const { course } = route.params;
   const currentPec = 100 - course.current_percentage;
   const leftOverWeight = course.total_weight - course.graded_weight;
-  const calc = parseFloat((100 - (currentPec - leftOverWeight)).toFixed(2));
+  const calc = removeTrailingDecimals(100 - (currentPec - leftOverWeight));
   return (
     <Screen
       title={course.title}
