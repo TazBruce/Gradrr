@@ -139,17 +139,15 @@ export const courseOnUpdate =
         const course = change.after.data();
         const oldCourse = change.before.data();
 
-        if (course.is_complete !== oldCourse.is_complete) {
-          if (course.is_complete) {
-            const assignments = await firestore
-                .collection("assignments")
-                .where("course", "==", context.params.courseId)
-                .get();
+        if (course.final_grade !== "" && oldCourse.final_grade == "") {
+          const assignments = await firestore
+              .collection("assignments")
+              .where("course", "==", context.params.courseId)
+              .get();
 
-            assignments.forEach(async (assignment) => {
-              await assignment.ref.update({is_complete: true});
-            });
-          }
+          assignments.forEach(async (assignment) => {
+            await assignment.ref.update({is_complete: true});
+          });
         }
       }
       );
