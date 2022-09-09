@@ -73,6 +73,7 @@ export default function CreateCourseScreen({
         description: description,
         year_of_study: year_of_study,
         final_grade: final_grade,
+        current_percentage: initialValues.current_percentage,
       });
       if (mutation.isError) {
         console.log(mutation.error.message);
@@ -85,6 +86,7 @@ export default function CreateCourseScreen({
           description: description,
           year_of_study: year_of_study,
           final_grade: final_grade,
+          current_percentage: initialValues.current_percentage,
         };
         if (editStatus) {
           navigation.pop();

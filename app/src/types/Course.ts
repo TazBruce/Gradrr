@@ -29,6 +29,10 @@ export type Course = {
    * The final grade the course receives
    */
   final_grade: string;
+  /**
+   * The current percentage of the course
+   */
+  current_percentage: number;
 };
 
 export const initialCourse: Course = {
@@ -38,6 +42,7 @@ export const initialCourse: Course = {
   description: "",
   year_of_study: "",
   final_grade: "",
+  current_percentage: 0,
 };
 
 export type CourseStackParamList = {
@@ -45,7 +50,7 @@ export type CourseStackParamList = {
   CreateCourse: { course: Course } | undefined;
   ViewCourse: { course: Course };
   CreateAssignment:
-    | { courseID: Key | undefined; assignment: Assignment }
+    | { course: Course | undefined; assignment: Assignment }
     | undefined;
   ViewAssignment: { assignment: Assignment };
 };
