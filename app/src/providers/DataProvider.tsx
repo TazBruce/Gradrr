@@ -84,7 +84,10 @@ export function getAllAssignments(): Assignment[] | JSX.Element {
   const firestoreQuery = useFirestoreQuery<Assignment>(
     ["all_assignments"],
     // @ts-ignore
-    ref
+    ref,
+    {
+      subscribe: true,
+    }
   );
 
   if (firestoreQuery.isLoading) {

@@ -23,7 +23,7 @@ export default function AssignmentList(
   const navigation =
     useNavigation<NativeStackNavigationProp<CourseStackParamList>>();
 
-  const mapAssignments = function (assignmentList: Assignment[]) {
+  const mapAssignments = (assignmentList: Assignment[]) => {
     return assignmentList.map(function (assignment: Assignment) {
       return (
         <AssignmentRow
@@ -35,7 +35,7 @@ export default function AssignmentList(
     });
   };
 
-  const assignments = function () {
+  const assignments = () => {
     let result;
     if (course != null && course.id) {
       result = getCourseAssignments(course.id);

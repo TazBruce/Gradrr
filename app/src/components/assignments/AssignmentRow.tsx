@@ -36,7 +36,6 @@ interface RowProps {
 export default function AssignmentRow(props: RowProps): JSX.Element {
   const assignment = props.assignment;
   const navigation = props.navigation;
-  const [completed, setCompleted] = useState(assignment.is_complete);
   const { user } = useContext(AuthContext);
   const ref = collection(firestore, "assignments");
   const document = assignment.id
@@ -47,9 +46,8 @@ export default function AssignmentRow(props: RowProps): JSX.Element {
   const { mutate } = mutation;
 
   const markComplete = () => {
-    setCompleted(!completed);
-    assignment.is_complete = !completed;
-    if (completed) {
+    assignment.is_complete = !assignment.is_complete;
+    if (assignment.is_complete) {
       assignment.percentage = 0;
       assignment.earned_marks = 0;
       assignment.max_marks = 0;
@@ -72,9 +70,9 @@ export default function AssignmentRow(props: RowProps): JSX.Element {
       <HStack space={3} h="60" w="100%" justifyContent="flex-start">
         <IconButton
           onPress={markComplete}
-          bg={completed ? "primary.500" : "white"}
+          bg={assignment.is_complete ? "primary.500" : "white"}
           rounded="md"
-          borderColor={completed ? "primary.500" : "coolGray.500"}
+          borderColor={assignment.is_complete ? "primary.500" : "coolGray.500"}
           borderWidth={4}
           shadow={3}
           h="100%"
